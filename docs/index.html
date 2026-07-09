@@ -3,6 +3,12 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>HR Derby League</title>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Chivo+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#101418">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="HR League">
+<link rel="apple-touch-icon" href="icon.png">
 <style>
   :root {
     --field:#101418; --panel:#181E24; --hair:#2A333D; --led:#4ADE80;
@@ -11,7 +17,7 @@
   * { box-sizing:border-box; margin:0; }
   body { background:var(--field); color:var(--chalk);
          font:16px/1.35 "Chivo Mono", ui-monospace, monospace;
-         width:1420px; margin:0 auto; padding:26px 26px 30px; }
+         width:min(1420px, 100%); margin:0 auto; padding:26px 26px 30px; }
   h1 { font-family:"Archivo Black", system-ui, sans-serif; font-size:40px;
        letter-spacing:.5px; text-transform:uppercase; }
   .masthead { display:flex; align-items:baseline; justify-content:space-between;
@@ -73,6 +79,16 @@
   .phr em { display:block; font-style:normal; color:var(--dim); font-size:11px;
              font-weight:400; }
   footer { color:var(--dim); font-size:12px; margin-top:14px; text-align:center; }
+  @media (max-width: 900px) {
+    body { padding:16px 12px 24px; font-size:15px; }
+    h1 { font-size:26px; }
+    .grid3, .toprow { grid-template-columns:1fr; }
+    .masthead { flex-direction:column; gap:2px; }
+    .date { text-align:left; }
+    .led { font-size:34px; }
+    .weekly { flex-direction:column; gap:4px; }
+    .wkteams { margin-left:0; }
+  }
 </style></head><body>
   <div class="masthead">
     <h1>HR Derby League</h1>
@@ -342,5 +358,5 @@
             </div>
         </section>
   </div>
-  <footer>Updated Jul 08, 2026 09:16 PM ET &middot; data: MLB Stats API</footer>
+  <footer>Updated Jul 08, 2026 09:23 PM ET &middot; data: MLB Stats API</footer>
 </body></html>
