@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HR Derby League</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Chivo+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --field:#0C1B12; --panel:#14261A; --hair:#29402F; --led:#FFB627;
+    --chalk:#F1EDE2; --flare:#FF4E2E; --dim:#8FA694;
+  }
+  * { box-sizing:border-box; margin:0; }
+  body { background:var(--field); color:var(--chalk);
+         font:15px/1.4 "Chivo Mono", ui-monospace, monospace;
+         width:880px; margin:0 auto; padding:28px 24px 36px; }
+  h1 { font-family:"Archivo Black", system-ui, sans-serif; font-size:34px;
+       letter-spacing:.5px; text-transform:uppercase; }
+  .masthead { display:flex; align-items:baseline; justify-content:space-between;
+               border-bottom:3px solid var(--led); padding-bottom:12px; }
+  .date { color:var(--dim); font-size:14px; text-align:right; }
+  .banner { display:flex; gap:14px; align-items:baseline; padding:12px 16px;
+             margin-top:14px; border:1px solid var(--hair); background:var(--panel); }
+  .banner-tag { font-family:"Archivo Black",sans-serif; font-size:12px;
+                 letter-spacing:1px; padding:3px 8px; }
+  .potn .banner-tag { background:var(--led); color:var(--field); }
+  .badday .banner-tag { background:var(--hair); color:var(--chalk); }
+  .banner-name { font-weight:700; font-size:17px; }
+  .banner-team { color:var(--dim); font-size:13px; }
+  .banner-line { margin-left:auto; color:var(--led); }
+  .badday .banner-line { color:var(--dim); }
+  .nogames { color:var(--dim); justify-content:center; }
+  .team { margin-top:22px; border:1px solid var(--hair); background:var(--panel); }
+  .teamlead { border-color:var(--led); box-shadow:0 0 0 1px var(--led); }
+  .teamhead { display:flex; align-items:center; gap:14px;
+               padding:14px 18px 10px; border-bottom:1px solid var(--hair); }
+  .rank { font-family:"Archivo Black",sans-serif; font-size:13px; color:var(--dim); }
+  .teamlead .rank { color:var(--led); }
+  .teamhead h2 { font-family:"Archivo Black",sans-serif; font-size:22px;
+                  text-transform:uppercase; letter-spacing:.5px; }
+  .nighthr { color:var(--flare); font-size:13px; font-weight:700; }
+  .total { margin-left:auto; text-align:right; }
+  .led { font-family:"Chivo Mono",monospace; font-weight:700; font-size:40px;
+          color:var(--led); text-shadow:0 0 14px rgba(255,182,39,.45); line-height:1; }
+  .totlbl { display:block; color:var(--dim); font-size:11px; margin-top:2px; }
+  .cols, .row { display:grid; grid-template-columns:44px 1fr 1.15fr 92px;
+                 gap:10px; padding:8px 18px; align-items:baseline; }
+  .cols { color:var(--dim); font-size:10px; letter-spacing:1.5px;
+           border-bottom:1px solid var(--hair); }
+  .row { border-bottom:1px solid rgba(41,64,47,.5); }
+  .row:last-child { border-bottom:none; }
+  .rowhr { background:rgba(255,182,39,.08); }
+  .pos { color:var(--dim); font-size:12px; }
+  .pname { font-weight:700; }
+  .pname em, .phr em { display:block; font-style:normal; color:var(--dim);
+                        font-size:11px; font-weight:400; }
+  .pline { font-size:13.5px; color:#C9D6C6; }
+  .hrpill { background:var(--led); color:var(--field); font-weight:700;
+             font-size:11px; padding:2px 7px; margin-left:8px; border-radius:2px; }
+  .rowhr .pline { color:var(--chalk); }
+  .phr { text-align:right; font-weight:700; font-size:18px; }
+  footer { color:var(--dim); font-size:11px; margin-top:18px; text-align:center; }
+</style></head><body>
+  <div class="masthead">
+    <h1>HR Derby League</h1>
+    <div class="date">Tuesday, July 07<br>every homer is a point</div>
+  </div>
+  
+  
+        <div class="banner potn">
+          <span class="banner-tag">PLAYER OF THE NIGHT</span>
+          <span class="banner-name">Ben Rice</span>
+          <span class="banner-team">Team Barmen</span>
+          <span class="banner-line">3-4, 1 HR, 3 RBI</span>
+        </div>
+  
+        <div class="banner badday">
+          <span class="banner-tag">BAD DAY AT THE PLATE</span>
+          <span class="banner-name">Yordan Alvarez</span>
+          <span class="banner-team">Team Dimisia</span>
+          <span class="banner-line">0-5, 1 K</span>
+        </div>
+  
+        <section class="team teamlead">
+          <header class="teamhead">
+            <span class="rank">1ST</span>
+            <h2>Team Barmen</h2>
+            <span class="nighthr">+3 last night</span>
+            <div class="total"><span class="led">193</span>
+              <span class="totlbl">HR &middot; +2 since draft</span></div>
+          </header>
+          <div class="cols"><span>POS</span><span>PLAYER</span><span>LAST NIGHT</span><span>HR / +</span></div>
+          
+            <div class="row rowhr">
+              <span class="pos">DH</span>
+              <span class="pname">Kyle Schwarber<em>Phillies</em></span>
+              <span class="pline">2-4, 1 HR, 2 RBI, 1 K<span class="hrpill">HR&thinsp;&times;1</span></span>
+              <span class="phr">31<em>+1</em></span>
+            </div>
+            <div class="row">
+              <span class="pos">C</span>
+              <span class="pname">Dillon Dingler<em>Tigers</em></span>
+              <span class="pline">0-4, 2 K</span>
+              <span class="phr">19<em>+0</em></span>
+            </div>
+            <div class="row rowhr">
+              <span class="pos">1B</span>
+              <span class="pname">Ben Rice<em>Yankees</em></span>
+              <span class="pline">3-4, 1 HR, 3 RBI<span class="hrpill">HR&thinsp;&times;1</span></span>
+              <span class="phr">26<em>+-3</em></span>
+            </div>
+            <div class="row">
+              <span class="pos">2B</span>
+              <span class="pname">Brandon Lowe<em>Pirates</em></span>
+              <span class="pline">3-5, 1 RBI, 1 K</span>
+              <span class="phr">21<em>+0</em></span>
+            </div>
+            <div class="row">
+              <span class="pos">3B</span>
+              <span class="pname">Miguel Vargas<em>White Sox</em></span>
+              <span class="pline">0-3, 1 BB, 1 K</span>
+              <span class="phr">20<em>+0</em></span>
+            </div>
+            <div class="row">
+              <span class="pos">SS</span>
+              <span class="pname">Elly De La Cruz<em>Reds</em></span>
+              <span class="pline">0-3, 1 BB, 1 K</span>
+              <span class="phr">13<em>+0</em></span>
+            </div>
+            <div class="row rowhr">
+              <span class="pos">RF</span>
+              <span class="pname">James Wood<em>Nationals</em></span>
+              <span class="pline">2-4, 1 HR, 1 RBI, 1 BB, 1 K<span class="hrpill">HR&thinsp;&times;1</span></span>
+              <span class="phr">25<em>+2</em></span>
+            </div>
+            <div class="row">
+              <span class="pos">CF</span>
+              <span class="pname">Pete Crow-Armstrong<em>Cubs</em></span>
+              <span class="pline">2-5, 1 RBI, 1 K</span>
+              <span class="phr">21<em>+2</em></span>
+            </div>
+            <div class="row">
+              <span class="pos">LF</span>
+              <span class="pname">Ian Happ<em>Cubs</em></span>
+              <span class="pline">0-4</span>
+              <span class="phr">17<em>+0</em></span>
+            </div>
+        </section>
+        <section class="team">
+          <header class="teamhead">
+            <span class="rank">2ND</span>
+            <h2>Team Dimisia</h2>
+            <span class="nighthr">+1 last night</span>
+            <div class="total"><span class="led">176</span>
+              <span class="totlbl">HR &middot; +4 since draft</span></div>
+          </header>
+          <div class="cols"><span>POS</span><span>PLAYER</span><span>LAST NIGHT</span><span>HR / +</span></div>
+          
+            <div class="row">
+              <span class="pos">DH</span>
+              <span class="pname">Yordan Alvarez<em>Astros</em></span>
+              <span class="pline">0-5, 1 K</span>
+              <span class="phr">29<em>+0</em></span>
+            </div>
+            <div class="row">
+              <span class="pos">C</span>
+              <span class="pname">Shea Langeliers<em>Athletics</em></span>
+              <span class="pline">1-3, 1 RBI, 1 BB, 2 K</span>
+              <span class="phr">20<em>+0</em></span>
+            </div>
+            <div class="row">
+              <span class="pos">1B</span>
+              <span class="pname">Matt Olson<em>Braves</em></span>
+              <span class="pline">1-4, 1 K</span>
+              <span class="phr">24<em>+2</em></span>
+            </div>
+            <div class="row rowhr">
+              <span class="pos">2B</span>
+              <span class="pname">Jose Altuve<em>Astros</em></span>
+              <span class="pline">1-5, 1 HR, 1 RBI, 1 K<span class="hrpill">HR&thinsp;&times;1</span></span>
+              <span class="phr">10<em>+2</em></span>
+            </div>
+            <div class="row">
+              <span class="pos">3B</span>
+              <span class="pname">Junior Caminero<em>Rays</em></span>
+              <span class="pline">0-4, 2 K</span>
+              <span class="phr">26<em>+0</em></span>
+            </div>
+            <div class="row">
+              <span class="pos">SS</span>
+              <span class="pname">Colson Montgomery<em>White Sox</em></span>
+              <span class="pline">0-4</span>
+              <span class="phr">23<em>+0</em></span>
+            </div>
+            <div class="row">
+              <span class="pos">RF</span>
+              <span class="pname">Aaron Judge<em>Yankees</em></span>
+              <span class="pline">No game</span>
+              <span class="phr">17<em>+0</em></span>
+            </div>
+            <div class="row">
+              <span class="pos">CF</span>
+              <span class="pname">Andy Pages<em>Dodgers</em></span>
+              <span class="pline">1-4, 1 RBI, 1 BB</span>
+              <span class="phr">16<em>+0</em></span>
+            </div>
+            <div class="row">
+              <span class="pos">LF</span>
+              <span class="pname">Cody Bellinger<em>Yankees</em></span>
+              <span class="pline">1-4, 2 K</span>
+              <span class="phr">11<em>+0</em></span>
+            </div>
+        </section>
+        <section class="team">
+          <header class="teamhead">
+            <span class="rank">3RD</span>
+            <h2>Team Guy</h2>
+            <span class="nighthr">+3 last night</span>
+            <div class="total"><span class="led">175</span>
+              <span class="totlbl">HR &middot; +-5 since draft</span></div>
+          </header>
+          <div class="cols"><span>POS</span><span>PLAYER</span><span>LAST NIGHT</span><span>HR / +</span></div>
+          
+            <div class="row rowhr">
+              <span class="pos">DH</span>
+              <span class="pname">Shohei Ohtani<em>Dodgers</em></span>
+              <span class="pline">1-4, 1 HR, 1 RBI, 1 BB, 1 K<span class="hrpill">HR&thinsp;&times;1</span></span>
+              <span class="phr">20<em>+2</em></span>
+            </div>
+            <div class="row">
+              <span class="pos">C</span>
+              <span class="pname">Hunter Goodman<em>Rockies</em></span>
+              <span class="pline">No game</span>
+              <span class="phr">27<em>+0</em></span>
+            </div>
+            <div class="row">
+              <span class="pos">1B</span>
+              <span class="pname">Bryce Harper<em>Phillies</em></span>
+              <span class="pline">0-4, 2 K</span>
+              <span class="phr">20<em>+0</em></span>
+            </div>
+            <div class="row">
+              <span class="pos">2B</span>
+              <span class="pname">Ketel Marte<em>Diamondbacks</em></span>
+              <span class="pline">1-3, 1 BB</span>
+              <span class="phr">17<em>+0</em></span>
+            </div>
+            <div class="row">
+              <span class="pos">3B</span>
+              <span class="pname">Max Muncy<em>Dodgers</em></span>
+              <span class="pline">0-3, 1 BB, 1 K</span>
+              <span class="phr">5<em>+-12</em></span>
+            </div>
+            <div class="row">
+              <span class="pos">SS</span>
+              <span class="pname">CJ Abrams<em>Nationals</em></span>
+              <span class="pline">1-2, 1 RBI, 2 BB</span>
+              <span class="phr">20<em>+2</em></span>
+            </div>
+            <div class="row rowhr">
+              <span class="pos">RF</span>
+              <span class="pname">Jordan Walker<em>Cardinals</em></span>
+              <span class="pline">3-8, 1 HR, 2 RBI, 1 K<span class="hrpill">HR&thinsp;&times;1</span></span>
+              <span class="phr">21<em>+1</em></span>
+            </div>
+            <div class="row">
+              <span class="pos">CF</span>
+              <span class="pname">Byron Buxton<em>Twins</em></span>
+              <span class="pline">No game</span>
+              <span class="phr">25<em>+0</em></span>
+            </div>
+            <div class="row rowhr">
+              <span class="pos">LF</span>
+              <span class="pname">Juan Soto<em>Mets</em></span>
+              <span class="pline">1-5, 1 HR, 3 RBI, 1 K<span class="hrpill">HR&thinsp;&times;1</span></span>
+              <span class="phr">20<em>+2</em></span>
+            </div>
+        </section>
+  <footer>Updated Jul 08, 2026 08:25 PM ET &middot; data: MLB Stats API</footer>
+</body></html>

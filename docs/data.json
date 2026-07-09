@@ -1,0 +1,535 @@
+{
+  "league_name": "HR Derby League",
+  "game_date": "2026-07-07",
+  "generated_at": "Jul 08, 2026 08:25 PM ET",
+  "teams": [
+    {
+      "name": "Team Barmen",
+      "start_total": 191,
+      "season_total": 193,
+      "gained": 2,
+      "hr_last_night": 3,
+      "roster": [
+        {
+          "pos": "DH",
+          "name": "Kyle Schwarber",
+          "mlb_team": "Phillies",
+          "start_hr": 30,
+          "season_hr": 31,
+          "gained": 1,
+          "line": {
+            "ab": 4,
+            "h": 2,
+            "hr": 1,
+            "rbi": 2,
+            "bb": 0,
+            "k": 1,
+            "r": 1
+          },
+          "hr_last_night": 1
+        },
+        {
+          "pos": "C",
+          "name": "Dillon Dingler",
+          "mlb_team": "Tigers",
+          "start_hr": 19,
+          "season_hr": 19,
+          "gained": 0,
+          "line": {
+            "ab": 4,
+            "h": 0,
+            "hr": 0,
+            "rbi": 0,
+            "bb": 0,
+            "k": 2,
+            "r": 0
+          },
+          "hr_last_night": 0
+        },
+        {
+          "pos": "1B",
+          "name": "Ben Rice",
+          "mlb_team": "Yankees",
+          "start_hr": 29,
+          "season_hr": 26,
+          "gained": -3,
+          "line": {
+            "ab": 4,
+            "h": 3,
+            "hr": 1,
+            "rbi": 3,
+            "bb": 0,
+            "k": 0,
+            "r": 1
+          },
+          "hr_last_night": 1
+        },
+        {
+          "pos": "2B",
+          "name": "Brandon Lowe",
+          "mlb_team": "Pirates",
+          "start_hr": 21,
+          "season_hr": 21,
+          "gained": 0,
+          "line": {
+            "ab": 5,
+            "h": 3,
+            "hr": 0,
+            "rbi": 1,
+            "bb": 0,
+            "k": 1,
+            "r": 2
+          },
+          "hr_last_night": 0
+        },
+        {
+          "pos": "3B",
+          "name": "Miguel Vargas",
+          "mlb_team": "White Sox",
+          "start_hr": 20,
+          "season_hr": 20,
+          "gained": 0,
+          "line": {
+            "ab": 3,
+            "h": 0,
+            "hr": 0,
+            "rbi": 0,
+            "bb": 1,
+            "k": 1,
+            "r": 0
+          },
+          "hr_last_night": 0
+        },
+        {
+          "pos": "SS",
+          "name": "Elly De La Cruz",
+          "mlb_team": "Reds",
+          "start_hr": 13,
+          "season_hr": 13,
+          "gained": 0,
+          "line": {
+            "ab": 3,
+            "h": 0,
+            "hr": 0,
+            "rbi": 0,
+            "bb": 1,
+            "k": 1,
+            "r": 0
+          },
+          "hr_last_night": 0
+        },
+        {
+          "pos": "RF",
+          "name": "James Wood",
+          "mlb_team": "Nationals",
+          "start_hr": 23,
+          "season_hr": 25,
+          "gained": 2,
+          "line": {
+            "ab": 4,
+            "h": 2,
+            "hr": 1,
+            "rbi": 1,
+            "bb": 1,
+            "k": 1,
+            "r": 2
+          },
+          "hr_last_night": 1
+        },
+        {
+          "pos": "CF",
+          "name": "Pete Crow-Armstrong",
+          "mlb_team": "Cubs",
+          "start_hr": 19,
+          "season_hr": 21,
+          "gained": 2,
+          "line": {
+            "ab": 5,
+            "h": 2,
+            "hr": 0,
+            "rbi": 1,
+            "bb": 0,
+            "k": 1,
+            "r": 0
+          },
+          "hr_last_night": 0
+        },
+        {
+          "pos": "LF",
+          "name": "Ian Happ",
+          "mlb_team": "Cubs",
+          "start_hr": 17,
+          "season_hr": 17,
+          "gained": 0,
+          "line": {
+            "ab": 4,
+            "h": 0,
+            "hr": 0,
+            "rbi": 0,
+            "bb": 0,
+            "k": 0,
+            "r": 0
+          },
+          "hr_last_night": 0
+        }
+      ]
+    },
+    {
+      "name": "Team Dimisia",
+      "start_total": 172,
+      "season_total": 176,
+      "gained": 4,
+      "hr_last_night": 1,
+      "roster": [
+        {
+          "pos": "DH",
+          "name": "Yordan Alvarez",
+          "mlb_team": "Astros",
+          "start_hr": 29,
+          "season_hr": 29,
+          "gained": 0,
+          "line": {
+            "ab": 5,
+            "h": 0,
+            "hr": 0,
+            "rbi": 0,
+            "bb": 0,
+            "k": 1,
+            "r": 0
+          },
+          "hr_last_night": 0
+        },
+        {
+          "pos": "C",
+          "name": "Shea Langeliers",
+          "mlb_team": "Athletics",
+          "start_hr": 20,
+          "season_hr": 20,
+          "gained": 0,
+          "line": {
+            "ab": 3,
+            "h": 1,
+            "hr": 0,
+            "rbi": 1,
+            "bb": 1,
+            "k": 2,
+            "r": 0
+          },
+          "hr_last_night": 0
+        },
+        {
+          "pos": "1B",
+          "name": "Matt Olson",
+          "mlb_team": "Braves",
+          "start_hr": 22,
+          "season_hr": 24,
+          "gained": 2,
+          "line": {
+            "ab": 4,
+            "h": 1,
+            "hr": 0,
+            "rbi": 0,
+            "bb": 0,
+            "k": 1,
+            "r": 1
+          },
+          "hr_last_night": 0
+        },
+        {
+          "pos": "2B",
+          "name": "Jose Altuve",
+          "mlb_team": "Astros",
+          "start_hr": 8,
+          "season_hr": 10,
+          "gained": 2,
+          "line": {
+            "ab": 5,
+            "h": 1,
+            "hr": 1,
+            "rbi": 1,
+            "bb": 0,
+            "k": 1,
+            "r": 1
+          },
+          "hr_last_night": 1
+        },
+        {
+          "pos": "3B",
+          "name": "Junior Caminero",
+          "mlb_team": "Rays",
+          "start_hr": 26,
+          "season_hr": 26,
+          "gained": 0,
+          "line": {
+            "ab": 4,
+            "h": 0,
+            "hr": 0,
+            "rbi": 0,
+            "bb": 0,
+            "k": 2,
+            "r": 0
+          },
+          "hr_last_night": 0
+        },
+        {
+          "pos": "SS",
+          "name": "Colson Montgomery",
+          "mlb_team": "White Sox",
+          "start_hr": 23,
+          "season_hr": 23,
+          "gained": 0,
+          "line": {
+            "ab": 4,
+            "h": 0,
+            "hr": 0,
+            "rbi": 0,
+            "bb": 0,
+            "k": 0,
+            "r": 0
+          },
+          "hr_last_night": 0
+        },
+        {
+          "pos": "RF",
+          "name": "Aaron Judge",
+          "mlb_team": "Yankees",
+          "start_hr": 17,
+          "season_hr": 17,
+          "gained": 0,
+          "line": null,
+          "hr_last_night": 0
+        },
+        {
+          "pos": "CF",
+          "name": "Andy Pages",
+          "mlb_team": "Dodgers",
+          "start_hr": 16,
+          "season_hr": 16,
+          "gained": 0,
+          "line": {
+            "ab": 4,
+            "h": 1,
+            "hr": 0,
+            "rbi": 1,
+            "bb": 1,
+            "k": 0,
+            "r": 0
+          },
+          "hr_last_night": 0
+        },
+        {
+          "pos": "LF",
+          "name": "Cody Bellinger",
+          "mlb_team": "Yankees",
+          "start_hr": 11,
+          "season_hr": 11,
+          "gained": 0,
+          "line": {
+            "ab": 4,
+            "h": 1,
+            "hr": 0,
+            "rbi": 0,
+            "bb": 0,
+            "k": 2,
+            "r": 0
+          },
+          "hr_last_night": 0
+        }
+      ]
+    },
+    {
+      "name": "Team Guy",
+      "start_total": 180,
+      "season_total": 175,
+      "gained": -5,
+      "hr_last_night": 3,
+      "roster": [
+        {
+          "pos": "DH",
+          "name": "Shohei Ohtani",
+          "mlb_team": "Dodgers",
+          "start_hr": 18,
+          "season_hr": 20,
+          "gained": 2,
+          "line": {
+            "ab": 4,
+            "h": 1,
+            "hr": 1,
+            "rbi": 1,
+            "bb": 1,
+            "k": 1,
+            "r": 1
+          },
+          "hr_last_night": 1
+        },
+        {
+          "pos": "C",
+          "name": "Hunter Goodman",
+          "mlb_team": "Rockies",
+          "start_hr": 27,
+          "season_hr": 27,
+          "gained": 0,
+          "line": null,
+          "hr_last_night": 0
+        },
+        {
+          "pos": "1B",
+          "name": "Bryce Harper",
+          "mlb_team": "Phillies",
+          "start_hr": 20,
+          "season_hr": 20,
+          "gained": 0,
+          "line": {
+            "ab": 4,
+            "h": 0,
+            "hr": 0,
+            "rbi": 0,
+            "bb": 0,
+            "k": 2,
+            "r": 0
+          },
+          "hr_last_night": 0
+        },
+        {
+          "pos": "2B",
+          "name": "Ketel Marte",
+          "mlb_team": "Diamondbacks",
+          "start_hr": 17,
+          "season_hr": 17,
+          "gained": 0,
+          "line": {
+            "ab": 3,
+            "h": 1,
+            "hr": 0,
+            "rbi": 0,
+            "bb": 1,
+            "k": 0,
+            "r": 0
+          },
+          "hr_last_night": 0
+        },
+        {
+          "pos": "3B",
+          "name": "Max Muncy",
+          "mlb_team": "Dodgers",
+          "start_hr": 17,
+          "season_hr": 5,
+          "gained": -12,
+          "line": {
+            "ab": 3,
+            "h": 0,
+            "hr": 0,
+            "rbi": 0,
+            "bb": 1,
+            "k": 1,
+            "r": 0
+          },
+          "hr_last_night": 0
+        },
+        {
+          "pos": "SS",
+          "name": "CJ Abrams",
+          "mlb_team": "Nationals",
+          "start_hr": 18,
+          "season_hr": 20,
+          "gained": 2,
+          "line": {
+            "ab": 2,
+            "h": 1,
+            "hr": 0,
+            "rbi": 1,
+            "bb": 2,
+            "k": 0,
+            "r": 0
+          },
+          "hr_last_night": 0
+        },
+        {
+          "pos": "RF",
+          "name": "Jordan Walker",
+          "mlb_team": "Cardinals",
+          "start_hr": 20,
+          "season_hr": 21,
+          "gained": 1,
+          "line": {
+            "ab": 8,
+            "h": 3,
+            "hr": 1,
+            "rbi": 2,
+            "bb": 0,
+            "k": 1,
+            "r": 2
+          },
+          "hr_last_night": 1
+        },
+        {
+          "pos": "CF",
+          "name": "Byron Buxton",
+          "mlb_team": "Twins",
+          "start_hr": 25,
+          "season_hr": 25,
+          "gained": 0,
+          "line": null,
+          "hr_last_night": 0
+        },
+        {
+          "pos": "LF",
+          "name": "Juan Soto",
+          "mlb_team": "Mets",
+          "start_hr": 18,
+          "season_hr": 20,
+          "gained": 2,
+          "line": {
+            "ab": 5,
+            "h": 1,
+            "hr": 1,
+            "rbi": 3,
+            "bb": 0,
+            "k": 1,
+            "r": 1
+          },
+          "hr_last_night": 1
+        }
+      ]
+    }
+  ],
+  "potn": {
+    "pos": "1B",
+    "name": "Ben Rice",
+    "mlb_team": "Yankees",
+    "start_hr": 29,
+    "season_hr": 26,
+    "gained": -3,
+    "line": {
+      "ab": 4,
+      "h": 3,
+      "hr": 1,
+      "rbi": 3,
+      "bb": 0,
+      "k": 0,
+      "r": 1
+    },
+    "hr_last_night": 1,
+    "team_name": "Team Barmen"
+  },
+  "bad_day": {
+    "pos": "DH",
+    "name": "Yordan Alvarez",
+    "mlb_team": "Astros",
+    "start_hr": 29,
+    "season_hr": 29,
+    "gained": 0,
+    "line": {
+      "ab": 5,
+      "h": 0,
+      "hr": 0,
+      "rbi": 0,
+      "bb": 0,
+      "k": 1,
+      "r": 0
+    },
+    "hr_last_night": 0,
+    "team_name": "Team Dimisia"
+  },
+  "any_games": true
+}
