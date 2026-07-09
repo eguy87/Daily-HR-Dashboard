@@ -312,6 +312,10 @@ def main() -> int:
 
     names = [p["name"] for t in league["teams"] for p in t["players"]]
     ids = lookup_player_ids(names, season)
+    for t in league["teams"]:
+        for p in t["players"]:
+            if "mlbam_id" in p:
+                ids[p["name"]] = p["mlbam_id"]
     stats = fetch_stats(ids, season, yesterday)
     state = build_state(league, ids, stats, yesterday)
 
