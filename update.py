@@ -312,6 +312,12 @@ def render_html(state: dict) -> str:
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{state['league_name']}</title>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Chivo+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#101418">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="HR League">
+<link rel="apple-touch-icon" href="icon.png">
 <style>
   :root {{
     --field:#101418; --panel:#181E24; --hair:#2A333D; --led:#4ADE80;
@@ -320,7 +326,7 @@ def render_html(state: dict) -> str:
   * {{ box-sizing:border-box; margin:0; }}
   body {{ background:var(--field); color:var(--chalk);
          font:16px/1.35 "Chivo Mono", ui-monospace, monospace;
-         width:1420px; margin:0 auto; padding:26px 26px 30px; }}
+         width:min(1420px, 100%); margin:0 auto; padding:26px 26px 30px; }}
   h1 {{ font-family:"Archivo Black", system-ui, sans-serif; font-size:40px;
        letter-spacing:.5px; text-transform:uppercase; }}
   .masthead {{ display:flex; align-items:baseline; justify-content:space-between;
@@ -382,6 +388,16 @@ def render_html(state: dict) -> str:
   .phr em {{ display:block; font-style:normal; color:var(--dim); font-size:11px;
              font-weight:400; }}
   footer {{ color:var(--dim); font-size:12px; margin-top:14px; text-align:center; }}
+  @media (max-width: 900px) {{
+    body {{ padding:16px 12px 24px; font-size:15px; }}
+    h1 {{ font-size:26px; }}
+    .grid3, .toprow {{ grid-template-columns:1fr; }}
+    .masthead {{ flex-direction:column; gap:2px; }}
+    .date {{ text-align:left; }}
+    .led {{ font-size:34px; }}
+    .weekly {{ flex-direction:column; gap:4px; }}
+    .wkteams {{ margin-left:0; }}
+  }}
 </style></head><body>
   <div class="masthead">
     <h1>{state['league_name']}</h1>
@@ -412,6 +428,26 @@ def screenshot(html_path: Path, png_path: Path) -> None:
         browser.close()
 
 
+def make_icon(png_path: Path) -> None:
+    """One-time 180x180 home-screen icon."""
+    html = ("<body style='margin:0;width:180px;height:180px;background:#101418;"
+            "display:flex;align-items:center;justify-content:center;"
+            "font:900 64px Arial'><span style='color:#4ADE80;"
+            "text-shadow:0 0 18px rgba(74,222,128,.6)'>HR</span></body>")
+    tmp = png_path.parent / "_icon.html"
+    tmp.write_text(html)
+    try:
+        from playwright.sync_api import sync_playwright
+        with sync_playwright() as pw:
+            b = pw.chromium.launch()
+            page = b.new_page(viewport={"width": 180, "height": 180})
+            page.goto(tmp.resolve().as_uri())
+            page.screenshot(path=str(png_path))
+            b.close()
+    finally:
+        tmp.unlink(missing_ok=True)
+
+
 # ------------------------------------------------------------------- main ---
 
 def main() -> int:
@@ -432,12 +468,20 @@ def main() -> int:
 
     DOCS.mkdir(exist_ok=True)
     (DOCS / "index.html").write_text(render_html(state))
+    (DOCS / "manifest.json").write_text(json.dumps({
+        "name": state["league_name"], "short_name": "HR League",
+        "start_url": ".", "display": "standalone",
+        "background_color": "#101418", "theme_color": "#101418",
+        "icons": [{"src": "icon.png", "sizes": "180x180", "type": "image/png"}],
+    }, indent=2))
     (DOCS / "data.json").write_text(json.dumps(state, indent=2, default=str))
     print(f"Rendered dashboard for {yesterday}: "
           + ", ".join(f"{t['name']} {t['season_total']}" for t in state["teams"]))
 
     try:
         screenshot(DOCS / "index.html", DOCS / "dashboard.png")
+        if not (DOCS / "icon.png").exists():
+            make_icon(DOCS / "icon.png")
         print("Screenshot saved to docs/dashboard.png")
     except Exception as e:
         print(f"WARNING: screenshot failed: {e}", file=sys.stderr)
