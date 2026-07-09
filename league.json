@@ -1,0 +1,51 @@
+{
+  "league_name": "HR Derby League",
+  "season": 2026,
+  "teams": [
+    {
+      "name": "Team Guy",
+      "start_total": 180,
+      "players": [
+        { "pos": "DH", "name": "Shohei Ohtani",    "mlb_team": "Dodgers",      "start_hr": 18 },
+        { "pos": "C",  "name": "Hunter Goodman",   "mlb_team": "Rockies",      "start_hr": 27 },
+        { "pos": "1B", "name": "Bryce Harper",     "mlb_team": "Phillies",     "start_hr": 20 },
+        { "pos": "2B", "name": "Ketel Marte",      "mlb_team": "Diamondbacks", "start_hr": 17 },
+        { "pos": "3B", "name": "Max Muncy",        "mlb_team": "Dodgers",      "start_hr": 17 },
+        { "pos": "SS", "name": "CJ Abrams",        "mlb_team": "Nationals",    "start_hr": 18 },
+        { "pos": "RF", "name": "Jordan Walker",    "mlb_team": "Cardinals",    "start_hr": 20 },
+        { "pos": "CF", "name": "Byron Buxton",     "mlb_team": "Twins",        "start_hr": 25 },
+        { "pos": "LF", "name": "Juan Soto",        "mlb_team": "Mets",         "start_hr": 18 }
+      ]
+    },
+    {
+      "name": "Team Barmen",
+      "start_total": 191,
+      "players": [
+        { "pos": "DH", "name": "Kyle Schwarber",       "mlb_team": "Phillies",  "start_hr": 30 },
+        { "pos": "C",  "name": "Dillon Dingler",       "mlb_team": "Tigers",    "start_hr": 19 },
+        { "pos": "1B", "name": "Ben Rice",             "mlb_team": "Yankees",   "start_hr": 29 },
+        { "pos": "2B", "name": "Brandon Lowe",         "mlb_team": "Pirates",   "start_hr": 21 },
+        { "pos": "3B", "name": "Miguel Vargas",        "mlb_team": "White Sox", "start_hr": 20 },
+        { "pos": "SS", "name": "Elly De La Cruz",      "mlb_team": "Reds",      "start_hr": 13 },
+        { "pos": "RF", "name": "James Wood",           "mlb_team": "Nationals", "start_hr": 23 },
+        { "pos": "CF", "name": "Pete Crow-Armstrong",  "mlb_team": "Cubs",      "start_hr": 19 },
+        { "pos": "LF", "name": "Ian Happ",             "mlb_team": "Cubs",      "start_hr": 17 }
+      ]
+    },
+    {
+      "name": "Team Dimisia",
+      "start_total": 172,
+      "players": [
+        { "pos": "DH", "name": "Yordan Alvarez",     "mlb_team": "Astros",    "start_hr": 29 },
+        { "pos": "C",  "name": "Shea Langeliers",    "mlb_team": "Athletics", "start_hr": 20 },
+        { "pos": "1B", "name": "Matt Olson",         "mlb_team": "Braves",    "start_hr": 22 },
+        { "pos": "2B", "name": "Jose Altuve",        "mlb_team": "Astros",    "start_hr": 8  },
+        { "pos": "3B", "name": "Junior Caminero",    "mlb_team": "Rays",      "start_hr": 26 },
+        { "pos": "SS", "name": "Colson Montgomery",  "mlb_team": "White Sox", "start_hr": 23 },
+        { "pos": "RF", "name": "Aaron Judge",        "mlb_team": "Yankees",   "start_hr": 17 },
+        { "pos": "CF", "name": "Andy Pages",         "mlb_team": "Dodgers",   "start_hr": 16 },
+        { "pos": "LF", "name": "Cody Bellinger",     "mlb_team": "Yankees",   "start_hr": 11 }
+      ]
+    }
+  ]
+}
