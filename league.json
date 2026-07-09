@@ -10,7 +10,7 @@
         { "pos": "C",  "name": "Hunter Goodman",   "mlb_team": "Rockies",      "start_hr": 27 },
         { "pos": "1B", "name": "Bryce Harper",     "mlb_team": "Phillies",     "start_hr": 20 },
         { "pos": "2B", "name": "Ketel Marte",      "mlb_team": "Diamondbacks", "start_hr": 17 },
-        { "pos": "3B", "name": "Max Muncy",        "mlb_team": "Dodgers",      "start_hr": 17 },
+        { "pos": "3B", "name": "Max Muncy", "mlb_team": "Dodgers", "start_hr": 17, "mlbam_id": 571970 },
         { "pos": "SS", "name": "CJ Abrams",        "mlb_team": "Nationals",    "start_hr": 18 },
         { "pos": "RF", "name": "Jordan Walker",    "mlb_team": "Cardinals",    "start_hr": 20 },
         { "pos": "CF", "name": "Byron Buxton",     "mlb_team": "Twins",        "start_hr": 25 },
