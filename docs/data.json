@@ -1,13 +1,13 @@
 {
   "league_name": "HR Derby League",
   "game_date": "2026-07-07",
-  "generated_at": "Jul 08, 2026 08:47 PM ET",
+  "generated_at": "Jul 08, 2026 08:55 PM ET",
   "teams": [
     {
       "name": "Team Barmen",
-      "start_total": 191,
+      "start_total": 186,
       "season_total": 194,
-      "gained": 3,
+      "gained": 8,
       "hr_last_night": 3,
       "roster": [
         {
@@ -50,9 +50,9 @@
           "pos": "1B",
           "name": "Ben Rice",
           "mlb_team": "Yankees",
-          "start_hr": 29,
+          "start_hr": 24,
           "season_hr": 26,
-          "gained": -3,
+          "gained": 2,
           "line": {
             "ab": 4,
             "h": 3,
@@ -497,9 +497,9 @@
     "pos": "1B",
     "name": "Ben Rice",
     "mlb_team": "Yankees",
-    "start_hr": 29,
+    "start_hr": 24,
     "season_hr": 26,
-    "gained": -3,
+    "gained": 2,
     "line": {
       "ab": 4,
       "h": 3,
