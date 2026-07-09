@@ -559,7 +559,7 @@ def render_html(state: dict) -> str:
   .teamlead .rank {{ color:var(--led); }}
   .teamhead h2 {{ font-family:"Archivo Black",sans-serif; font-size:21px;
                   text-transform:uppercase; letter-spacing:.5px; }}
-  .nighthr {{ display:block; color:var(--flare); font-size:13px; font-weight:700; }}
+  .nighthr {{ display:block; color:var(--ice); font-size:13px; font-weight:700; }}
   .total {{ text-align:right; }}
   .led {{ font-weight:700; font-size:38px; color:var(--led);
           text-shadow:0 0 14px rgba(255,182,39,.45); line-height:1; }}
@@ -582,7 +582,7 @@ def render_html(state: dict) -> str:
           font-weight:700; white-space:nowrap; }}
   .hot {{ color:var(--flare); border:1px solid var(--flare); }}
   .cold {{ color:var(--ice); border:1px solid var(--ice); }}
-  .phr {{ text-align:right; font-weight:700; font-size:20px; }}
+  .phr {{ text-align:right; font-weight:700; font-size:20px; color:var(--ice); }}
   .phr em {{ display:block; font-style:normal; color:var(--dim); font-size:11px;
              font-weight:400; }}
   .race {{ margin-top:16px; border:1px solid var(--hair); background:var(--panel);
@@ -614,7 +614,7 @@ def render_html(state: dict) -> str:
   .statstable td {{ padding:8px 12px; border-bottom:1px solid rgba(42,51,61,.5);
                     color:var(--chalk); }}
   .statstable td.n {{ text-align:right; font-weight:700; }}
-  .statstable td.hrcol {{ color:var(--led); }}
+  .statstable td.hrcol {{ color:var(--ice); }}
   footer {{ color:var(--dim); font-size:12px; margin-top:14px; text-align:center; }}
   @media (max-width: 900px) {{
     body {{ padding:16px 12px 24px; font-size:15px; }}
