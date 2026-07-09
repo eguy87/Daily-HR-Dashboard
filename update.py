@@ -78,11 +78,19 @@ def fetch_stats(ids: dict[str, int], season: int, game_date: str) -> dict[int, d
     out = {}
     for person in data.get("people", []):
         season_hr, line, games = 0, None, []
+        season_line = {"h": 0, "avg": ".000", "rbi": 0, "k": 0}
         for block in person.get("stats", []):
             btype = block.get("type", {}).get("displayName", "")
             splits = block.get("splits", [])
             if btype == "season" and splits:
-                season_hr = int(splits[0]["stat"].get("homeRuns", 0) or 0)
+                stat = splits[0]["stat"]
+                season_hr = int(stat.get("homeRuns", 0) or 0)
+                season_line = {
+                    "h":   int(stat.get("hits", 0) or 0),
+                    "avg": stat.get("avg", ".000") or ".000",
+                    "rbi": int(stat.get("rbi", 0) or 0),
+                    "k":   int(stat.get("strikeOuts", 0) or 0),
+                }
             elif btype == "byDateRange" and splits:
                 stat = splits[0]["stat"]
                 line = {
@@ -104,7 +112,8 @@ def fetch_stats(ids: dict[str, int], season: int, game_date: str) -> dict[int, d
                     for s in splits
                 ]
         games.sort(key=lambda g: g["date"])
-        out[person["id"]] = {"season_hr": season_hr, "line": line, "games": games}
+        out[person["id"]] = {"season_hr": season_hr, "line": line,
+                             "games": games, "season_line": season_line}
     return out
 
 
@@ -162,7 +171,8 @@ def build_state(league: dict, ids: dict[str, int], stats: dict[int, dict],
         for p in team["players"]:
             pid = ids.get(p["name"])
             s = stats.get(pid) if pid else None
-            s = s or {"season_hr": p["start_hr"], "line": None, "games": []}
+            s = s or {"season_hr": p["start_hr"], "line": None, "games": [],
+                      "season_line": {"h": 0, "avg": ".000", "rbi": 0, "k": 0}}
             row = {
                 **p,
                 "season_hr": s["season_hr"],
@@ -170,6 +180,8 @@ def build_state(league: dict, ids: dict[str, int], stats: dict[int, dict],
                 "line": s["line"],
                 "hr_last_night": (s["line"] or {}).get("hr", 0),
                 "week_hr": week_hr(s["games"], week_start),
+                "season_line": s.get("season_line",
+                                     {"h": 0, "avg": ".000", "rbi": 0, "k": 0}),
                 **streaks(s["games"]),
             }
             roster.append(row)
@@ -206,9 +218,27 @@ def build_state(league: dict, ids: dict[str, int], stats: dict[int, dict],
                 key=lambda t: t["week_hr"], reverse=True),
         }
 
+    # Race chart: reconstruct each team's cumulative season HR total by date
+    all_dates = sorted({g["date"]
+                        for s in stats.values() for g in s["games"] if g["date"]})
+    race = {"dates": all_dates, "teams": []}
+    for team in league["teams"]:
+        pids = [ids.get(p["name"]) for p in team["players"]]
+        daily = {d: 0 for d in all_dates}
+        for pid in pids:
+            for g in (stats.get(pid) or {}).get("games", []):
+                if g["date"]:
+                    daily[g["date"]] += g["hr"]
+        series, run = [], 0
+        for d in all_dates:
+            run += daily[d]
+            series.append(run)
+        race["teams"].append({"name": team["name"], "series": series})
+
     return {
         "league_name": league["league_name"],
         "game_date": game_date,
+        "race": race,
         "generated_at": now.strftime("%b %d, %Y %I:%M %p ET"),
         "teams": teams,
         "potn": potn,
@@ -246,6 +276,133 @@ def streak_tag(r: dict) -> str:
     return ""
 
 
+# ---------------------------------------------------------------- history ---
+
+def load_history() -> dict:
+    path = DOCS / "history.json"
+    if path.exists():
+        try:
+            return json.loads(path.read_text())
+        except Exception:
+            print("WARNING: history.json unreadable; starting fresh", file=sys.stderr)
+    return {"dates": [], "totals": {}}
+
+
+def update_history(history: dict, game_date: str, teams: list[dict]) -> dict:
+    """Record each team's season total for game_date (safe to re-run same day)."""
+    if game_date not in history["dates"]:
+        history["dates"].append(game_date)
+    idx = history["dates"].index(game_date)
+    for t in teams:
+        series = history["totals"].setdefault(t["name"], [])
+        while len(series) <= idx:
+            series.append(None)
+        series[idx] = t["season_total"]
+    return history
+
+
+def race_from_history(history: dict, team_order: list[str]) -> dict:
+    """Shape history into the chart's input, forward-filling any gaps."""
+    dates = history["dates"]
+    teams = []
+    for name in team_order:
+        raw = history["totals"].get(name, [])
+        series, prev = [], None
+        for i in range(len(dates)):
+            v = raw[i] if i < len(raw) else None
+            prev = v if v is not None else prev
+            series.append(prev)
+        first = next((v for v in series if v is not None), 0)
+        series = [first if v is None else v for v in series]
+        teams.append({"name": name, "series": series})
+    return {"dates": dates, "teams": teams}
+
+
+RACE_COLORS = ["#4ADE80", "#60A5FA", "#FBBF24", "#F472B6", "#A78BFA"]
+
+
+def race_chart(race: dict) -> str:
+    dates, teams = race.get("dates", []), race.get("teams", [])
+    if len(dates) < 2 or not teams:
+        return ""
+    W, H, PL, PR, PT, PB = 1340, 300, 46, 150, 16, 30
+    lo = min(min(t["series"]) for t in teams)
+    hi = max(max(t["series"]) for t in teams)
+    lo, hi = max(0, lo - 3), hi + 3
+    def x(i): return PL + (W - PL - PR) * i / (len(dates) - 1)
+    def y(v): return PT + (H - PT - PB) * (1 - (v - lo) / (hi - lo))
+    grid, labels = "", ""
+    for gv in range(int(lo) // 20 * 20 + 20, int(hi) + 1, 20):
+        gy = y(gv)
+        grid += f'<line x1="{PL}" y1="{gy:.1f}" x2="{W-PR}" y2="{gy:.1f}" stroke="var(--hair)" stroke-width="1"/>'
+        labels += f'<text x="{PL-8}" y="{gy+4:.1f}" text-anchor="end" fill="var(--dim)" font-size="12">{gv}</text>'
+    # month ticks
+    seen = set()
+    for i, d in enumerate(dates):
+        m = d[:7]
+        if m not in seen:
+            seen.add(m)
+            label = datetime.strptime(d, "%Y-%m-%d").strftime("%b")
+            labels += f'<text x="{x(i):.1f}" y="{H-8}" fill="var(--dim)" font-size="12">{label}</text>'
+    lines = ""
+    order = sorted(range(len(teams)), key=lambda i: -teams[i]["series"][-1])
+    used_y = []
+    for rank, ti in enumerate(order):
+        t, color = teams[ti], RACE_COLORS[ti % len(RACE_COLORS)]
+        pts = " ".join(f"{x(i):.1f},{y(v):.1f}" for i, v in enumerate(t["series"]))
+        lines += f'<polyline points="{pts}" fill="none" stroke="{color}" stroke-width="3" stroke-linejoin="round"/>'
+        ly = y(t["series"][-1])
+        while any(abs(ly - u) < 18 for u in used_y):
+            ly += 18
+        used_y.append(ly)
+        lines += (f'<text x="{W-PR+8}" y="{ly+4:.1f}" fill="{color}" font-size="14" '
+                  f'font-weight="700">{t["name"]} {t["series"][-1]}</text>')
+    return f"""
+        <section class="race">
+          <span class="racetitle">THE RACE &middot; SEASON HR TOTALS</span>
+          <svg viewBox="0 0 {W} {H}" width="100%" xmlns="http://www.w3.org/2000/svg">
+            {grid}{labels}{lines}
+          </svg>
+        </section>"""
+
+
+TABS_JS = """
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.tabpane').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tabbtn').forEach(el => el.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+function filterStats() {
+  const q = document.getElementById('search').value.toLowerCase();
+  const team = document.getElementById('teamfilter').value;
+  document.querySelectorAll('#statsbody tr').forEach(tr => {
+    const matchQ = tr.dataset.search.includes(q);
+    const matchT = team === 'ALL' || tr.dataset.team === team;
+    tr.style.display = (matchQ && matchT) ? '' : 'none';
+  });
+}
+let sortState = { col: 3, dir: -1 };
+function sortStats(col, type) {
+  const dir = (sortState.col === col) ? -sortState.dir : (type === 'num' ? -1 : 1);
+  sortState = { col: col, dir: dir };
+  const body = document.getElementById('statsbody');
+  const rows = Array.from(body.rows);
+  rows.sort((a, b) => {
+    const av = a.cells[col].dataset.v, bv = b.cells[col].dataset.v;
+    return type === 'num' ? (av - bv) * dir : av.localeCompare(bv) * dir;
+  });
+  rows.forEach(r => body.appendChild(r));
+  document.querySelectorAll('.statstable th').forEach((th, i) => {
+    th.classList.toggle('sorted', i === col);
+    th.classList.toggle('desc', i === col && dir === -1);
+  });
+}
+</script>
+"""
+
+
 def render_html(state: dict) -> str:
     date_label = datetime.strptime(state["game_date"], "%Y-%m-%d").strftime("%A, %B %d")
     rank_labels = ["1ST", "2ND", "3RD", "4TH", "5TH"]
@@ -273,6 +430,47 @@ def render_html(state: dict) -> str:
           <span class="wktitle">SUNDAY EDITION &middot; WEEK IN HOMERS</span>
           <span>{rows}</span><span class="wkteams">{tw}</span>
         </section>"""
+
+    stat_rows = ""
+    for t in state["teams"]:
+        for r in t["roster"]:
+            sl = r["season_line"]
+            avg_num = str(sl["avg"]).replace("—", "0") or "0"
+            stat_rows += (
+                f'<tr data-team="{t["name"]}" '
+                f'data-search="{r["name"].lower()} {r["mlb_team"].lower()}">'
+                f'<td data-v="{r["name"]}">{r["name"]}</td>'
+                f'<td data-v="{t["name"]}">{t["name"].replace("Team ", "")}</td>'
+                f'<td data-v="{r["mlb_team"]}">{r["mlb_team"]}</td>'
+                f'<td data-v="{r["season_hr"]}" class="n hrcol">{r["season_hr"]}</td>'
+                f'<td data-v="{sl["h"]}" class="n">{sl["h"]}</td>'
+                f'<td data-v="{avg_num}" class="n">{sl["avg"]}</td>'
+                f'<td data-v="{sl["rbi"]}" class="n">{sl["rbi"]}</td>'
+                f'<td data-v="{sl["k"]}" class="n">{sl["k"]}</td></tr>')
+
+    team_opts = "".join(f'<option value="{t["name"]}">{t["name"]}</option>'
+                        for t in state["teams"])
+    stats_tab = f"""
+    <div class="statsbar">
+      <input id="search" type="search" placeholder="Search player or MLB team…"
+             oninput="filterStats()">
+      <select id="teamfilter" onchange="filterStats()">
+        <option value="ALL">All teams</option>{team_opts}
+      </select>
+    </div>
+    <div class="tablewrap"><table class="statstable">
+      <thead><tr>
+        <th onclick="sortStats(0,'txt')">PLAYER</th>
+        <th onclick="sortStats(1,'txt')">TEAM</th>
+        <th onclick="sortStats(2,'txt')">MLB</th>
+        <th onclick="sortStats(3,'num')" class="sorted desc">HR</th>
+        <th onclick="sortStats(4,'num')">H</th>
+        <th onclick="sortStats(5,'num')">AVG</th>
+        <th onclick="sortStats(6,'num')">RBI</th>
+        <th onclick="sortStats(7,'num')">K</th>
+      </tr></thead>
+      <tbody id="statsbody">{stat_rows}</tbody>
+    </table></div>"""
 
     teams_html = ""
     for i, t in enumerate(state["teams"]):
@@ -361,7 +559,7 @@ def render_html(state: dict) -> str:
   .teamlead .rank {{ color:var(--led); }}
   .teamhead h2 {{ font-family:"Archivo Black",sans-serif; font-size:21px;
                   text-transform:uppercase; letter-spacing:.5px; }}
-  .nighthr {{ display:block; color:var(--led); font-size:13px; font-weight:700; }}
+  .nighthr {{ display:block; color:var(--flare); font-size:13px; font-weight:700; }}
   .total {{ text-align:right; }}
   .led {{ font-weight:700; font-size:38px; color:var(--led);
           text-shadow:0 0 14px rgba(255,182,39,.45); line-height:1; }}
@@ -387,6 +585,36 @@ def render_html(state: dict) -> str:
   .phr {{ text-align:right; font-weight:700; font-size:20px; }}
   .phr em {{ display:block; font-style:normal; color:var(--dim); font-size:11px;
              font-weight:400; }}
+  .race {{ margin-top:16px; border:1px solid var(--hair); background:var(--panel);
+           padding:12px 16px 6px; display:block; }}
+  .racetitle {{ font-family:"Archivo Black",sans-serif; font-size:13px;
+                color:var(--led); letter-spacing:1px; display:block; margin-bottom:6px; }}
+  .tabs {{ display:flex; gap:8px; margin-top:14px; }}
+  .tabbtn {{ font:700 14px "Chivo Mono",monospace; letter-spacing:.5px;
+             background:var(--panel); color:var(--dim); border:1px solid var(--hair);
+             padding:8px 18px; cursor:pointer; }}
+  .tabbtn.active {{ color:var(--field); background:var(--led); border-color:var(--led); }}
+  .tabpane {{ display:none; }}
+  .tabpane.active {{ display:block; }}
+  .statsbar {{ display:flex; gap:10px; margin-top:14px; }}
+  .statsbar input, .statsbar select {{
+    font:14px "Chivo Mono",monospace; color:var(--chalk); background:var(--panel);
+    border:1px solid var(--hair); padding:8px 12px; }}
+  .statsbar input {{ flex:1; max-width:360px; }}
+  .tablewrap {{ overflow-x:auto; margin-top:10px; border:1px solid var(--hair); }}
+  .statstable {{ width:100%; border-collapse:collapse; background:var(--panel);
+                 font-size:14px; }}
+  .statstable th {{ font-family:"Archivo Black",sans-serif; font-size:11px;
+                    letter-spacing:1px; color:var(--dim); text-align:left;
+                    padding:10px 12px; border-bottom:2px solid var(--hair);
+                    cursor:pointer; white-space:nowrap; user-select:none; }}
+  .statstable th.sorted {{ color:var(--led); }}
+  .statstable th.sorted::after {{ content:" ▲"; font-size:9px; }}
+  .statstable th.sorted.desc::after {{ content:" ▼"; }}
+  .statstable td {{ padding:8px 12px; border-bottom:1px solid rgba(42,51,61,.5);
+                    color:var(--chalk); }}
+  .statstable td.n {{ text-align:right; font-weight:700; }}
+  .statstable td.hrcol {{ color:var(--led); }}
   footer {{ color:var(--dim); font-size:12px; margin-top:14px; text-align:center; }}
   @media (max-width: 900px) {{
     body {{ padding:16px 12px 24px; font-size:15px; }}
@@ -403,16 +631,31 @@ def render_html(state: dict) -> str:
     <h1>{state['league_name']}</h1>
     <div class="date">{date_label}<br>every homer is a point</div>
   </div>
-  {weekly_html}
-  <div class="toprow">
-  {no_games}
-  {banner('PLAYER OF THE NIGHT', 'potn', state['potn'])}
-  {banner('BAD DAY AT THE PLATE', 'badday', state['bad_day'])}
+  <nav class="tabs">
+    <button class="tabbtn active" onclick="showTab('tab-main', this)">Dashboard</button>
+    <button class="tabbtn" onclick="showTab('tab-race', this)">The Race</button>
+    <button class="tabbtn" onclick="showTab('tab-stats', this)">Stats</button>
+  </nav>
+  <div id="tab-main" class="tabpane active">
+    {weekly_html}
+    <div class="toprow">
+    {no_games}
+    {banner('PLAYER OF THE NIGHT', 'potn', state['potn'])}
+    {banner('BAD DAY AT THE PLATE', 'badday', state['bad_day'])}
+    </div>
+    <div class="grid3">
+    {teams_html}
+    </div>
   </div>
-  <div class="grid3">
-  {teams_html}
+  <div id="tab-race" class="tabpane">
+    {race_chart(state.get("race") or dict()) or
+     '<p class="racenote">The Race chart appears once two days of history exist.</p>'}
+  </div>
+  <div id="tab-stats" class="tabpane">
+    {stats_tab}
   </div>
   <footer>Updated {state['generated_at']} &middot; data: MLB Stats API</footer>
+  {TABS_JS}
 </body></html>"""
 
 
@@ -467,6 +710,9 @@ def main() -> int:
     state = build_state(league, ids, stats, yesterday, avg_gp)
 
     DOCS.mkdir(exist_ok=True)
+    history = update_history(load_history(), yesterday, state["teams"])
+    (DOCS / "history.json").write_text(json.dumps(history, indent=2))
+    state["race"] = race_from_history(history, [t["name"] for t in league["teams"]])
     (DOCS / "index.html").write_text(render_html(state))
     (DOCS / "manifest.json").write_text(json.dumps({
         "name": state["league_name"], "short_name": "HR League",
