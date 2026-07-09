@@ -1,13 +1,13 @@
 {
   "league_name": "HR Derby League",
   "game_date": "2026-07-07",
-  "generated_at": "Jul 08, 2026 08:25 PM ET",
+  "generated_at": "Jul 08, 2026 08:47 PM ET",
   "teams": [
     {
       "name": "Team Barmen",
-      "start_total": 188,
-      "season_total": 193,
-      "gained": 5,
+      "start_total": 191,
+      "season_total": 194,
+      "gained": 3,
       "hr_last_night": 3,
       "roster": [
         {
@@ -50,9 +50,9 @@
           "pos": "1B",
           "name": "Ben Rice",
           "mlb_team": "Yankees",
-          "start_hr": 24,
+          "start_hr": 29,
           "season_hr": 26,
-          "gained": 2,
+          "gained": -3,
           "line": {
             "ab": 4,
             "h": 3,
@@ -105,8 +105,8 @@
           "name": "Elly De La Cruz",
           "mlb_team": "Reds",
           "start_hr": 13,
-          "season_hr": 13,
-          "gained": 0,
+          "season_hr": 14,
+          "gained": 1,
           "line": {
             "ab": 3,
             "h": 0,
@@ -141,8 +141,8 @@
           "name": "Pete Crow-Armstrong",
           "mlb_team": "Cubs",
           "start_hr": 19,
-          "season_hr": 19,
-          "gained": 0,
+          "season_hr": 21,
+          "gained": 2,
           "line": {
             "ab": 5,
             "h": 2,
@@ -340,8 +340,8 @@
     {
       "name": "Team Guy",
       "start_total": 180,
-      "season_total": 186,
-      "gained": 6,
+      "season_total": 175,
+      "gained": -5,
       "hr_last_night": 3,
       "roster": [
         {
@@ -413,8 +413,8 @@
           "name": "Max Muncy",
           "mlb_team": "Dodgers",
           "start_hr": 17,
-          "season_hr": 17,
-          "gained": 0,
+          "season_hr": 5,
+          "gained": -12,
           "line": {
             "ab": 3,
             "h": 0,
@@ -431,8 +431,8 @@
           "name": "CJ Abrams",
           "mlb_team": "Nationals",
           "start_hr": 18,
-          "season_hr": 19,
-          "gained": 1,
+          "season_hr": 20,
+          "gained": 2,
           "line": {
             "ab": 2,
             "h": 1,
