@@ -52,7 +52,7 @@
   .teamlead .rank { color:var(--led); }
   .teamhead h2 { font-family:"Archivo Black",sans-serif; font-size:21px;
                   text-transform:uppercase; letter-spacing:.5px; }
-  .nighthr { display:block; color:var(--led); font-size:13px; font-weight:700; }
+  .nighthr { display:block; color:var(--flare); font-size:13px; font-weight:700; }
   .total { text-align:right; }
   .led { font-weight:700; font-size:38px; color:var(--led);
           text-shadow:0 0 14px rgba(255,182,39,.45); line-height:1; }
@@ -78,6 +78,36 @@
   .phr { text-align:right; font-weight:700; font-size:20px; }
   .phr em { display:block; font-style:normal; color:var(--dim); font-size:11px;
              font-weight:400; }
+  .race { margin-top:16px; border:1px solid var(--hair); background:var(--panel);
+           padding:12px 16px 6px; display:block; }
+  .racetitle { font-family:"Archivo Black",sans-serif; font-size:13px;
+                color:var(--led); letter-spacing:1px; display:block; margin-bottom:6px; }
+  .tabs { display:flex; gap:8px; margin-top:14px; }
+  .tabbtn { font:700 14px "Chivo Mono",monospace; letter-spacing:.5px;
+             background:var(--panel); color:var(--dim); border:1px solid var(--hair);
+             padding:8px 18px; cursor:pointer; }
+  .tabbtn.active { color:var(--field); background:var(--led); border-color:var(--led); }
+  .tabpane { display:none; }
+  .tabpane.active { display:block; }
+  .statsbar { display:flex; gap:10px; margin-top:14px; }
+  .statsbar input, .statsbar select {
+    font:14px "Chivo Mono",monospace; color:var(--chalk); background:var(--panel);
+    border:1px solid var(--hair); padding:8px 12px; }
+  .statsbar input { flex:1; max-width:360px; }
+  .tablewrap { overflow-x:auto; margin-top:10px; border:1px solid var(--hair); }
+  .statstable { width:100%; border-collapse:collapse; background:var(--panel);
+                 font-size:14px; }
+  .statstable th { font-family:"Archivo Black",sans-serif; font-size:11px;
+                    letter-spacing:1px; color:var(--dim); text-align:left;
+                    padding:10px 12px; border-bottom:2px solid var(--hair);
+                    cursor:pointer; white-space:nowrap; user-select:none; }
+  .statstable th.sorted { color:var(--led); }
+  .statstable th.sorted::after { content:" ▲"; font-size:9px; }
+  .statstable th.sorted.desc::after { content:" ▼"; }
+  .statstable td { padding:8px 12px; border-bottom:1px solid rgba(42,51,61,.5);
+                    color:var(--chalk); }
+  .statstable td.n { text-align:right; font-weight:700; }
+  .statstable td.hrcol { color:var(--led); }
   footer { color:var(--dim); font-size:12px; margin-top:14px; text-align:center; }
   @media (max-width: 900px) {
     body { padding:16px 12px 24px; font-size:15px; }
@@ -92,57 +122,63 @@
 </style></head><body>
   <div class="masthead">
     <h1>HR Derby League</h1>
-    <div class="date">Tuesday, July 07<br>every homer is a point</div>
+    <div class="date">Wednesday, July 08<br>every homer is a point</div>
   </div>
-  
-  <div class="toprow">
-  
-  
+  <nav class="tabs">
+    <button class="tabbtn active" onclick="showTab('tab-main', this)">Dashboard</button>
+    <button class="tabbtn" onclick="showTab('tab-race', this)">The Race</button>
+    <button class="tabbtn" onclick="showTab('tab-stats', this)">Stats</button>
+  </nav>
+  <div id="tab-main" class="tabpane active">
+    
+    <div class="toprow">
+    
+    
         <div class="banner potn">
           <span class="banner-tag">PLAYER OF THE NIGHT</span>
-          <div><span class="banner-name">Ben Rice</span>
+          <div><span class="banner-name">Pete Crow-Armstrong</span>
           <span class="banner-team">Team Barmen</span><br>
-          <span class="banner-line">3-4, 1 HR, 3 RBI</span></div>
+          <span class="banner-line">2-4, 2 HR, 2 RBI, 1 BB, 2 K</span></div>
         </div>
-  
+    
         <div class="banner badday">
           <span class="banner-tag">BAD DAY AT THE PLATE</span>
-          <div><span class="banner-name">Yordan Alvarez</span>
+          <div><span class="banner-name">Matt Olson</span>
           <span class="banner-team">Team Dimisia</span><br>
-          <span class="banner-line">0-5, 1 K</span></div>
+          <span class="banner-line">0-4, 3 K</span></div>
         </div>
-  </div>
-  <div class="grid3">
-  
+    </div>
+    <div class="grid3">
+    
         <section class="team teamlead">
           <header class="teamhead">
             <div><span class="rank">1ST</span>
-            <h2>Team Barmen</h2><span class="nighthr">+3 last night</span></div>
-            <div class="total"><span class="led">194</span>
-              <span class="totlbl">HR &middot; +8 draft &middot; pace 342</span></div>
+            <h2>Team Barmen</h2><span class="nighthr">+4 last night</span></div>
+            <div class="total"><span class="led">195</span>
+              <span class="totlbl">HR &middot; +9 draft &middot; pace 342</span></div>
           </header>
           
             <div class="row rowhr">
               <span class="pos">DH</span>
               <div class="mid">
                 <span class="pname">Kyle Schwarber <em>Phillies</em></span>
-                <span class="pline">2-4, 1 HR, 2 RBI, 1 K<span class="hrpill">HR&thinsp;&times;1</span></span>
+                <span class="pline">1-4, 1 HR, 1 RBI, 1 BB, 2 K<span class="hrpill">HR&thinsp;&times;1</span></span>
               </div>
-              <span class="phr">31<em>+1</em></span>
+              <span class="phr">32<em>+2</em></span>
             </div>
             <div class="row">
               <span class="pos">C</span>
               <div class="mid">
                 <span class="pname">Dillon Dingler <em>Tigers</em></span>
-                <span class="pline">0-4, 2 K</span>
+                <span class="pline">1-1</span>
               </div>
               <span class="phr">19<em>+0</em></span>
             </div>
-            <div class="row rowhr">
+            <div class="row">
               <span class="pos">1B</span>
               <div class="mid">
                 <span class="pname">Ben Rice <em>Yankees</em></span>
-                <span class="pline">3-4, 1 HR, 3 RBI<span class="hrpill">HR&thinsp;&times;1</span></span>
+                <span class="pline">1-4, 1 K</span>
               </div>
               <span class="phr">26<em>+2</em></span>
             </div>
@@ -150,7 +186,7 @@
               <span class="pos">2B</span>
               <div class="mid">
                 <span class="pname">Brandon Lowe <em>Pirates</em></span>
-                <span class="pline">3-5, 1 RBI, 1 K</span>
+                <span class="pline">1-4, 1 K</span>
               </div>
               <span class="phr">21<em>+0</em></span>
             </div>
@@ -158,31 +194,31 @@
               <span class="pos">3B</span>
               <div class="mid">
                 <span class="pname">Miguel Vargas <em>White Sox</em></span>
-                <span class="pline">0-3, 1 BB, 1 K</span>
+                <span class="pline">0-4</span>
               </div>
               <span class="phr">20<em>+0</em></span>
             </div>
-            <div class="row">
+            <div class="row rowhr">
               <span class="pos">SS</span>
               <div class="mid">
                 <span class="pname">Elly De La Cruz <em>Reds</em></span>
-                <span class="pline">0-3, 1 BB, 1 K</span>
+                <span class="pline">2-3, 1 HR, 2 RBI, 2 BB<span class="hrpill">HR&thinsp;&times;1</span></span>
               </div>
               <span class="phr">14<em>+1</em></span>
             </div>
-            <div class="row rowhr">
+            <div class="row">
               <span class="pos">RF</span>
               <div class="mid">
                 <span class="pname">James Wood <em>Nationals</em></span>
-                <span class="pline">2-4, 1 HR, 1 RBI, 1 BB, 1 K<span class="hrpill">HR&thinsp;&times;1</span></span>
+                <span class="pline">0-2, 3 BB, 1 K</span>
               </div>
               <span class="phr">25<em>+2</em></span>
             </div>
-            <div class="row">
+            <div class="row rowhr">
               <span class="pos">CF</span>
               <div class="mid">
                 <span class="pname">Pete Crow-Armstrong <em>Cubs</em></span>
-                <span class="pline">2-5, 1 RBI, 1 K</span>
+                <span class="pline">2-4, 2 HR, 2 RBI, 1 BB, 2 K<span class="hrpill">HR&thinsp;&times;2</span></span>
               </div>
               <span class="phr">21<em>+2</em></span>
             </div>
@@ -190,7 +226,7 @@
               <span class="pos">LF</span>
               <div class="mid">
                 <span class="pname">Ian Happ <em>Cubs</em></span>
-                <span class="pline">0-4</span>
+                <span class="pline">1-4, 1 K</span>
               </div>
               <span class="phr">17<em>+0</em></span>
             </div>
@@ -198,16 +234,16 @@
         <section class="team">
           <header class="teamhead">
             <div><span class="rank">2ND</span>
-            <h2>Team Guy</h2><span class="nighthr">+3 last night</span></div>
+            <h2>Team Guy</h2><span class="nighthr">+1 last night</span></div>
             <div class="total"><span class="led">187</span>
-              <span class="totlbl">HR &middot; +7 draft &middot; pace 330</span></div>
+              <span class="totlbl">HR &middot; +7 draft &middot; pace 328</span></div>
           </header>
           
-            <div class="row rowhr">
+            <div class="row">
               <span class="pos">DH</span>
               <div class="mid">
                 <span class="pname">Shohei Ohtani <em>Dodgers</em></span>
-                <span class="pline">1-4, 1 HR, 1 RBI, 1 BB, 1 K<span class="hrpill">HR&thinsp;&times;1</span></span>
+                <span class="pline">0-4, 2 K</span>
               </div>
               <span class="phr">20<em>+2</em></span>
             </div>
@@ -215,7 +251,7 @@
               <span class="pos">C</span>
               <div class="mid">
                 <span class="pname">Hunter Goodman <em>Rockies</em></span>
-                <span class="pline">No game</span>
+                <span class="pline">0-1, 1 K</span>
               </div>
               <span class="phr">27<em>+0</em></span>
             </div>
@@ -223,7 +259,7 @@
               <span class="pos">1B</span>
               <div class="mid">
                 <span class="pname">Bryce Harper <em>Phillies</em></span>
-                <span class="pline">0-4, 2 K</span>
+                <span class="pline">0-3, 2 BB</span>
               </div>
               <span class="phr">20<em>+0</em></span>
             </div>
@@ -231,7 +267,7 @@
               <span class="pos">2B</span>
               <div class="mid">
                 <span class="pname">Ketel Marte <em>Diamondbacks</em></span>
-                <span class="pline">1-3, 1 BB</span>
+                <span class="pline">1-5</span>
               </div>
               <span class="phr">17<em>+0</em></span>
             </div>
@@ -239,23 +275,23 @@
               <span class="pos">3B</span>
               <div class="mid">
                 <span class="pname">Max Muncy <em>Dodgers</em></span>
-                <span class="pline">0-4, 2 K</span>
+                <span class="pline">1-3, 1 BB, 2 K</span>
               </div>
               <span class="phr">17<em>+0</em></span>
             </div>
-            <div class="row">
+            <div class="row rowhr">
               <span class="pos">SS</span>
               <div class="mid">
                 <span class="pname">CJ Abrams <em>Nationals</em></span>
-                <span class="pline">1-2, 1 RBI, 2 BB</span>
+                <span class="pline">1-3, 1 HR, 2 RBI, 1 BB<span class="hrpill">HR&thinsp;&times;1</span></span>
               </div>
               <span class="phr">20<em>+2</em></span>
             </div>
-            <div class="row rowhr">
+            <div class="row">
               <span class="pos">RF</span>
               <div class="mid">
                 <span class="pname">Jordan Walker <em>Cardinals</em></span>
-                <span class="pline">3-8, 1 HR, 2 RBI, 1 K<span class="hrpill">HR&thinsp;&times;1</span></span>
+                <span class="pline">2-4, 1 RBI</span>
               </div>
               <span class="phr">21<em>+1</em></span>
             </div>
@@ -267,11 +303,11 @@
               </div>
               <span class="phr">25<em>+0</em></span>
             </div>
-            <div class="row rowhr">
+            <div class="row">
               <span class="pos">LF</span>
               <div class="mid">
                 <span class="pname">Juan Soto <em>Mets</em></span>
-                <span class="pline">1-5, 1 HR, 3 RBI, 1 K<span class="hrpill">HR&thinsp;&times;1</span></span>
+                <span class="pline">0-3, 2 BB, 1 K</span>
               </div>
               <span class="phr">20<em>+2</em></span>
             </div>
@@ -279,16 +315,16 @@
         <section class="team">
           <header class="teamhead">
             <div><span class="rank">3RD</span>
-            <h2>Team Dimisia</h2><span class="nighthr">+1 last night</span></div>
+            <h2>Team Dimisia</h2></div>
             <div class="total"><span class="led">176</span>
-              <span class="totlbl">HR &middot; +4 draft &middot; pace 310</span></div>
+              <span class="totlbl">HR &middot; +4 draft &middot; pace 309</span></div>
           </header>
           
             <div class="row">
               <span class="pos">DH</span>
               <div class="mid">
                 <span class="pname">Yordan Alvarez <em>Astros</em></span>
-                <span class="pline">0-5, 1 K</span>
+                <span class="pline">0-4, 2 K</span>
               </div>
               <span class="phr">29<em>+0</em></span>
             </div>
@@ -296,7 +332,7 @@
               <span class="pos">C</span>
               <div class="mid">
                 <span class="pname">Shea Langeliers <em>Athletics</em></span>
-                <span class="pline">1-3, 1 RBI, 1 BB, 2 K</span>
+                <span class="pline">0-4, 1 K</span>
               </div>
               <span class="phr">20<em>+0</em></span>
             </div>
@@ -304,15 +340,15 @@
               <span class="pos">1B</span>
               <div class="mid">
                 <span class="pname">Matt Olson <em>Braves</em></span>
-                <span class="pline">1-4, 1 K</span>
+                <span class="pline">0-4, 3 K</span>
               </div>
               <span class="phr">24<em>+2</em></span>
             </div>
-            <div class="row rowhr">
+            <div class="row">
               <span class="pos">2B</span>
               <div class="mid">
                 <span class="pname">Jose Altuve <em>Astros</em></span>
-                <span class="pline">1-5, 1 HR, 1 RBI, 1 K<span class="hrpill">HR&thinsp;&times;1</span></span>
+                <span class="pline">0-4, 2 K</span>
               </div>
               <span class="phr">10<em>+2</em></span>
             </div>
@@ -328,7 +364,7 @@
               <span class="pos">SS</span>
               <div class="mid">
                 <span class="pname">Colson Montgomery <em>White Sox</em></span>
-                <span class="pline">0-4</span>
+                <span class="pline">0-4, 3 K</span>
               </div>
               <span class="phr">23<em>+0</em></span>
             </div>
@@ -344,7 +380,7 @@
               <span class="pos">CF</span>
               <div class="mid">
                 <span class="pname">Andy Pages <em>Dodgers</em></span>
-                <span class="pline">1-4, 1 RBI, 1 BB</span>
+                <span class="pline">Did not bat</span>
               </div>
               <span class="phr">16<em>+0</em></span>
             </div>
@@ -352,11 +388,73 @@
               <span class="pos">LF</span>
               <div class="mid">
                 <span class="pname">Cody Bellinger <em>Yankees</em></span>
-                <span class="pline">1-4, 2 K</span>
+                <span class="pline">0-4, 2 K</span>
               </div>
               <span class="phr">11<em>+0</em></span>
             </div>
         </section>
+    </div>
   </div>
-  <footer>Updated Jul 08, 2026 09:49 PM ET &middot; data: MLB Stats API</footer>
+  <div id="tab-race" class="tabpane">
+    <p class="racenote">The Race chart appears once two days of history exist.</p>
+  </div>
+  <div id="tab-stats" class="tabpane">
+    
+    <div class="statsbar">
+      <input id="search" type="search" placeholder="Search player or MLB team…"
+             oninput="filterStats()">
+      <select id="teamfilter" onchange="filterStats()">
+        <option value="ALL">All teams</option><option value="Team Barmen">Team Barmen</option><option value="Team Guy">Team Guy</option><option value="Team Dimisia">Team Dimisia</option>
+      </select>
+    </div>
+    <div class="tablewrap"><table class="statstable">
+      <thead><tr>
+        <th onclick="sortStats(0,'txt')">PLAYER</th>
+        <th onclick="sortStats(1,'txt')">TEAM</th>
+        <th onclick="sortStats(2,'txt')">MLB</th>
+        <th onclick="sortStats(3,'num')" class="sorted desc">HR</th>
+        <th onclick="sortStats(4,'num')">H</th>
+        <th onclick="sortStats(5,'num')">AVG</th>
+        <th onclick="sortStats(6,'num')">RBI</th>
+        <th onclick="sortStats(7,'num')">K</th>
+      </tr></thead>
+      <tbody id="statsbody"><tr data-team="Team Barmen" data-search="kyle schwarber phillies"><td data-v="Kyle Schwarber">Kyle Schwarber</td><td data-v="Team Barmen">Barmen</td><td data-v="Phillies">Phillies</td><td data-v="32" class="n hrcol">32</td><td data-v="85" class="n">85</td><td data-v=".254" class="n">.254</td><td data-v="58" class="n">58</td><td data-v="137" class="n">137</td></tr><tr data-team="Team Barmen" data-search="dillon dingler tigers"><td data-v="Dillon Dingler">Dillon Dingler</td><td data-v="Team Barmen">Barmen</td><td data-v="Tigers">Tigers</td><td data-v="19" class="n hrcol">19</td><td data-v="84" class="n">84</td><td data-v=".264" class="n">.264</td><td data-v="60" class="n">60</td><td data-v="74" class="n">74</td></tr><tr data-team="Team Barmen" data-search="ben rice yankees"><td data-v="Ben Rice">Ben Rice</td><td data-v="Team Barmen">Barmen</td><td data-v="Yankees">Yankees</td><td data-v="26" class="n hrcol">26</td><td data-v="88" class="n">88</td><td data-v=".272" class="n">.272</td><td data-v="60" class="n">60</td><td data-v="87" class="n">87</td></tr><tr data-team="Team Barmen" data-search="brandon lowe pirates"><td data-v="Brandon Lowe">Brandon Lowe</td><td data-v="Team Barmen">Barmen</td><td data-v="Pirates">Pirates</td><td data-v="21" class="n hrcol">21</td><td data-v="84" class="n">84</td><td data-v=".247" class="n">.247</td><td data-v="64" class="n">64</td><td data-v="100" class="n">100</td></tr><tr data-team="Team Barmen" data-search="miguel vargas white sox"><td data-v="Miguel Vargas">Miguel Vargas</td><td data-v="Team Barmen">Barmen</td><td data-v="White Sox">White Sox</td><td data-v="20" class="n hrcol">20</td><td data-v="79" class="n">79</td><td data-v=".242" class="n">.242</td><td data-v="56" class="n">56</td><td data-v="65" class="n">65</td></tr><tr data-team="Team Barmen" data-search="elly de la cruz reds"><td data-v="Elly De La Cruz">Elly De La Cruz</td><td data-v="Team Barmen">Barmen</td><td data-v="Reds">Reds</td><td data-v="14" class="n hrcol">14</td><td data-v="78" class="n">78</td><td data-v=".274" class="n">.274</td><td data-v="43" class="n">43</td><td data-v="92" class="n">92</td></tr><tr data-team="Team Barmen" data-search="james wood nationals"><td data-v="James Wood">James Wood</td><td data-v="Team Barmen">Barmen</td><td data-v="Nationals">Nationals</td><td data-v="25" class="n hrcol">25</td><td data-v="96" class="n">96</td><td data-v=".269" class="n">.269</td><td data-v="61" class="n">61</td><td data-v="127" class="n">127</td></tr><tr data-team="Team Barmen" data-search="pete crow-armstrong cubs"><td data-v="Pete Crow-Armstrong">Pete Crow-Armstrong</td><td data-v="Team Barmen">Barmen</td><td data-v="Cubs">Cubs</td><td data-v="21" class="n hrcol">21</td><td data-v="102" class="n">102</td><td data-v=".296" class="n">.296</td><td data-v="52" class="n">52</td><td data-v="102" class="n">102</td></tr><tr data-team="Team Barmen" data-search="ian happ cubs"><td data-v="Ian Happ">Ian Happ</td><td data-v="Team Barmen">Barmen</td><td data-v="Cubs">Cubs</td><td data-v="17" class="n hrcol">17</td><td data-v="71" class="n">71</td><td data-v=".216" class="n">.216</td><td data-v="41" class="n">41</td><td data-v="120" class="n">120</td></tr><tr data-team="Team Guy" data-search="shohei ohtani dodgers"><td data-v="Shohei Ohtani">Shohei Ohtani</td><td data-v="Team Guy">Guy</td><td data-v="Dodgers">Dodgers</td><td data-v="20" class="n hrcol">20</td><td data-v="94" class="n">94</td><td data-v=".290" class="n">.290</td><td data-v="56" class="n">56</td><td data-v="90" class="n">90</td></tr><tr data-team="Team Guy" data-search="hunter goodman rockies"><td data-v="Hunter Goodman">Hunter Goodman</td><td data-v="Team Guy">Guy</td><td data-v="Rockies">Rockies</td><td data-v="27" class="n hrcol">27</td><td data-v="81" class="n">81</td><td data-v=".250" class="n">.250</td><td data-v="51" class="n">51</td><td data-v="117" class="n">117</td></tr><tr data-team="Team Guy" data-search="bryce harper phillies"><td data-v="Bryce Harper">Bryce Harper</td><td data-v="Team Guy">Guy</td><td data-v="Phillies">Phillies</td><td data-v="20" class="n hrcol">20</td><td data-v="86" class="n">86</td><td data-v=".264" class="n">.264</td><td data-v="57" class="n">57</td><td data-v="79" class="n">79</td></tr><tr data-team="Team Guy" data-search="ketel marte diamondbacks"><td data-v="Ketel Marte">Ketel Marte</td><td data-v="Team Guy">Guy</td><td data-v="Diamondbacks">Diamondbacks</td><td data-v="17" class="n hrcol">17</td><td data-v="94" class="n">94</td><td data-v=".266" class="n">.266</td><td data-v="54" class="n">54</td><td data-v="51" class="n">51</td></tr><tr data-team="Team Guy" data-search="max muncy dodgers"><td data-v="Max Muncy">Max Muncy</td><td data-v="Team Guy">Guy</td><td data-v="Dodgers">Dodgers</td><td data-v="17" class="n hrcol">17</td><td data-v="76" class="n">76</td><td data-v=".265" class="n">.265</td><td data-v="40" class="n">40</td><td data-v="77" class="n">77</td></tr><tr data-team="Team Guy" data-search="cj abrams nationals"><td data-v="CJ Abrams">CJ Abrams</td><td data-v="Team Guy">Guy</td><td data-v="Nationals">Nationals</td><td data-v="20" class="n hrcol">20</td><td data-v="92" class="n">92</td><td data-v=".276" class="n">.276</td><td data-v="67" class="n">67</td><td data-v="81" class="n">81</td></tr><tr data-team="Team Guy" data-search="jordan walker cardinals"><td data-v="Jordan Walker">Jordan Walker</td><td data-v="Team Guy">Guy</td><td data-v="Cardinals">Cardinals</td><td data-v="21" class="n hrcol">21</td><td data-v="101" class="n">101</td><td data-v=".294" class="n">.294</td><td data-v="70" class="n">70</td><td data-v="95" class="n">95</td></tr><tr data-team="Team Guy" data-search="byron buxton twins"><td data-v="Byron Buxton">Byron Buxton</td><td data-v="Team Guy">Guy</td><td data-v="Twins">Twins</td><td data-v="25" class="n hrcol">25</td><td data-v="83" class="n">83</td><td data-v=".271" class="n">.271</td><td data-v="45" class="n">45</td><td data-v="83" class="n">83</td></tr><tr data-team="Team Guy" data-search="juan soto mets"><td data-v="Juan Soto">Juan Soto</td><td data-v="Team Guy">Guy</td><td data-v="Mets">Mets</td><td data-v="20" class="n hrcol">20</td><td data-v="78" class="n">78</td><td data-v=".295" class="n">.295</td><td data-v="49" class="n">49</td><td data-v="40" class="n">40</td></tr><tr data-team="Team Dimisia" data-search="yordan alvarez astros"><td data-v="Yordan Alvarez">Yordan Alvarez</td><td data-v="Team Dimisia">Dimisia</td><td data-v="Astros">Astros</td><td data-v="29" class="n hrcol">29</td><td data-v="105" class="n">105</td><td data-v=".310" class="n">.310</td><td data-v="67" class="n">67</td><td data-v="72" class="n">72</td></tr><tr data-team="Team Dimisia" data-search="shea langeliers athletics"><td data-v="Shea Langeliers">Shea Langeliers</td><td data-v="Team Dimisia">Dimisia</td><td data-v="Athletics">Athletics</td><td data-v="20" class="n hrcol">20</td><td data-v="88" class="n">88</td><td data-v=".261" class="n">.261</td><td data-v="45" class="n">45</td><td data-v="78" class="n">78</td></tr><tr data-team="Team Dimisia" data-search="matt olson braves"><td data-v="Matt Olson">Matt Olson</td><td data-v="Team Dimisia">Dimisia</td><td data-v="Braves">Braves</td><td data-v="24" class="n hrcol">24</td><td data-v="96" class="n">96</td><td data-v=".270" class="n">.270</td><td data-v="57" class="n">57</td><td data-v="94" class="n">94</td></tr><tr data-team="Team Dimisia" data-search="jose altuve astros"><td data-v="Jose Altuve">Jose Altuve</td><td data-v="Team Dimisia">Dimisia</td><td data-v="Astros">Astros</td><td data-v="10" class="n hrcol">10</td><td data-v="63" class="n">63</td><td data-v=".231" class="n">.231</td><td data-v="26" class="n">26</td><td data-v="67" class="n">67</td></tr><tr data-team="Team Dimisia" data-search="junior caminero rays"><td data-v="Junior Caminero">Junior Caminero</td><td data-v="Team Dimisia">Dimisia</td><td data-v="Rays">Rays</td><td data-v="26" class="n hrcol">26</td><td data-v="95" class="n">95</td><td data-v=".278" class="n">.278</td><td data-v="56" class="n">56</td><td data-v="73" class="n">73</td></tr><tr data-team="Team Dimisia" data-search="colson montgomery white sox"><td data-v="Colson Montgomery">Colson Montgomery</td><td data-v="Team Dimisia">Dimisia</td><td data-v="White Sox">White Sox</td><td data-v="23" class="n hrcol">23</td><td data-v="71" class="n">71</td><td data-v=".218" class="n">.218</td><td data-v="53" class="n">53</td><td data-v="115" class="n">115</td></tr><tr data-team="Team Dimisia" data-search="aaron judge yankees"><td data-v="Aaron Judge">Aaron Judge</td><td data-v="Team Dimisia">Dimisia</td><td data-v="Yankees">Yankees</td><td data-v="17" class="n hrcol">17</td><td data-v="53" class="n">53</td><td data-v=".248" class="n">.248</td><td data-v="38" class="n">38</td><td data-v="72" class="n">72</td></tr><tr data-team="Team Dimisia" data-search="andy pages dodgers"><td data-v="Andy Pages">Andy Pages</td><td data-v="Team Dimisia">Dimisia</td><td data-v="Dodgers">Dodgers</td><td data-v="16" class="n hrcol">16</td><td data-v="94" class="n">94</td><td data-v=".263" class="n">.263</td><td data-v="64" class="n">64</td><td data-v="77" class="n">77</td></tr><tr data-team="Team Dimisia" data-search="cody bellinger yankees"><td data-v="Cody Bellinger">Cody Bellinger</td><td data-v="Team Dimisia">Dimisia</td><td data-v="Yankees">Yankees</td><td data-v="11" class="n hrcol">11</td><td data-v="81" class="n">81</td><td data-v=".245" class="n">.245</td><td data-v="50" class="n">50</td><td data-v="60" class="n">60</td></tr></tbody>
+    </table></div>
+  </div>
+  <footer>Updated Jul 09, 2026 08:02 AM ET &middot; data: MLB Stats API</footer>
+  
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.tabpane').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tabbtn').forEach(el => el.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+function filterStats() {
+  const q = document.getElementById('search').value.toLowerCase();
+  const team = document.getElementById('teamfilter').value;
+  document.querySelectorAll('#statsbody tr').forEach(tr => {
+    const matchQ = tr.dataset.search.includes(q);
+    const matchT = team === 'ALL' || tr.dataset.team === team;
+    tr.style.display = (matchQ && matchT) ? '' : 'none';
+  });
+}
+let sortState = { col: 3, dir: -1 };
+function sortStats(col, type) {
+  const dir = (sortState.col === col) ? -sortState.dir : (type === 'num' ? -1 : 1);
+  sortState = { col: col, dir: dir };
+  const body = document.getElementById('statsbody');
+  const rows = Array.from(body.rows);
+  rows.sort((a, b) => {
+    const av = a.cells[col].dataset.v, bv = b.cells[col].dataset.v;
+    return type === 'num' ? (av - bv) * dir : av.localeCompare(bv) * dir;
+  });
+  rows.forEach(r => body.appendChild(r));
+  document.querySelectorAll('.statstable th').forEach((th, i) => {
+    th.classList.toggle('sorted', i === col);
+    th.classList.toggle('desc', i === col && dir === -1);
+  });
+}
+</script>
+
 </body></html>
