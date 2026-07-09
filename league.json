@@ -19,11 +19,11 @@
     },
     {
       "name": "Team Barmen",
-      "start_total": 191,
+      "start_total": 186,
       "players": [
         { "pos": "DH", "name": "Kyle Schwarber",       "mlb_team": "Phillies",  "start_hr": 30 },
         { "pos": "C",  "name": "Dillon Dingler",       "mlb_team": "Tigers",    "start_hr": 19 },
-        { "pos": "1B", "name": "Ben Rice",             "mlb_team": "Yankees",   "start_hr": 29 },
+        { "pos": "1B", "name": "Ben Rice",             "mlb_team": "Yankees",   "start_hr": 24 },
         { "pos": "2B", "name": "Brandon Lowe",         "mlb_team": "Pirates",   "start_hr": 21 },
         { "pos": "3B", "name": "Miguel Vargas",        "mlb_team": "White Sox", "start_hr": 20 },
         { "pos": "SS", "name": "Elly De La Cruz",      "mlb_team": "Reds",      "start_hr": 13 },
