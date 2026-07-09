@@ -1,7 +1,7 @@
 {
   "league_name": "HR Derby League",
   "game_date": "2026-07-07",
-  "generated_at": "Jul 08, 2026 08:55 PM ET",
+  "generated_at": "Jul 08, 2026 09:02 PM ET",
   "teams": [
     {
       "name": "Team Barmen",
@@ -175,6 +175,162 @@
       ]
     },
     {
+      "name": "Team Guy",
+      "start_total": 180,
+      "season_total": 187,
+      "gained": 7,
+      "hr_last_night": 3,
+      "roster": [
+        {
+          "pos": "DH",
+          "name": "Shohei Ohtani",
+          "mlb_team": "Dodgers",
+          "start_hr": 18,
+          "season_hr": 20,
+          "gained": 2,
+          "line": {
+            "ab": 4,
+            "h": 1,
+            "hr": 1,
+            "rbi": 1,
+            "bb": 1,
+            "k": 1,
+            "r": 1
+          },
+          "hr_last_night": 1
+        },
+        {
+          "pos": "C",
+          "name": "Hunter Goodman",
+          "mlb_team": "Rockies",
+          "start_hr": 27,
+          "season_hr": 27,
+          "gained": 0,
+          "line": null,
+          "hr_last_night": 0
+        },
+        {
+          "pos": "1B",
+          "name": "Bryce Harper",
+          "mlb_team": "Phillies",
+          "start_hr": 20,
+          "season_hr": 20,
+          "gained": 0,
+          "line": {
+            "ab": 4,
+            "h": 0,
+            "hr": 0,
+            "rbi": 0,
+            "bb": 0,
+            "k": 2,
+            "r": 0
+          },
+          "hr_last_night": 0
+        },
+        {
+          "pos": "2B",
+          "name": "Ketel Marte",
+          "mlb_team": "Diamondbacks",
+          "start_hr": 17,
+          "season_hr": 17,
+          "gained": 0,
+          "line": {
+            "ab": 3,
+            "h": 1,
+            "hr": 0,
+            "rbi": 0,
+            "bb": 1,
+            "k": 0,
+            "r": 0
+          },
+          "hr_last_night": 0
+        },
+        {
+          "pos": "3B",
+          "name": "Max Muncy",
+          "mlb_team": "Dodgers",
+          "start_hr": 17,
+          "mlbam_id": 571970,
+          "season_hr": 17,
+          "gained": 0,
+          "line": {
+            "ab": 4,
+            "h": 0,
+            "hr": 0,
+            "rbi": 0,
+            "bb": 0,
+            "k": 2,
+            "r": 0
+          },
+          "hr_last_night": 0
+        },
+        {
+          "pos": "SS",
+          "name": "CJ Abrams",
+          "mlb_team": "Nationals",
+          "start_hr": 18,
+          "season_hr": 20,
+          "gained": 2,
+          "line": {
+            "ab": 2,
+            "h": 1,
+            "hr": 0,
+            "rbi": 1,
+            "bb": 2,
+            "k": 0,
+            "r": 0
+          },
+          "hr_last_night": 0
+        },
+        {
+          "pos": "RF",
+          "name": "Jordan Walker",
+          "mlb_team": "Cardinals",
+          "start_hr": 20,
+          "season_hr": 21,
+          "gained": 1,
+          "line": {
+            "ab": 8,
+            "h": 3,
+            "hr": 1,
+            "rbi": 2,
+            "bb": 0,
+            "k": 1,
+            "r": 2
+          },
+          "hr_last_night": 1
+        },
+        {
+          "pos": "CF",
+          "name": "Byron Buxton",
+          "mlb_team": "Twins",
+          "start_hr": 25,
+          "season_hr": 25,
+          "gained": 0,
+          "line": null,
+          "hr_last_night": 0
+        },
+        {
+          "pos": "LF",
+          "name": "Juan Soto",
+          "mlb_team": "Mets",
+          "start_hr": 18,
+          "season_hr": 20,
+          "gained": 2,
+          "line": {
+            "ab": 5,
+            "h": 1,
+            "hr": 1,
+            "rbi": 3,
+            "bb": 0,
+            "k": 1,
+            "r": 1
+          },
+          "hr_last_night": 1
+        }
+      ]
+    },
+    {
       "name": "Team Dimisia",
       "start_total": 172,
       "season_total": 176,
@@ -334,161 +490,6 @@
             "r": 0
           },
           "hr_last_night": 0
-        }
-      ]
-    },
-    {
-      "name": "Team Guy",
-      "start_total": 180,
-      "season_total": 175,
-      "gained": -5,
-      "hr_last_night": 3,
-      "roster": [
-        {
-          "pos": "DH",
-          "name": "Shohei Ohtani",
-          "mlb_team": "Dodgers",
-          "start_hr": 18,
-          "season_hr": 20,
-          "gained": 2,
-          "line": {
-            "ab": 4,
-            "h": 1,
-            "hr": 1,
-            "rbi": 1,
-            "bb": 1,
-            "k": 1,
-            "r": 1
-          },
-          "hr_last_night": 1
-        },
-        {
-          "pos": "C",
-          "name": "Hunter Goodman",
-          "mlb_team": "Rockies",
-          "start_hr": 27,
-          "season_hr": 27,
-          "gained": 0,
-          "line": null,
-          "hr_last_night": 0
-        },
-        {
-          "pos": "1B",
-          "name": "Bryce Harper",
-          "mlb_team": "Phillies",
-          "start_hr": 20,
-          "season_hr": 20,
-          "gained": 0,
-          "line": {
-            "ab": 4,
-            "h": 0,
-            "hr": 0,
-            "rbi": 0,
-            "bb": 0,
-            "k": 2,
-            "r": 0
-          },
-          "hr_last_night": 0
-        },
-        {
-          "pos": "2B",
-          "name": "Ketel Marte",
-          "mlb_team": "Diamondbacks",
-          "start_hr": 17,
-          "season_hr": 17,
-          "gained": 0,
-          "line": {
-            "ab": 3,
-            "h": 1,
-            "hr": 0,
-            "rbi": 0,
-            "bb": 1,
-            "k": 0,
-            "r": 0
-          },
-          "hr_last_night": 0
-        },
-        {
-          "pos": "3B",
-          "name": "Max Muncy",
-          "mlb_team": "Dodgers",
-          "start_hr": 17,
-          "season_hr": 5,
-          "gained": -12,
-          "line": {
-            "ab": 3,
-            "h": 0,
-            "hr": 0,
-            "rbi": 0,
-            "bb": 1,
-            "k": 1,
-            "r": 0
-          },
-          "hr_last_night": 0
-        },
-        {
-          "pos": "SS",
-          "name": "CJ Abrams",
-          "mlb_team": "Nationals",
-          "start_hr": 18,
-          "season_hr": 20,
-          "gained": 2,
-          "line": {
-            "ab": 2,
-            "h": 1,
-            "hr": 0,
-            "rbi": 1,
-            "bb": 2,
-            "k": 0,
-            "r": 0
-          },
-          "hr_last_night": 0
-        },
-        {
-          "pos": "RF",
-          "name": "Jordan Walker",
-          "mlb_team": "Cardinals",
-          "start_hr": 20,
-          "season_hr": 21,
-          "gained": 1,
-          "line": {
-            "ab": 8,
-            "h": 3,
-            "hr": 1,
-            "rbi": 2,
-            "bb": 0,
-            "k": 1,
-            "r": 2
-          },
-          "hr_last_night": 1
-        },
-        {
-          "pos": "CF",
-          "name": "Byron Buxton",
-          "mlb_team": "Twins",
-          "start_hr": 25,
-          "season_hr": 25,
-          "gained": 0,
-          "line": null,
-          "hr_last_night": 0
-        },
-        {
-          "pos": "LF",
-          "name": "Juan Soto",
-          "mlb_team": "Mets",
-          "start_hr": 18,
-          "season_hr": 20,
-          "gained": 2,
-          "line": {
-            "ab": 5,
-            "h": 1,
-            "hr": 1,
-            "rbi": 3,
-            "bb": 0,
-            "k": 1,
-            "r": 1
-          },
-          "hr_last_night": 1
         }
       ]
     }
