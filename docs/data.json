@@ -1,7 +1,7 @@
 {
   "league_name": "HR Derby League",
   "game_date": "2026-07-07",
-  "generated_at": "Jul 08, 2026 09:02 PM ET",
+  "generated_at": "Jul 08, 2026 09:16 PM ET",
   "teams": [
     {
       "name": "Team Barmen",
@@ -9,6 +9,8 @@
       "season_total": 194,
       "gained": 8,
       "hr_last_night": 3,
+      "week_hr": 3,
+      "pace": 343,
       "roster": [
         {
           "pos": "DH",
@@ -26,7 +28,10 @@
             "k": 1,
             "r": 1
           },
-          "hr_last_night": 1
+          "hr_last_night": 1,
+          "week_hr": 1,
+          "hr_streak": 1,
+          "drought": 0
         },
         {
           "pos": "C",
@@ -44,7 +49,10 @@
             "k": 2,
             "r": 0
           },
-          "hr_last_night": 0
+          "hr_last_night": 0,
+          "week_hr": 0,
+          "hr_streak": 0,
+          "drought": 1
         },
         {
           "pos": "1B",
@@ -62,7 +70,10 @@
             "k": 0,
             "r": 1
           },
-          "hr_last_night": 1
+          "hr_last_night": 1,
+          "week_hr": 1,
+          "hr_streak": 1,
+          "drought": 0
         },
         {
           "pos": "2B",
@@ -80,7 +91,10 @@
             "k": 1,
             "r": 2
           },
-          "hr_last_night": 0
+          "hr_last_night": 0,
+          "week_hr": 0,
+          "hr_streak": 0,
+          "drought": 1
         },
         {
           "pos": "3B",
@@ -98,7 +112,10 @@
             "k": 1,
             "r": 0
           },
-          "hr_last_night": 0
+          "hr_last_night": 0,
+          "week_hr": 0,
+          "hr_streak": 0,
+          "drought": 1
         },
         {
           "pos": "SS",
@@ -116,7 +133,10 @@
             "k": 1,
             "r": 0
           },
-          "hr_last_night": 0
+          "hr_last_night": 0,
+          "week_hr": 0,
+          "hr_streak": 0,
+          "drought": 1
         },
         {
           "pos": "RF",
@@ -134,7 +154,10 @@
             "k": 1,
             "r": 2
           },
-          "hr_last_night": 1
+          "hr_last_night": 1,
+          "week_hr": 1,
+          "hr_streak": 1,
+          "drought": 0
         },
         {
           "pos": "CF",
@@ -152,7 +175,10 @@
             "k": 1,
             "r": 0
           },
-          "hr_last_night": 0
+          "hr_last_night": 0,
+          "week_hr": 0,
+          "hr_streak": 0,
+          "drought": 1
         },
         {
           "pos": "LF",
@@ -170,7 +196,10 @@
             "k": 0,
             "r": 0
           },
-          "hr_last_night": 0
+          "hr_last_night": 0,
+          "week_hr": 0,
+          "hr_streak": 0,
+          "drought": 1
         }
       ]
     },
@@ -180,6 +209,8 @@
       "season_total": 187,
       "gained": 7,
       "hr_last_night": 3,
+      "week_hr": 3,
+      "pace": 330,
       "roster": [
         {
           "pos": "DH",
@@ -197,7 +228,10 @@
             "k": 1,
             "r": 1
           },
-          "hr_last_night": 1
+          "hr_last_night": 1,
+          "week_hr": 1,
+          "hr_streak": 1,
+          "drought": 0
         },
         {
           "pos": "C",
@@ -207,7 +241,10 @@
           "season_hr": 27,
           "gained": 0,
           "line": null,
-          "hr_last_night": 0
+          "hr_last_night": 0,
+          "week_hr": 0,
+          "hr_streak": 0,
+          "drought": 0
         },
         {
           "pos": "1B",
@@ -225,7 +262,10 @@
             "k": 2,
             "r": 0
           },
-          "hr_last_night": 0
+          "hr_last_night": 0,
+          "week_hr": 0,
+          "hr_streak": 0,
+          "drought": 1
         },
         {
           "pos": "2B",
@@ -243,7 +283,10 @@
             "k": 0,
             "r": 0
           },
-          "hr_last_night": 0
+          "hr_last_night": 0,
+          "week_hr": 0,
+          "hr_streak": 0,
+          "drought": 1
         },
         {
           "pos": "3B",
@@ -262,7 +305,10 @@
             "k": 2,
             "r": 0
           },
-          "hr_last_night": 0
+          "hr_last_night": 0,
+          "week_hr": 0,
+          "hr_streak": 0,
+          "drought": 1
         },
         {
           "pos": "SS",
@@ -280,7 +326,10 @@
             "k": 0,
             "r": 0
           },
-          "hr_last_night": 0
+          "hr_last_night": 0,
+          "week_hr": 0,
+          "hr_streak": 0,
+          "drought": 1
         },
         {
           "pos": "RF",
@@ -298,7 +347,10 @@
             "k": 1,
             "r": 2
           },
-          "hr_last_night": 1
+          "hr_last_night": 1,
+          "week_hr": 1,
+          "hr_streak": 0,
+          "drought": 1
         },
         {
           "pos": "CF",
@@ -308,7 +360,10 @@
           "season_hr": 25,
           "gained": 0,
           "line": null,
-          "hr_last_night": 0
+          "hr_last_night": 0,
+          "week_hr": 0,
+          "hr_streak": 0,
+          "drought": 0
         },
         {
           "pos": "LF",
@@ -326,7 +381,10 @@
             "k": 1,
             "r": 1
           },
-          "hr_last_night": 1
+          "hr_last_night": 1,
+          "week_hr": 1,
+          "hr_streak": 1,
+          "drought": 0
         }
       ]
     },
@@ -336,6 +394,8 @@
       "season_total": 176,
       "gained": 4,
       "hr_last_night": 1,
+      "week_hr": 1,
+      "pace": 311,
       "roster": [
         {
           "pos": "DH",
@@ -353,7 +413,10 @@
             "k": 1,
             "r": 0
           },
-          "hr_last_night": 0
+          "hr_last_night": 0,
+          "week_hr": 0,
+          "hr_streak": 0,
+          "drought": 1
         },
         {
           "pos": "C",
@@ -371,7 +434,10 @@
             "k": 2,
             "r": 0
           },
-          "hr_last_night": 0
+          "hr_last_night": 0,
+          "week_hr": 0,
+          "hr_streak": 0,
+          "drought": 1
         },
         {
           "pos": "1B",
@@ -389,7 +455,10 @@
             "k": 1,
             "r": 1
           },
-          "hr_last_night": 0
+          "hr_last_night": 0,
+          "week_hr": 0,
+          "hr_streak": 0,
+          "drought": 1
         },
         {
           "pos": "2B",
@@ -407,7 +476,10 @@
             "k": 1,
             "r": 1
           },
-          "hr_last_night": 1
+          "hr_last_night": 1,
+          "week_hr": 1,
+          "hr_streak": 1,
+          "drought": 0
         },
         {
           "pos": "3B",
@@ -425,7 +497,10 @@
             "k": 2,
             "r": 0
           },
-          "hr_last_night": 0
+          "hr_last_night": 0,
+          "week_hr": 0,
+          "hr_streak": 0,
+          "drought": 1
         },
         {
           "pos": "SS",
@@ -443,7 +518,10 @@
             "k": 0,
             "r": 0
           },
-          "hr_last_night": 0
+          "hr_last_night": 0,
+          "week_hr": 0,
+          "hr_streak": 0,
+          "drought": 1
         },
         {
           "pos": "RF",
@@ -453,7 +531,10 @@
           "season_hr": 17,
           "gained": 0,
           "line": null,
-          "hr_last_night": 0
+          "hr_last_night": 0,
+          "week_hr": 0,
+          "hr_streak": 0,
+          "drought": 0
         },
         {
           "pos": "CF",
@@ -471,7 +552,10 @@
             "k": 0,
             "r": 0
           },
-          "hr_last_night": 0
+          "hr_last_night": 0,
+          "week_hr": 0,
+          "hr_streak": 0,
+          "drought": 1
         },
         {
           "pos": "LF",
@@ -489,7 +573,10 @@
             "k": 2,
             "r": 0
           },
-          "hr_last_night": 0
+          "hr_last_night": 0,
+          "week_hr": 0,
+          "hr_streak": 0,
+          "drought": 1
         }
       ]
     }
@@ -511,6 +598,9 @@
       "r": 1
     },
     "hr_last_night": 1,
+    "week_hr": 1,
+    "hr_streak": 1,
+    "drought": 0,
     "team_name": "Team Barmen"
   },
   "bad_day": {
@@ -530,7 +620,11 @@
       "r": 0
     },
     "hr_last_night": 0,
+    "week_hr": 0,
+    "hr_streak": 0,
+    "drought": 1,
     "team_name": "Team Dimisia"
   },
+  "weekly": null,
   "any_games": true
 }
