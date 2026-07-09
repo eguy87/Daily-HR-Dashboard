@@ -361,7 +361,7 @@ def render_html(state: dict) -> str:
   .teamlead .rank {{ color:var(--led); }}
   .teamhead h2 {{ font-family:"Archivo Black",sans-serif; font-size:21px;
                   text-transform:uppercase; letter-spacing:.5px; }}
-  .nighthr {{ display:block; color:var(--flare); font-size:13px; font-weight:700; }}
+  .nighthr {{ display:block; color:var(--led); font-size:13px; font-weight:700; }}
   .total {{ text-align:right; }}
   .led {{ font-weight:700; font-size:38px; color:var(--led);
           text-shadow:0 0 14px rgba(255,182,39,.45); line-height:1; }}
