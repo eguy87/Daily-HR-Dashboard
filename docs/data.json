@@ -1,6 +1,6 @@
 {
   "league_name": "HR Derby League",
-  "game_date": "2026-07-15",
+  "game_date": "2026-07-16",
   "race": {
     "dates": [
       "2026-07-08",
@@ -10,7 +10,8 @@
       "2026-07-12",
       "2026-07-13",
       "2026-07-14",
-      "2026-07-15"
+      "2026-07-15",
+      "2026-07-16"
     ],
     "teams": [
       {
@@ -20,6 +21,7 @@
           189,
           190,
           190,
+          191,
           191,
           191,
           191,
@@ -36,6 +38,7 @@
           203,
           203,
           203,
+          203,
           203
         ]
       },
@@ -49,12 +52,13 @@
           184,
           184,
           184,
+          184,
           184
         ]
       }
     ]
   },
-  "generated_at": "Jul 16, 2026 09:07 AM ET",
+  "generated_at": "Jul 17, 2026 08:49 AM ET",
   "teams": [
     {
       "name": "Team Barmen",
@@ -63,7 +67,7 @@
       "gained": 17,
       "hr_last_night": 0,
       "week_hr": 0,
-      "pace": 342,
+      "pace": 341,
       "roster": [
         {
           "pos": "DH",
@@ -72,17 +76,25 @@
           "start_hr": 30,
           "season_hr": 32,
           "gained": 2,
-          "line": null,
+          "line": {
+            "ab": 4,
+            "h": 1,
+            "hr": 0,
+            "rbi": 0,
+            "bb": 0,
+            "k": 1,
+            "r": 0
+          },
           "hr_last_night": 0,
           "week_hr": 0,
           "season_line": {
-            "h": 89,
+            "h": 90,
             "avg": ".254",
             "rbi": 59,
-            "k": 144
+            "k": 145
           },
           "hr_streak": 0,
-          "drought": 0
+          "drought": 1
         },
         {
           "pos": "C",
@@ -292,17 +304,25 @@
           "start_hr": 20,
           "season_hr": 20,
           "gained": 0,
-          "line": null,
+          "line": {
+            "ab": 3,
+            "h": 1,
+            "hr": 0,
+            "rbi": 0,
+            "bb": 1,
+            "k": 1,
+            "r": 0
+          },
           "hr_last_night": 0,
           "week_hr": 0,
           "season_line": {
-            "h": 89,
-            "avg": ".260",
+            "h": 90,
+            "avg": ".261",
             "rbi": 57,
-            "k": 82
+            "k": 83
           },
           "hr_streak": 0,
-          "drought": 0
+          "drought": 1
         },
         {
           "pos": "2B",
@@ -407,17 +427,25 @@
           "start_hr": 18,
           "season_hr": 21,
           "gained": 3,
-          "line": null,
+          "line": {
+            "ab": 1,
+            "h": 1,
+            "hr": 0,
+            "rbi": 0,
+            "bb": 3,
+            "k": 0,
+            "r": 0
+          },
           "hr_last_night": 0,
           "week_hr": 0,
           "season_line": {
-            "h": 80,
-            "avg": ".290",
+            "h": 81,
+            "avg": ".292",
             "rbi": 51,
             "k": 43
           },
           "hr_streak": 0,
-          "drought": 0
+          "drought": 1
         }
       ]
     },
@@ -428,7 +456,7 @@
       "gained": 12,
       "hr_last_night": 0,
       "week_hr": 0,
-      "pace": 310,
+      "pace": 309,
       "roster": [
         {
           "pos": "DH",
@@ -604,8 +632,62 @@
       ]
     }
   ],
-  "potn": null,
-  "bad_day": null,
+  "potn": {
+    "pos": "LF",
+    "name": "Juan Soto",
+    "mlb_team": "Mets",
+    "start_hr": 18,
+    "season_hr": 21,
+    "gained": 3,
+    "line": {
+      "ab": 1,
+      "h": 1,
+      "hr": 0,
+      "rbi": 0,
+      "bb": 3,
+      "k": 0,
+      "r": 0
+    },
+    "hr_last_night": 0,
+    "week_hr": 0,
+    "season_line": {
+      "h": 81,
+      "avg": ".292",
+      "rbi": 51,
+      "k": 43
+    },
+    "hr_streak": 0,
+    "drought": 1,
+    "team_name": "Team Guy"
+  },
+  "bad_day": {
+    "pos": "DH",
+    "name": "Kyle Schwarber",
+    "mlb_team": "Phillies",
+    "start_hr": 30,
+    "season_hr": 32,
+    "gained": 2,
+    "line": {
+      "ab": 4,
+      "h": 1,
+      "hr": 0,
+      "rbi": 0,
+      "bb": 0,
+      "k": 1,
+      "r": 0
+    },
+    "hr_last_night": 0,
+    "week_hr": 0,
+    "season_line": {
+      "h": 90,
+      "avg": ".254",
+      "rbi": 59,
+      "k": 145
+    },
+    "hr_streak": 0,
+    "drought": 1,
+    "team_name": "Team Barmen"
+  },
   "weekly": null,
-  "any_games": false
+  "any_games": true
 }
