@@ -1,6 +1,6 @@
 {
   "league_name": "HR Derby League",
-  "game_date": "2026-07-19",
+  "game_date": "2026-07-20",
   "race": {
     "dates": [
       "2026-07-08",
@@ -14,7 +14,8 @@
       "2026-07-16",
       "2026-07-17",
       "2026-07-18",
-      "2026-07-19"
+      "2026-07-19",
+      "2026-07-20"
     ],
     "teams": [
       {
@@ -31,7 +32,8 @@
           191,
           192,
           192,
-          196
+          196,
+          199
         ]
       },
       {
@@ -48,7 +50,8 @@
           203,
           204,
           205,
-          205
+          205,
+          208
         ]
       },
       {
@@ -65,21 +68,22 @@
           184,
           187,
           187,
-          189
+          189,
+          191
         ]
       }
     ]
   },
-  "generated_at": "Jul 20, 2026 09:30 AM ET",
+  "generated_at": "Jul 21, 2026 09:06 AM ET",
   "teams": [
     {
       "name": "Team Barmen",
       "start_total": 186,
-      "season_total": 205,
-      "gained": 19,
-      "hr_last_night": 0,
-      "week_hr": 0,
-      "pace": 334,
+      "season_total": 208,
+      "gained": 22,
+      "hr_last_night": 3,
+      "week_hr": 3,
+      "pace": 336,
       "roster": [
         {
           "pos": "DH",
@@ -93,17 +97,17 @@
             "h": 0,
             "hr": 0,
             "rbi": 0,
-            "bb": 1,
-            "k": 2,
+            "bb": 0,
+            "k": 3,
             "r": 0
           },
           "hr_last_night": 0,
           "week_hr": 0,
           "season_line": {
             "h": 91,
-            "avg": ".253",
+            "avg": ".251",
             "rbi": 61,
-            "k": 147
+            "k": 150
           },
           "hr_streak": 0,
           "drought": 1
@@ -113,27 +117,27 @@
           "name": "Dillon Dingler",
           "mlb_team": "Tigers",
           "start_hr": 19,
-          "season_hr": 19,
-          "gained": 0,
+          "season_hr": 21,
+          "gained": 2,
           "line": {
-            "ab": 4,
-            "h": 0,
-            "hr": 0,
-            "rbi": 0,
+            "ab": 5,
+            "h": 4,
+            "hr": 2,
+            "rbi": 3,
             "bb": 0,
-            "k": 1,
-            "r": 0
+            "k": 0,
+            "r": 3
           },
-          "hr_last_night": 0,
-          "week_hr": 0,
+          "hr_last_night": 2,
+          "week_hr": 2,
           "season_line": {
-            "h": 87,
-            "avg": ".260",
-            "rbi": 60,
+            "h": 91,
+            "avg": ".268",
+            "rbi": 63,
             "k": 80
           },
-          "hr_streak": 0,
-          "drought": 1
+          "hr_streak": 1,
+          "drought": 0
         },
         {
           "pos": "1B",
@@ -143,24 +147,24 @@
           "season_hr": 29,
           "gained": 5,
           "line": {
-            "ab": 8,
-            "h": 2,
+            "ab": 3,
+            "h": 1,
             "hr": 0,
             "rbi": 0,
-            "bb": 0,
-            "k": 2,
-            "r": 0
+            "bb": 1,
+            "k": 1,
+            "r": 1
           },
           "hr_last_night": 0,
           "week_hr": 0,
           "season_line": {
-            "h": 98,
+            "h": 99,
             "avg": ".281",
             "rbi": 68,
-            "k": 93
+            "k": 94
           },
           "hr_streak": 0,
-          "drought": 2
+          "drought": 1
         },
         {
           "pos": "2B",
@@ -169,79 +173,6 @@
           "start_hr": 21,
           "season_hr": 21,
           "gained": 0,
-          "line": null,
-          "hr_last_night": 0,
-          "week_hr": 0,
-          "season_line": {
-            "h": 90,
-            "avg": ".248",
-            "rbi": 65,
-            "k": 110
-          },
-          "hr_streak": 0,
-          "drought": 0
-        },
-        {
-          "pos": "3B",
-          "name": "Miguel Vargas",
-          "mlb_team": "White Sox",
-          "start_hr": 20,
-          "season_hr": 21,
-          "gained": 1,
-          "line": {
-            "ab": 4,
-            "h": 0,
-            "hr": 0,
-            "rbi": 0,
-            "bb": 0,
-            "k": 1,
-            "r": 1
-          },
-          "hr_last_night": 0,
-          "week_hr": 0,
-          "season_line": {
-            "h": 86,
-            "avg": ".242",
-            "rbi": 59,
-            "k": 70
-          },
-          "hr_streak": 0,
-          "drought": 1
-        },
-        {
-          "pos": "SS",
-          "name": "Elly De La Cruz",
-          "mlb_team": "Reds",
-          "start_hr": 13,
-          "season_hr": 16,
-          "gained": 3,
-          "line": {
-            "ab": 4,
-            "h": 1,
-            "hr": 0,
-            "rbi": 0,
-            "bb": 1,
-            "k": 0,
-            "r": 2
-          },
-          "hr_last_night": 0,
-          "week_hr": 0,
-          "season_line": {
-            "h": 89,
-            "avg": ".282",
-            "rbi": 45,
-            "k": 97
-          },
-          "hr_streak": 0,
-          "drought": 1
-        },
-        {
-          "pos": "RF",
-          "name": "James Wood",
-          "mlb_team": "Nationals",
-          "start_hr": 23,
-          "season_hr": 28,
-          "gained": 5,
           "line": {
             "ab": 5,
             "h": 0,
@@ -254,8 +185,89 @@
           "hr_last_night": 0,
           "week_hr": 0,
           "season_line": {
-            "h": 104,
-            "avg": ".272",
+            "h": 90,
+            "avg": ".245",
+            "rbi": 65,
+            "k": 113
+          },
+          "hr_streak": 0,
+          "drought": 1
+        },
+        {
+          "pos": "3B",
+          "name": "Miguel Vargas",
+          "mlb_team": "White Sox",
+          "start_hr": 20,
+          "season_hr": 21,
+          "gained": 1,
+          "line": {
+            "ab": 5,
+            "h": 3,
+            "hr": 0,
+            "rbi": 2,
+            "bb": 0,
+            "k": 1,
+            "r": 2
+          },
+          "hr_last_night": 0,
+          "week_hr": 0,
+          "season_line": {
+            "h": 89,
+            "avg": ".247",
+            "rbi": 61,
+            "k": 71
+          },
+          "hr_streak": 0,
+          "drought": 1
+        },
+        {
+          "pos": "SS",
+          "name": "Elly De La Cruz",
+          "mlb_team": "Reds",
+          "start_hr": 13,
+          "season_hr": 16,
+          "gained": 3,
+          "line": {
+            "ab": 3,
+            "h": 0,
+            "hr": 0,
+            "rbi": 0,
+            "bb": 1,
+            "k": 1,
+            "r": 0
+          },
+          "hr_last_night": 0,
+          "week_hr": 0,
+          "season_line": {
+            "h": 89,
+            "avg": ".279",
+            "rbi": 45,
+            "k": 98
+          },
+          "hr_streak": 0,
+          "drought": 1
+        },
+        {
+          "pos": "RF",
+          "name": "James Wood",
+          "mlb_team": "Nationals",
+          "start_hr": 23,
+          "season_hr": 28,
+          "gained": 5,
+          "line": {
+            "ab": 4,
+            "h": 1,
+            "hr": 0,
+            "rbi": 0,
+            "bb": 1,
+            "k": 0,
+            "r": 2
+          },
+          "hr_last_night": 0,
+          "week_hr": 0,
+          "season_line": {
+            "h": 105,
+            "avg": ".271",
             "rbi": 66,
             "k": 139
           },
@@ -271,18 +283,18 @@
           "gained": 2,
           "line": {
             "ab": 4,
-            "h": 1,
+            "h": 0,
             "hr": 0,
             "rbi": 0,
-            "bb": 0,
-            "k": 2,
-            "r": 1
+            "bb": 1,
+            "k": 0,
+            "r": 0
           },
           "hr_last_night": 0,
           "week_hr": 0,
           "season_line": {
             "h": 105,
-            "avg": ".284",
+            "avg": ".281",
             "rbi": 53,
             "k": 114
           },
@@ -294,38 +306,38 @@
           "name": "Ian Happ",
           "mlb_team": "Cubs",
           "start_hr": 17,
-          "season_hr": 17,
-          "gained": 0,
+          "season_hr": 18,
+          "gained": 1,
           "line": {
-            "ab": 3,
-            "h": 0,
-            "hr": 0,
-            "rbi": 0,
+            "ab": 4,
+            "h": 1,
+            "hr": 1,
+            "rbi": 2,
             "bb": 1,
-            "k": 1,
+            "k": 0,
             "r": 1
           },
-          "hr_last_night": 0,
-          "week_hr": 0,
+          "hr_last_night": 1,
+          "week_hr": 1,
           "season_line": {
-            "h": 76,
-            "avg": ".217",
-            "rbi": 42,
+            "h": 77,
+            "avg": ".218",
+            "rbi": 44,
             "k": 128
           },
-          "hr_streak": 0,
-          "drought": 1
+          "hr_streak": 1,
+          "drought": 0
         }
       ]
     },
     {
       "name": "Team Guy",
       "start_total": 180,
-      "season_total": 196,
-      "gained": 16,
-      "hr_last_night": 4,
-      "week_hr": 4,
-      "pace": 320,
+      "season_total": 199,
+      "gained": 19,
+      "hr_last_night": 3,
+      "week_hr": 3,
+      "pace": 321,
       "roster": [
         {
           "pos": "DH",
@@ -335,24 +347,24 @@
           "season_hr": 22,
           "gained": 4,
           "line": {
-            "ab": 9,
-            "h": 3,
+            "ab": 4,
+            "h": 0,
             "hr": 0,
-            "rbi": 2,
-            "bb": 0,
+            "rbi": 0,
+            "bb": 1,
             "k": 2,
-            "r": 1
+            "r": 0
           },
           "hr_last_night": 0,
           "week_hr": 0,
           "season_line": {
             "h": 101,
-            "avg": ".290",
+            "avg": ".287",
             "rbi": 60,
-            "k": 95
+            "k": 97
           },
           "hr_streak": 0,
-          "drought": 2
+          "drought": 1
         },
         {
           "pos": "C",
@@ -362,78 +374,78 @@
           "season_hr": 30,
           "gained": 3,
           "line": {
-            "ab": 4,
-            "h": 3,
-            "hr": 3,
-            "rbi": 5,
-            "bb": 0,
+            "ab": 3,
+            "h": 0,
+            "hr": 0,
+            "rbi": 0,
+            "bb": 1,
             "k": 1,
-            "r": 3
+            "r": 0
           },
-          "hr_last_night": 3,
-          "week_hr": 3,
+          "hr_last_night": 0,
+          "week_hr": 0,
           "season_line": {
             "h": 89,
-            "avg": ".257",
+            "avg": ".255",
             "rbi": 56,
-            "k": 125
+            "k": 126
           },
-          "hr_streak": 1,
-          "drought": 0
+          "hr_streak": 0,
+          "drought": 1
         },
         {
           "pos": "1B",
           "name": "Bryce Harper",
           "mlb_team": "Phillies",
           "start_hr": 20,
-          "season_hr": 20,
-          "gained": 0,
+          "season_hr": 21,
+          "gained": 1,
           "line": {
-            "ab": 4,
-            "h": 0,
-            "hr": 0,
-            "rbi": 0,
-            "bb": 0,
-            "k": 3,
-            "r": 0
+            "ab": 3,
+            "h": 1,
+            "hr": 1,
+            "rbi": 1,
+            "bb": 1,
+            "k": 0,
+            "r": 1
           },
-          "hr_last_night": 0,
-          "week_hr": 0,
+          "hr_last_night": 1,
+          "week_hr": 1,
           "season_line": {
-            "h": 91,
+            "h": 92,
             "avg": ".258",
-            "rbi": 59,
+            "rbi": 60,
             "k": 87
           },
-          "hr_streak": 0,
-          "drought": 1
+          "hr_streak": 1,
+          "drought": 0
         },
         {
           "pos": "2B",
           "name": "Ketel Marte",
           "mlb_team": "Diamondbacks",
           "start_hr": 17,
-          "season_hr": 17,
-          "gained": 0,
+          "season_hr": 18,
+          "gained": 1,
           "line": {
-            "ab": 5,
+            "ab": 4,
             "h": 1,
-            "hr": 0,
-            "rbi": 1,
+            "hr": 1,
+            "rbi": 2,
             "bb": 0,
-            "k": 2,
+            "k": 0,
             "r": 1
           },
-          "hr_last_night": 0,
-          "week_hr": 0,
+          "hr_last_night": 1,
+          "week_hr": 1,
           "season_line": {
-            "h": 99,
+            "h": 100,
             "avg": ".258",
-            "rbi": 56,
+            "rbi": 58,
             "k": 62
           },
-          "hr_streak": 0,
-          "drought": 1
+          "hr_streak": 1,
+          "drought": 0
         },
         {
           "pos": "3B",
@@ -444,48 +456,48 @@
           "season_hr": 18,
           "gained": 1,
           "line": {
-            "ab": 6,
-            "h": 2,
+            "ab": 2,
+            "h": 1,
             "hr": 0,
-            "rbi": 0,
-            "bb": 2,
-            "k": 1,
-            "r": 1
+            "rbi": 1,
+            "bb": 0,
+            "k": 0,
+            "r": 0
           },
           "hr_last_night": 0,
           "week_hr": 0,
           "season_line": {
-            "h": 79,
-            "avg": ".262",
-            "rbi": 42,
+            "h": 80,
+            "avg": ".263",
+            "rbi": 43,
             "k": 80
           },
           "hr_streak": 0,
-          "drought": 2
+          "drought": 1
         },
         {
           "pos": "SS",
           "name": "CJ Abrams",
           "mlb_team": "Nationals",
           "start_hr": 18,
-          "season_hr": 21,
-          "gained": 3,
+          "season_hr": 22,
+          "gained": 4,
           "line": {
-            "ab": 4,
-            "h": 2,
+            "ab": 5,
+            "h": 1,
             "hr": 1,
             "rbi": 2,
-            "bb": 1,
+            "bb": 0,
             "k": 2,
             "r": 1
           },
           "hr_last_night": 1,
           "week_hr": 1,
           "season_line": {
-            "h": 99,
-            "avg": ".277",
-            "rbi": 70,
-            "k": 88
+            "h": 100,
+            "avg": ".275",
+            "rbi": 72,
+            "k": 90
           },
           "hr_streak": 1,
           "drought": 0
@@ -498,18 +510,18 @@
           "season_hr": 22,
           "gained": 2,
           "line": {
-            "ab": 5,
+            "ab": 3,
             "h": 1,
             "hr": 0,
-            "rbi": 1,
+            "rbi": 0,
             "bb": 1,
-            "k": 2,
+            "k": 0,
             "r": 1
           },
           "hr_last_night": 0,
           "week_hr": 0,
           "season_line": {
-            "h": 108,
+            "h": 109,
             "avg": ".292",
             "rbi": 76,
             "k": 101
@@ -524,17 +536,25 @@
           "start_hr": 25,
           "season_hr": 25,
           "gained": 0,
-          "line": null,
+          "line": {
+            "ab": 3,
+            "h": 2,
+            "hr": 0,
+            "rbi": 0,
+            "bb": 0,
+            "k": 0,
+            "r": 0
+          },
           "hr_last_night": 0,
           "week_hr": 0,
           "season_line": {
-            "h": 83,
-            "avg": ".271",
+            "h": 85,
+            "avg": ".275",
             "rbi": 45,
             "k": 83
           },
           "hr_streak": 0,
-          "drought": 0
+          "drought": 1
         },
         {
           "pos": "LF",
@@ -544,21 +564,21 @@
           "season_hr": 21,
           "gained": 3,
           "line": {
-            "ab": 5,
-            "h": 2,
+            "ab": 3,
+            "h": 0,
             "hr": 0,
-            "rbi": 1,
+            "rbi": 0,
             "bb": 1,
-            "k": 0,
+            "k": 2,
             "r": 1
           },
           "hr_last_night": 0,
           "week_hr": 0,
           "season_line": {
             "h": 83,
-            "avg": ".290",
+            "avg": ".287",
             "rbi": 52,
-            "k": 45
+            "k": 47
           },
           "hr_streak": 0,
           "drought": 1
@@ -568,8 +588,8 @@
     {
       "name": "Team Dimisia",
       "start_total": 172,
-      "season_total": 189,
-      "gained": 17,
+      "season_total": 191,
+      "gained": 19,
       "hr_last_night": 2,
       "week_hr": 2,
       "pace": 308,
@@ -579,27 +599,27 @@
           "name": "Yordan Alvarez",
           "mlb_team": "Astros",
           "start_hr": 29,
-          "season_hr": 31,
-          "gained": 2,
+          "season_hr": 33,
+          "gained": 4,
           "line": {
             "ab": 4,
-            "h": 1,
-            "hr": 0,
-            "rbi": 1,
+            "h": 3,
+            "hr": 2,
+            "rbi": 2,
             "bb": 0,
             "k": 1,
-            "r": 0
+            "r": 2
           },
-          "hr_last_night": 0,
-          "week_hr": 0,
+          "hr_last_night": 2,
+          "week_hr": 2,
           "season_line": {
-            "h": 115,
-            "avg": ".319",
-            "rbi": 73,
-            "k": 74
+            "h": 118,
+            "avg": ".324",
+            "rbi": 75,
+            "k": 75
           },
-          "hr_streak": 0,
-          "drought": 1
+          "hr_streak": 1,
+          "drought": 0
         },
         {
           "pos": "C",
@@ -610,20 +630,20 @@
           "gained": 2,
           "line": {
             "ab": 4,
-            "h": 2,
+            "h": 1,
             "hr": 0,
             "rbi": 0,
-            "bb": 0,
-            "k": 1,
-            "r": 0
+            "bb": 1,
+            "k": 3,
+            "r": 1
           },
           "hr_last_night": 0,
           "week_hr": 0,
           "season_line": {
-            "h": 94,
+            "h": 95,
             "avg": ".260",
             "rbi": 50,
-            "k": 90
+            "k": 93
           },
           "hr_streak": 0,
           "drought": 1
@@ -636,19 +656,19 @@
           "season_hr": 26,
           "gained": 4,
           "line": {
-            "ab": 4,
-            "h": 2,
+            "ab": 3,
+            "h": 0,
             "hr": 0,
             "rbi": 0,
-            "bb": 1,
-            "k": 2,
-            "r": 1
+            "bb": 0,
+            "k": 0,
+            "r": 0
           },
           "hr_last_night": 0,
           "week_hr": 0,
           "season_line": {
             "h": 103,
-            "avg": ".269",
+            "avg": ".267",
             "rbi": 59,
             "k": 105
           },
@@ -664,23 +684,23 @@
           "gained": 4,
           "line": {
             "ab": 4,
-            "h": 2,
-            "hr": 1,
+            "h": 1,
+            "hr": 0,
             "rbi": 1,
             "bb": 0,
-            "k": 1,
-            "r": 2
+            "k": 2,
+            "r": 0
           },
-          "hr_last_night": 1,
-          "week_hr": 1,
+          "hr_last_night": 0,
+          "week_hr": 0,
           "season_line": {
-            "h": 70,
+            "h": 71,
             "avg": ".235",
-            "rbi": 28,
-            "k": 72
+            "rbi": 29,
+            "k": 74
           },
-          "hr_streak": 1,
-          "drought": 0
+          "hr_streak": 0,
+          "drought": 1
         },
         {
           "pos": "3B",
@@ -690,20 +710,20 @@
           "season_hr": 29,
           "gained": 3,
           "line": {
-            "ab": 5,
-            "h": 1,
+            "ab": 4,
+            "h": 3,
             "hr": 0,
-            "rbi": 0,
-            "bb": 0,
-            "k": 1,
+            "rbi": 2,
+            "bb": 1,
+            "k": 0,
             "r": 0
           },
           "hr_last_night": 0,
           "week_hr": 0,
           "season_line": {
-            "h": 104,
-            "avg": ".280",
-            "rbi": 60,
+            "h": 107,
+            "avg": ".285",
+            "rbi": 62,
             "k": 80
           },
           "hr_streak": 0,
@@ -718,23 +738,23 @@
           "gained": 1,
           "line": {
             "ab": 4,
-            "h": 2,
-            "hr": 1,
-            "rbi": 1,
+            "h": 0,
+            "hr": 0,
+            "rbi": 0,
             "bb": 0,
             "k": 2,
-            "r": 1
+            "r": 0
           },
-          "hr_last_night": 1,
-          "week_hr": 1,
+          "hr_last_night": 0,
+          "week_hr": 0,
           "season_line": {
             "h": 79,
-            "avg": ".224",
+            "avg": ".222",
             "rbi": 57,
-            "k": 127
+            "k": 129
           },
-          "hr_streak": 1,
-          "drought": 0
+          "hr_streak": 0,
+          "drought": 1
         },
         {
           "pos": "RF",
@@ -763,24 +783,24 @@
           "season_hr": 17,
           "gained": 1,
           "line": {
-            "ab": 8,
-            "h": 1,
+            "ab": 4,
+            "h": 2,
             "hr": 0,
             "rbi": 1,
-            "bb": 0,
-            "k": 3,
-            "r": 0
+            "bb": 1,
+            "k": 1,
+            "r": 1
           },
           "hr_last_night": 0,
           "week_hr": 0,
           "season_line": {
-            "h": 101,
-            "avg": ".266",
-            "rbi": 67,
-            "k": 85
+            "h": 103,
+            "avg": ".269",
+            "rbi": 68,
+            "k": 86
           },
           "hr_streak": 0,
-          "drought": 2
+          "drought": 1
         },
         {
           "pos": "LF",
@@ -790,63 +810,63 @@
           "season_hr": 11,
           "gained": 0,
           "line": {
-            "ab": 6,
-            "h": 2,
+            "ab": 4,
+            "h": 1,
             "hr": 0,
-            "rbi": 1,
-            "bb": 1,
-            "k": 3,
-            "r": 0
+            "rbi": 0,
+            "bb": 0,
+            "k": 1,
+            "r": 2
           },
           "hr_last_night": 0,
           "week_hr": 0,
           "season_line": {
-            "h": 91,
+            "h": 92,
             "avg": ".255",
             "rbi": 52,
-            "k": 65
+            "k": 66
           },
           "hr_streak": 0,
-          "drought": 2
+          "drought": 1
         }
       ]
     }
   ],
   "potn": {
     "pos": "C",
-    "name": "Hunter Goodman",
-    "mlb_team": "Rockies",
-    "start_hr": 27,
-    "season_hr": 30,
-    "gained": 3,
+    "name": "Dillon Dingler",
+    "mlb_team": "Tigers",
+    "start_hr": 19,
+    "season_hr": 21,
+    "gained": 2,
     "line": {
-      "ab": 4,
-      "h": 3,
-      "hr": 3,
-      "rbi": 5,
+      "ab": 5,
+      "h": 4,
+      "hr": 2,
+      "rbi": 3,
       "bb": 0,
-      "k": 1,
+      "k": 0,
       "r": 3
     },
-    "hr_last_night": 3,
-    "week_hr": 3,
+    "hr_last_night": 2,
+    "week_hr": 2,
     "season_line": {
-      "h": 89,
-      "avg": ".257",
-      "rbi": 56,
-      "k": 125
+      "h": 91,
+      "avg": ".268",
+      "rbi": 63,
+      "k": 80
     },
     "hr_streak": 1,
     "drought": 0,
-    "team_name": "Team Guy"
+    "team_name": "Team Barmen"
   },
   "bad_day": {
-    "pos": "RF",
-    "name": "James Wood",
-    "mlb_team": "Nationals",
-    "start_hr": 23,
-    "season_hr": 28,
-    "gained": 5,
+    "pos": "2B",
+    "name": "Brandon Lowe",
+    "mlb_team": "Pirates",
+    "start_hr": 21,
+    "season_hr": 21,
+    "gained": 0,
     "line": {
       "ab": 5,
       "h": 0,
@@ -859,10 +879,10 @@
     "hr_last_night": 0,
     "week_hr": 0,
     "season_line": {
-      "h": 104,
-      "avg": ".272",
-      "rbi": 66,
-      "k": 139
+      "h": 90,
+      "avg": ".245",
+      "rbi": 65,
+      "k": 113
     },
     "hr_streak": 0,
     "drought": 1,
