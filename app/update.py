@@ -24,7 +24,7 @@ from zoneinfo import ZoneInfo
 import requests
 
 API = "https://statsapi.mlb.com/api/v1"
-ROOT = Path(__file__).parent
+ROOT = Path(__file__).resolve().parent.parent
 DOCS = ROOT / "docs"
 EASTERN = ZoneInfo("America/New_York")
 SEASON_GAMES = 162
@@ -694,7 +694,7 @@ def make_icon(png_path: Path) -> None:
 # ------------------------------------------------------------------- main ---
 
 def main() -> int:
-    league = json.loads((ROOT / "league.json").read_text(encoding="utf-8"))
+    league = json.loads((ROOT / "config" / "league.json").read_text(encoding="utf-8"))
     season = league["season"]
     yesterday = (datetime.now(EASTERN) - timedelta(days=1)).strftime("%Y-%m-%d")
 

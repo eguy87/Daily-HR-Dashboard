@@ -11,7 +11,7 @@ A zero-cost, fully automated daily dashboard for a three-team fantasy home run l
 
 Three teams, nine drafted hitters each (one per position: DH, C, 1B, 2B, 3B, SS, RF, CF, LF). No transactions, no lineups, no waivers. **Every home run is one point.** The team with the most cumulative HRs at season's end wins.
 
-Because the draft happened mid-season, each player has a `start_hr` baseline recorded in `league.json`. The dashboard shows both the player's true season total *and* how many he's added since the draft (`+X since draft`).
+Because the draft happened mid-season, each player has a `start_hr` baseline recorded in `config/league.json`. The dashboard shows both the player's true season total *and* how many he's added since the draft (`+X since draft`).
 
 | Team | Starting total |
 |---|---|
@@ -26,7 +26,7 @@ Because the draft happened mid-season, each player has a `start_hr` baseline rec
 ```
 GitHub Actions (7:45 AM ET daily)
     ↓
-update.py
+app/update.py
     ├─ MLB Stats API → player IDs, season stats, last night's lines, game logs
     ├─ computes standings, streaks, pace, player of the night
     ├─ appends today's totals to docs/history.json  ← permanent record
@@ -45,8 +45,8 @@ Everything is free: GitHub Actions minutes (public repos are unlimited), GitHub 
 
 | File | Purpose |
 |---|---|
-| `league.json` | Rosters, starting HR baselines, optional `mlbam_id` overrides. **The only file you normally edit.** |
-| `update.py` | Everything: data fetching, calculations, HTML/CSS/JS rendering, screenshot. |
+| `config/league.json` | Rosters, starting HR baselines, optional `mlbam_id` overrides. **The only file you normally edit.** |
+| `app/update.py` | Everything: data fetching, calculations, HTML/CSS/JS rendering, screenshot. |
 | `.github/workflows/daily.yml` | The 7:45 AM ET schedule and build steps. |
 | `requirements.txt` | `requests`, `playwright`. |
 | `docs/index.html` | The generated app (served by Pages). |
@@ -102,15 +102,15 @@ Responsive layout stacks to one column on phones. PWA tags mean Safari → Share
 
 **Editing anything:** open the file in GitHub → pencil icon → edit → Commit changes. To see results immediately rather than waiting for 7:45 AM: Actions → Daily HR Dashboard → **Run workflow**.
 
-**Roster or baseline changes:** edit `league.json` only. Keep JSON syntax intact (quotes, commas). Season HR totals from the API are always authoritative — if a player's `+X since draft` looks wrong, the baseline is wrong, not the API.
+**Roster or baseline changes:** edit `config/league.json` only. Keep JSON syntax intact (quotes, commas). Season HR totals from the API are always authoritative — if a player's `+X since draft` looks wrong, the baseline is wrong, not the API.
 
-**Duplicate player names:** if a player resolves to the wrong person, add his MLBAM ID to his entry in `league.json`:
+**Duplicate player names:** if a player resolves to the wrong person, add his MLBAM ID to his entry in `config/league.json`:
 ```json
 { "pos": "3B", "name": "Max Muncy", "mlb_team": "Dodgers", "start_hr": 17, "mlbam_id": 571970 }
 ```
 Find the ID in the player's mlb.com URL (`mlb.com/player/max-muncy-571970`).
 
-**Colors:** the `:root` block near the top of the `<style>` section in `update.py` drives the entire theme. Current scheme is "Jumbotron": `--field` #101418 (background), `--panel` #181E24, `--hair` #2A333D, `--led` #4ADE80 (green accents), `--chalk` #EDF2F7 (text), `--flare` #F87171 (hot streaks), `--dim` #8A97A5, `--ice` #60A5FA (HR counts, droughts).
+**Colors:** the `:root` block near the top of the `<style>` section in `app/update.py` drives the entire theme. Current scheme is "Jumbotron": `--field` #101418 (background), `--panel` #181E24, `--hair` #2A333D, `--led` #4ADE80 (green accents), `--chalk` #EDF2F7 (text), `--flare` #F87171 (hot streaks), `--dim` #8A97A5, `--ice` #60A5FA (HR counts, droughts).
 
 **Careful with:** the HTML in `render_html()` is inside a Python f-string, so all literal CSS braces must be doubled (`{{` and `}}`). Single braces will crash the run.
 

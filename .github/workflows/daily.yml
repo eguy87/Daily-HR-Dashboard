@@ -24,7 +24,7 @@ jobs:
           playwright install --with-deps chromium
 
       - name: Build dashboard
-        run: python update.py
+        run: python app/update.py
 
       - name: Commit results
         run: |

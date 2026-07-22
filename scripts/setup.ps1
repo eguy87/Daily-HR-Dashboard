@@ -1,5 +1,5 @@
 $ErrorActionPreference = "Stop"
-$ProjectRoot = $PSScriptRoot
+$ProjectRoot = Split-Path -Parent $PSScriptRoot
 
 if (Get-Command py -ErrorAction SilentlyContinue) {
     $Python = "py"
@@ -15,7 +15,7 @@ try {
     & ".\.venv\Scripts\python.exe" -m pip install --upgrade pip
     & ".\.venv\Scripts\python.exe" -m pip install -r requirements.txt
     & ".\.venv\Scripts\python.exe" -m playwright install chromium
-    Write-Host "Setup complete. Run .\start.ps1 to build and open the dashboard."
+    Write-Host "Setup complete. Run .\scripts\start.ps1 to build and open the dashboard."
 } finally {
     Pop-Location
 }

@@ -9,7 +9,7 @@ import socketserver
 import webbrowser
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parent.parent
 DOCS = ROOT / "docs"
 
 
@@ -29,7 +29,7 @@ def parse_args() -> argparse.Namespace:
 def main() -> int:
     args = parse_args()
     if not (DOCS / "index.html").exists():
-        raise SystemExit("docs/index.html is missing. Run `python update.py` first.")
+        raise SystemExit("docs/index.html is missing. Run `python app/update.py` first.")
 
     handler = functools.partial(http.server.SimpleHTTPRequestHandler, directory=DOCS)
     url = f"http://{args.host}:{args.port}/"

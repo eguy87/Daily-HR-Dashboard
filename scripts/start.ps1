@@ -5,7 +5,7 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
-$ProjectRoot = $PSScriptRoot
+$ProjectRoot = Split-Path -Parent $PSScriptRoot
 $VenvPython = Join-Path $ProjectRoot ".venv\Scripts\python.exe"
 
 if (Test-Path $VenvPython) {
@@ -15,17 +15,17 @@ if (Test-Path $VenvPython) {
 } elseif (Get-Command python -ErrorAction SilentlyContinue) {
     $Python = "python"
 } else {
-    throw "Python 3.10+ is required. Install Python, then run .\setup.ps1."
+    throw "Python 3.10+ is required. Install Python, then run .\scripts\setup.ps1."
 }
 
 Push-Location $ProjectRoot
 try {
     if (-not $SkipBuild) {
-        & $Python update.py
+        & $Python app/update.py
         if ($LASTEXITCODE -ne 0) { throw "Dashboard build failed." }
     }
 
-    $ServeArgs = @("serve.py", "--port", $Port)
+    $ServeArgs = @("scripts/serve.py", "--port", $Port)
     if (-not $NoBrowser) { $ServeArgs += "--open" }
     & $Python @ServeArgs
 } finally {
