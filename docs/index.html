@@ -65,10 +65,12 @@
               border-bottom:2px solid var(--dim); transform:rotate(45deg);
               transition:transform .18s ease; }
   .team[open] .chevron { transform:rotate(225deg); }
-  .row { display:grid; grid-template-columns:34px 1fr 62px; gap:8px;
-          padding:8px 14px; align-items:center;
-          border-bottom:1px solid rgba(41,64,47,.5); }
-  .row:last-child { border-bottom:none; }
+  .row { display:grid; grid-template-columns:34px 1fr 62px 12px; gap:8px;
+           padding:8px 14px; align-items:center;
+           border-bottom:1px solid rgba(41,64,47,.5); }
+  .player:last-child .row { border-bottom:none; }
+  .row { cursor:pointer; list-style:none; }
+  .row::-webkit-details-marker { display:none; }
   .rowhr { background:rgba(255,182,39,.09); }
   .pos { color:var(--dim); font-size:12px; }
   .mid { min-width:0; }
@@ -84,9 +86,22 @@
   .cold { color:var(--ice); border:1px solid var(--ice); }
   .phr { text-align:right; font-weight:700; font-size:20px; color:var(--ice); }
   .phr em { display:block; font-style:normal; color:var(--dim); font-size:11px;
-             font-weight:400; }
+              font-weight:400; }
+  .playerchev { width:7px; height:7px; border-right:1px solid var(--dim);
+                 border-bottom:1px solid var(--dim); transform:rotate(45deg);
+                 transition:transform .18s ease; }
+  .player[open] .playerchev { transform:rotate(225deg); }
+  .hrlog { padding:9px 14px 11px 56px; background:rgba(12,20,24,.55);
+            border-bottom:1px solid var(--hair); }
+  .hrlogtitle { display:block; color:var(--dim); font-size:10px;
+                 letter-spacing:1px; margin-bottom:5px; }
+  .hrgame { display:grid; grid-template-columns:58px 44px 1fr; gap:8px;
+             padding:4px 0; font-size:12px; }
+  .hrgame time { color:var(--dim); }
+  .hrgame strong { color:var(--led); }
+  .hrgame.empty { display:block; color:var(--dim); }
   .race { margin-top:16px; border:1px solid var(--hair); background:var(--panel);
-           padding:12px 16px 6px; display:block; }
+           padding:12px 16px 6px; display:block; position:relative; }
   .racetitle { font-family:"Archivo Black",sans-serif; font-size:13px;
                  color:var(--led); letter-spacing:1px; display:block; margin-bottom:6px; }
   .racelegend { display:none; gap:14px; flex-wrap:wrap; color:var(--dim);
@@ -94,6 +109,21 @@
   .racelegend span { display:flex; align-items:center; gap:5px; }
   .racelegend i { width:18px; height:4px; border-radius:2px; }
   .race-mobile-chart, .racecards { display:none; }
+  .racechart { touch-action:pan-y; user-select:none; }
+  .raceguide { stroke:var(--chalk); stroke-width:1; stroke-dasharray:4 4;
+                opacity:0; pointer-events:none; }
+  .racecursor { opacity:0; pointer-events:none; }
+  .raceguide.show, .racecursor.show { opacity:1; }
+  .racetooltip { display:none; position:absolute; z-index:4; min-width:190px;
+                  padding:9px 11px; background:#0C1116; border:1px solid var(--hair);
+                  box-shadow:0 8px 24px rgba(0,0,0,.35); pointer-events:none; }
+  .racetooltip.show { display:block; }
+  .racetooltip > strong { display:block; margin-bottom:5px; font-size:12px; }
+  .racetooltip span { display:grid; grid-template-columns:9px 1fr auto;
+                       align-items:center; gap:7px; color:var(--dim); font-size:11px;
+                       padding:2px 0; }
+  .racetooltip i { width:7px; height:7px; border-radius:50%; }
+  .racetooltip b { color:var(--chalk); font-size:13px; }
   .racecards { gap:8px; margin-top:10px; }
   .racecard { display:grid; grid-template-columns:22px 1fr auto; align-items:center;
                gap:7px; border:1px solid var(--hair); padding:10px 11px; }
@@ -186,78 +216,114 @@
             </div>
           </summary>
           <div class="roster">
-            <div class="row">
-              <span class="pos">DH</span>
-              <div class="mid">
-                <span class="pname">Kyle Schwarber <em>Phillies</em></span>
-                <span class="pline">0-4, 2 K</span>
-              </div>
-              <span class="phr">33<em>+3</em></span>
-            </div>
-            <div class="row rowhr">
-              <span class="pos">C</span>
-              <div class="mid">
-                <span class="pname">Dillon Dingler <em>Tigers</em></span>
-                <span class="pline">2-3, 1 HR, 2 RBI, 1 BB<span class="hrpill">HR&thinsp;&times;1</span></span>
-              </div>
-              <span class="phr">22<em>+3</em></span>
-            </div>
-            <div class="row">
-              <span class="pos">1B</span>
-              <div class="mid">
-                <span class="pname">Ben Rice <em>Yankees</em></span>
-                <span class="pline">No game</span>
-              </div>
-              <span class="phr">29<em>+5</em></span>
-            </div>
-            <div class="row">
-              <span class="pos">2B</span>
-              <div class="mid">
-                <span class="pname">Brandon Lowe <em>Pirates</em></span>
-                <span class="pline">No game</span>
-              </div>
-              <span class="phr">21<em>+0</em></span>
-            </div>
-            <div class="row">
-              <span class="pos">3B</span>
-              <div class="mid">
-                <span class="pname">Miguel Vargas <em>White Sox</em></span>
-                <span class="pline">1-4, 1 K</span>
-              </div>
-              <span class="phr">21<em>+1</em></span>
-            </div>
-            <div class="row rowhr">
-              <span class="pos">SS</span>
-              <div class="mid">
-                <span class="pname">Elly De La Cruz <em>Reds</em></span>
-                <span class="pline">1-3, 1 HR, 1 RBI, 1 BB<span class="hrpill">HR&thinsp;&times;1</span></span>
-              </div>
-              <span class="phr">17<em>+4</em></span>
-            </div>
-            <div class="row">
-              <span class="pos">RF</span>
-              <div class="mid">
-                <span class="pname">James Wood <em>Nationals</em></span>
-                <span class="pline">2-5, 2 RBI, 2 K</span>
-              </div>
-              <span class="phr">28<em>+5</em></span>
-            </div>
-            <div class="row">
-              <span class="pos">CF</span>
-              <div class="mid">
-                <span class="pname">Pete Crow-Armstrong <em>Cubs</em></span>
-                <span class="pline">2-2, 2 RBI, 3 BB</span>
-              </div>
-              <span class="phr">21<em>+2</em></span>
-            </div>
-            <div class="row">
-              <span class="pos">LF</span>
-              <div class="mid">
-                <span class="pname">Ian Happ <em>Cubs</em></span>
-                <span class="pline">1-3, 1 RBI, 1 BB, 1 K</span>
-              </div>
-              <span class="phr">18<em>+1</em></span>
-            </div></div>
+            <details class="player">
+              <summary class="row">
+                <span class="pos">DH</span>
+                <div class="mid">
+                  <span class="pname">Kyle Schwarber <em>Phillies</em></span>
+                  <span class="pline">0-4, 2 K</span>
+                </div>
+                <span class="phr">33<em>+3</em></span>
+                <span class="playerchev" aria-hidden="true"></span>
+              </summary>
+              <div class="hrlog"><span class="hrlogtitle">HOME RUN LOG &middot; SINCE JUL 6</span><div class="hrgame"><time>Jul 18</time><strong>1 HR</strong><span>vs New York Mets</span></div><div class="hrgame"><time>Jul 8</time><strong>1 HR</strong><span>@ Cincinnati Reds</span></div><div class="hrgame"><time>Jul 7</time><strong>1 HR</strong><span>@ Cincinnati Reds</span></div></div>
+            </details>
+            <details class="player">
+              <summary class="row rowhr">
+                <span class="pos">C</span>
+                <div class="mid">
+                  <span class="pname">Dillon Dingler <em>Tigers</em></span>
+                  <span class="pline">2-3, 1 HR, 2 RBI, 1 BB<span class="hrpill">HR&thinsp;&times;1</span><span class="tag hot">HR in 2 straight</span></span>
+                </div>
+                <span class="phr">22<em>+3</em></span>
+                <span class="playerchev" aria-hidden="true"></span>
+              </summary>
+              <div class="hrlog"><span class="hrlogtitle">HOME RUN LOG &middot; SINCE JUL 6</span><div class="hrgame"><time>Jul 21</time><strong>1 HR</strong><span>@ Chicago Cubs</span></div><div class="hrgame"><time>Jul 20</time><strong>2 HR</strong><span>@ Chicago Cubs</span></div></div>
+            </details>
+            <details class="player">
+              <summary class="row">
+                <span class="pos">1B</span>
+                <div class="mid">
+                  <span class="pname">Ben Rice <em>Yankees</em></span>
+                  <span class="pline">No game</span>
+                </div>
+                <span class="phr">29<em>+5</em></span>
+                <span class="playerchev" aria-hidden="true"></span>
+              </summary>
+              <div class="hrlog"><span class="hrlogtitle">HOME RUN LOG &middot; SINCE JUL 6</span><div class="hrgame"><time>Jul 10</time><strong>1 HR</strong><span>@ Washington Nationals</span></div><div class="hrgame"><time>Jul 9</time><strong>2 HR</strong><span>@ Tampa Bay Rays</span></div><div class="hrgame"><time>Jul 7</time><strong>1 HR</strong><span>@ Tampa Bay Rays</span></div><div class="hrgame"><time>Jul 6</time><strong>1 HR</strong><span>@ Tampa Bay Rays</span></div></div>
+            </details>
+            <details class="player">
+              <summary class="row">
+                <span class="pos">2B</span>
+                <div class="mid">
+                  <span class="pname">Brandon Lowe <em>Pirates</em></span>
+                  <span class="pline">No game<span class="tag cold">10 games w/o HR</span></span>
+                </div>
+                <span class="phr">21<em>+0</em></span>
+                <span class="playerchev" aria-hidden="true"></span>
+              </summary>
+              <div class="hrlog"><span class="hrlogtitle">HOME RUN LOG &middot; SINCE JUL 6</span><div class="hrgame empty">No HR games since draft</div></div>
+            </details>
+            <details class="player">
+              <summary class="row">
+                <span class="pos">3B</span>
+                <div class="mid">
+                  <span class="pname">Miguel Vargas <em>White Sox</em></span>
+                  <span class="pline">1-4, 1 K</span>
+                </div>
+                <span class="phr">21<em>+1</em></span>
+                <span class="playerchev" aria-hidden="true"></span>
+              </summary>
+              <div class="hrlog"><span class="hrlogtitle">HOME RUN LOG &middot; SINCE JUL 6</span><div class="hrgame"><time>Jul 10</time><strong>1 HR</strong><span>vs Athletics</span></div></div>
+            </details>
+            <details class="player">
+              <summary class="row rowhr">
+                <span class="pos">SS</span>
+                <div class="mid">
+                  <span class="pname">Elly De La Cruz <em>Reds</em></span>
+                  <span class="pline">1-3, 1 HR, 1 RBI, 1 BB<span class="hrpill">HR&thinsp;&times;1</span></span>
+                </div>
+                <span class="phr">17<em>+4</em></span>
+                <span class="playerchev" aria-hidden="true"></span>
+              </summary>
+              <div class="hrlog"><span class="hrlogtitle">HOME RUN LOG &middot; SINCE JUL 6</span><div class="hrgame"><time>Jul 21</time><strong>1 HR</strong><span>@ Seattle Mariners</span></div><div class="hrgame"><time>Jul 17</time><strong>1 HR</strong><span>@ Colorado Rockies</span></div><div class="hrgame"><time>Jul 10</time><strong>1 HR</strong><span>vs Chicago Cubs</span></div><div class="hrgame"><time>Jul 8</time><strong>1 HR</strong><span>vs Philadelphia Phillies</span></div></div>
+            </details>
+            <details class="player">
+              <summary class="row">
+                <span class="pos">RF</span>
+                <div class="mid">
+                  <span class="pname">James Wood <em>Nationals</em></span>
+                  <span class="pline">2-5, 2 RBI, 2 K</span>
+                </div>
+                <span class="phr">28<em>+5</em></span>
+                <span class="playerchev" aria-hidden="true"></span>
+              </summary>
+              <div class="hrlog"><span class="hrlogtitle">HOME RUN LOG &middot; SINCE JUL 6</span><div class="hrgame"><time>Jul 12</time><strong>1 HR</strong><span>vs New York Yankees</span></div><div class="hrgame"><time>Jul 11</time><strong>1 HR</strong><span>vs New York Yankees</span></div><div class="hrgame"><time>Jul 10</time><strong>1 HR</strong><span>vs New York Yankees</span></div><div class="hrgame"><time>Jul 7</time><strong>1 HR</strong><span>vs Houston Astros</span></div><div class="hrgame"><time>Jul 6</time><strong>1 HR</strong><span>vs Houston Astros</span></div></div>
+            </details>
+            <details class="player">
+              <summary class="row">
+                <span class="pos">CF</span>
+                <div class="mid">
+                  <span class="pname">Pete Crow-Armstrong <em>Cubs</em></span>
+                  <span class="pline">2-2, 2 RBI, 3 BB</span>
+                </div>
+                <span class="phr">21<em>+2</em></span>
+                <span class="playerchev" aria-hidden="true"></span>
+              </summary>
+              <div class="hrlog"><span class="hrlogtitle">HOME RUN LOG &middot; SINCE JUL 6</span><div class="hrgame"><time>Jul 8</time><strong>2 HR</strong><span>@ Baltimore Orioles</span></div></div>
+            </details>
+            <details class="player">
+              <summary class="row">
+                <span class="pos">LF</span>
+                <div class="mid">
+                  <span class="pname">Ian Happ <em>Cubs</em></span>
+                  <span class="pline">1-3, 1 RBI, 1 BB, 1 K</span>
+                </div>
+                <span class="phr">18<em>+1</em></span>
+                <span class="playerchev" aria-hidden="true"></span>
+              </summary>
+              <div class="hrlog"><span class="hrlogtitle">HOME RUN LOG &middot; SINCE JUL 6</span><div class="hrgame"><time>Jul 20</time><strong>1 HR</strong><span>vs Detroit Tigers</span></div></div>
+            </details></div>
         </details>
         <details class="team">
           <summary class="teamhead">
@@ -270,78 +336,114 @@
             </div>
           </summary>
           <div class="roster">
-            <div class="row">
-              <span class="pos">DH</span>
-              <div class="mid">
-                <span class="pname">Shohei Ohtani <em>Dodgers</em></span>
-                <span class="pline">1-4, 2 K</span>
-              </div>
-              <span class="phr">22<em>+4</em></span>
-            </div>
-            <div class="row rowhr">
-              <span class="pos">C</span>
-              <div class="mid">
-                <span class="pname">Hunter Goodman <em>Rockies</em></span>
-                <span class="pline">2-5, 1 HR, 1 RBI, 1 K<span class="hrpill">HR&thinsp;&times;1</span></span>
-              </div>
-              <span class="phr">31<em>+4</em></span>
-            </div>
-            <div class="row">
-              <span class="pos">1B</span>
-              <div class="mid">
-                <span class="pname">Bryce Harper <em>Phillies</em></span>
-                <span class="pline">1-4, 1 K</span>
-              </div>
-              <span class="phr">21<em>+1</em></span>
-            </div>
-            <div class="row">
-              <span class="pos">2B</span>
-              <div class="mid">
-                <span class="pname">Ketel Marte <em>Diamondbacks</em></span>
-                <span class="pline">0-3, 1 RBI, 1 BB</span>
-              </div>
-              <span class="phr">18<em>+1</em></span>
-            </div>
-            <div class="row rowhr">
-              <span class="pos">3B</span>
-              <div class="mid">
-                <span class="pname">Max Muncy <em>Dodgers</em></span>
-                <span class="pline">1-4, 1 HR, 2 RBI, 2 K<span class="hrpill">HR&thinsp;&times;1</span></span>
-              </div>
-              <span class="phr">19<em>+2</em></span>
-            </div>
-            <div class="row rowhr">
-              <span class="pos">SS</span>
-              <div class="mid">
-                <span class="pname">CJ Abrams <em>Nationals</em></span>
-                <span class="pline">2-3, 2 HR, 4 RBI, 1 BB<span class="hrpill">HR&thinsp;&times;2</span></span>
-              </div>
-              <span class="phr">24<em>+6</em></span>
-            </div>
-            <div class="row">
-              <span class="pos">RF</span>
-              <div class="mid">
-                <span class="pname">Jordan Walker <em>Cardinals</em></span>
-                <span class="pline">1-4, 2 K</span>
-              </div>
-              <span class="phr">22<em>+2</em></span>
-            </div>
-            <div class="row">
-              <span class="pos">CF</span>
-              <div class="mid">
-                <span class="pname">Byron Buxton <em>Twins</em></span>
-                <span class="pline">1-4</span>
-              </div>
-              <span class="phr">25<em>+0</em></span>
-            </div>
-            <div class="row">
-              <span class="pos">LF</span>
-              <div class="mid">
-                <span class="pname">Juan Soto <em>Mets</em></span>
-                <span class="pline">0-4, 1 BB, 1 K</span>
-              </div>
-              <span class="phr">21<em>+3</em></span>
-            </div></div>
+            <details class="player">
+              <summary class="row">
+                <span class="pos">DH</span>
+                <div class="mid">
+                  <span class="pname">Shohei Ohtani <em>Dodgers</em></span>
+                  <span class="pline">1-4, 2 K</span>
+                </div>
+                <span class="phr">22<em>+4</em></span>
+                <span class="playerchev" aria-hidden="true"></span>
+              </summary>
+              <div class="hrlog"><span class="hrlogtitle">HOME RUN LOG &middot; SINCE JUL 6</span><div class="hrgame"><time>Jul 12</time><strong>1 HR</strong><span>vs Arizona Diamondbacks</span></div><div class="hrgame"><time>Jul 10</time><strong>1 HR</strong><span>vs Arizona Diamondbacks</span></div><div class="hrgame"><time>Jul 7</time><strong>1 HR</strong><span>vs Colorado Rockies</span></div><div class="hrgame"><time>Jul 6</time><strong>1 HR</strong><span>vs Colorado Rockies</span></div></div>
+            </details>
+            <details class="player">
+              <summary class="row rowhr">
+                <span class="pos">C</span>
+                <div class="mid">
+                  <span class="pname">Hunter Goodman <em>Rockies</em></span>
+                  <span class="pline">2-5, 1 HR, 1 RBI, 1 K<span class="hrpill">HR&thinsp;&times;1</span></span>
+                </div>
+                <span class="phr">31<em>+4</em></span>
+                <span class="playerchev" aria-hidden="true"></span>
+              </summary>
+              <div class="hrlog"><span class="hrlogtitle">HOME RUN LOG &middot; SINCE JUL 6</span><div class="hrgame"><time>Jul 21</time><strong>1 HR</strong><span>vs Washington Nationals</span></div><div class="hrgame"><time>Jul 19</time><strong>3 HR</strong><span>vs Cincinnati Reds</span></div></div>
+            </details>
+            <details class="player">
+              <summary class="row">
+                <span class="pos">1B</span>
+                <div class="mid">
+                  <span class="pname">Bryce Harper <em>Phillies</em></span>
+                  <span class="pline">1-4, 1 K</span>
+                </div>
+                <span class="phr">21<em>+1</em></span>
+                <span class="playerchev" aria-hidden="true"></span>
+              </summary>
+              <div class="hrlog"><span class="hrlogtitle">HOME RUN LOG &middot; SINCE JUL 6</span><div class="hrgame"><time>Jul 20</time><strong>1 HR</strong><span>vs Los Angeles Dodgers</span></div></div>
+            </details>
+            <details class="player">
+              <summary class="row">
+                <span class="pos">2B</span>
+                <div class="mid">
+                  <span class="pname">Ketel Marte <em>Diamondbacks</em></span>
+                  <span class="pline">0-3, 1 RBI, 1 BB</span>
+                </div>
+                <span class="phr">18<em>+1</em></span>
+                <span class="playerchev" aria-hidden="true"></span>
+              </summary>
+              <div class="hrlog"><span class="hrlogtitle">HOME RUN LOG &middot; SINCE JUL 6</span><div class="hrgame"><time>Jul 20</time><strong>1 HR</strong><span>vs Athletics</span></div></div>
+            </details>
+            <details class="player">
+              <summary class="row rowhr">
+                <span class="pos">3B</span>
+                <div class="mid">
+                  <span class="pname">Max Muncy <em>Dodgers</em></span>
+                  <span class="pline">1-4, 1 HR, 2 RBI, 2 K<span class="hrpill">HR&thinsp;&times;1</span></span>
+                </div>
+                <span class="phr">19<em>+2</em></span>
+                <span class="playerchev" aria-hidden="true"></span>
+              </summary>
+              <div class="hrlog"><span class="hrlogtitle">HOME RUN LOG &middot; SINCE JUL 6</span><div class="hrgame"><time>Jul 21</time><strong>1 HR</strong><span>@ Philadelphia Phillies</span></div><div class="hrgame"><time>Jul 17</time><strong>1 HR</strong><span>@ New York Yankees</span></div></div>
+            </details>
+            <details class="player">
+              <summary class="row rowhr">
+                <span class="pos">SS</span>
+                <div class="mid">
+                  <span class="pname">CJ Abrams <em>Nationals</em></span>
+                  <span class="pline">2-3, 2 HR, 4 RBI, 1 BB<span class="hrpill">HR&thinsp;&times;2</span><span class="tag hot">HR in 3 straight</span></span>
+                </div>
+                <span class="phr">24<em>+6</em></span>
+                <span class="playerchev" aria-hidden="true"></span>
+              </summary>
+              <div class="hrlog"><span class="hrlogtitle">HOME RUN LOG &middot; SINCE JUL 6</span><div class="hrgame"><time>Jul 21</time><strong>2 HR</strong><span>@ Colorado Rockies</span></div><div class="hrgame"><time>Jul 20</time><strong>1 HR</strong><span>@ Colorado Rockies</span></div><div class="hrgame"><time>Jul 19</time><strong>1 HR</strong><span>@ Athletics</span></div><div class="hrgame"><time>Jul 8</time><strong>1 HR</strong><span>vs Houston Astros</span></div><div class="hrgame"><time>Jul 6</time><strong>1 HR</strong><span>vs Houston Astros</span></div></div>
+            </details>
+            <details class="player">
+              <summary class="row">
+                <span class="pos">RF</span>
+                <div class="mid">
+                  <span class="pname">Jordan Walker <em>Cardinals</em></span>
+                  <span class="pline">1-4, 2 K</span>
+                </div>
+                <span class="phr">22<em>+2</em></span>
+                <span class="playerchev" aria-hidden="true"></span>
+              </summary>
+              <div class="hrlog"><span class="hrlogtitle">HOME RUN LOG &middot; SINCE JUL 6</span><div class="hrgame"><time>Jul 9</time><strong>1 HR</strong><span>vs Milwaukee Brewers</span></div><div class="hrgame"><time>Jul 7</time><strong>1 HR</strong><span>vs Milwaukee Brewers</span></div></div>
+            </details>
+            <details class="player">
+              <summary class="row">
+                <span class="pos">CF</span>
+                <div class="mid">
+                  <span class="pname">Byron Buxton <em>Twins</em></span>
+                  <span class="pline">1-4</span>
+                </div>
+                <span class="phr">25<em>+0</em></span>
+                <span class="playerchev" aria-hidden="true"></span>
+              </summary>
+              <div class="hrlog"><span class="hrlogtitle">HOME RUN LOG &middot; SINCE JUL 6</span><div class="hrgame empty">No HR games since draft</div></div>
+            </details>
+            <details class="player">
+              <summary class="row">
+                <span class="pos">LF</span>
+                <div class="mid">
+                  <span class="pname">Juan Soto <em>Mets</em></span>
+                  <span class="pline">0-4, 1 BB, 1 K</span>
+                </div>
+                <span class="phr">21<em>+3</em></span>
+                <span class="playerchev" aria-hidden="true"></span>
+              </summary>
+              <div class="hrlog"><span class="hrlogtitle">HOME RUN LOG &middot; SINCE JUL 6</span><div class="hrgame"><time>Jul 9</time><strong>1 HR</strong><span>vs Kansas City Royals</span></div><div class="hrgame"><time>Jul 7</time><strong>1 HR</strong><span>vs Kansas City Royals</span></div><div class="hrgame"><time>Jul 6</time><strong>1 HR</strong><span>@ Atlanta Braves</span></div></div>
+            </details></div>
         </details>
         <details class="team">
           <summary class="teamhead">
@@ -354,78 +456,114 @@
             </div>
           </summary>
           <div class="roster">
-            <div class="row">
-              <span class="pos">DH</span>
-              <div class="mid">
-                <span class="pname">Yordan Alvarez <em>Astros</em></span>
-                <span class="pline">2-4, 1 K</span>
-              </div>
-              <span class="phr">33<em>+4</em></span>
-            </div>
-            <div class="row rowhr">
-              <span class="pos">C</span>
-              <div class="mid">
-                <span class="pname">Shea Langeliers <em>Athletics</em></span>
-                <span class="pline">1-4, 1 HR, 1 RBI, 1 BB, 1 K<span class="hrpill">HR&thinsp;&times;1</span></span>
-              </div>
-              <span class="phr">23<em>+3</em></span>
-            </div>
-            <div class="row">
-              <span class="pos">1B</span>
-              <div class="mid">
-                <span class="pname">Matt Olson <em>Braves</em></span>
-                <span class="pline">1-4, 1 BB, 1 K</span>
-              </div>
-              <span class="phr">26<em>+4</em></span>
-            </div>
-            <div class="row">
-              <span class="pos">2B</span>
-              <div class="mid">
-                <span class="pname">Jose Altuve <em>Astros</em></span>
-                <span class="pline">0-4</span>
-              </div>
-              <span class="phr">12<em>+4</em></span>
-            </div>
-            <div class="row">
-              <span class="pos">3B</span>
-              <div class="mid">
-                <span class="pname">Junior Caminero <em>Rays</em></span>
-                <span class="pline">2-3, 3 BB</span>
-              </div>
-              <span class="phr">29<em>+3</em></span>
-            </div>
-            <div class="row">
-              <span class="pos">SS</span>
-              <div class="mid">
-                <span class="pname">Colson Montgomery <em>White Sox</em></span>
-                <span class="pline">No game</span>
-              </div>
-              <span class="phr">24<em>+1</em></span>
-            </div>
-            <div class="row">
-              <span class="pos">RF</span>
-              <div class="mid">
-                <span class="pname">Aaron Judge <em>Yankees</em></span>
-                <span class="pline">No game</span>
-              </div>
-              <span class="phr">17<em>+0</em></span>
-            </div>
-            <div class="row">
-              <span class="pos">CF</span>
-              <div class="mid">
-                <span class="pname">Andy Pages <em>Dodgers</em></span>
-                <span class="pline">1-4, 2 K</span>
-              </div>
-              <span class="phr">17<em>+1</em></span>
-            </div>
-            <div class="row">
-              <span class="pos">LF</span>
-              <div class="mid">
-                <span class="pname">Cody Bellinger <em>Yankees</em></span>
-                <span class="pline">No game</span>
-              </div>
-              <span class="phr">11<em>+0</em></span>
-            </div></div>
+            <details class="player">
+              <summary class="row">
+                <span class="pos">DH</span>
+                <div class="mid">
+                  <span class="pname">Yordan Alvarez <em>Astros</em></span>
+                  <span class="pline">2-4, 1 K</span>
+                </div>
+                <span class="phr">33<em>+4</em></span>
+                <span class="playerchev" aria-hidden="true"></span>
+              </summary>
+              <div class="hrlog"><span class="hrlogtitle">HOME RUN LOG &middot; SINCE JUL 6</span><div class="hrgame"><time>Jul 20</time><strong>2 HR</strong><span>vs Miami Marlins</span></div><div class="hrgame"><time>Jul 11</time><strong>1 HR</strong><span>@ Texas Rangers</span></div><div class="hrgame"><time>Jul 10</time><strong>1 HR</strong><span>@ Texas Rangers</span></div></div>
+            </details>
+            <details class="player">
+              <summary class="row rowhr">
+                <span class="pos">C</span>
+                <div class="mid">
+                  <span class="pname">Shea Langeliers <em>Athletics</em></span>
+                  <span class="pline">1-4, 1 HR, 1 RBI, 1 BB, 1 K<span class="hrpill">HR&thinsp;&times;1</span></span>
+                </div>
+                <span class="phr">23<em>+3</em></span>
+                <span class="playerchev" aria-hidden="true"></span>
+              </summary>
+              <div class="hrlog"><span class="hrlogtitle">HOME RUN LOG &middot; SINCE JUL 6</span><div class="hrgame"><time>Jul 21</time><strong>1 HR</strong><span>@ Arizona Diamondbacks</span></div><div class="hrgame"><time>Jul 17</time><strong>1 HR</strong><span>vs Washington Nationals</span></div><div class="hrgame"><time>Jul 12</time><strong>1 HR</strong><span>@ Chicago White Sox</span></div></div>
+            </details>
+            <details class="player">
+              <summary class="row">
+                <span class="pos">1B</span>
+                <div class="mid">
+                  <span class="pname">Matt Olson <em>Braves</em></span>
+                  <span class="pline">1-4, 1 BB, 1 K</span>
+                </div>
+                <span class="phr">26<em>+4</em></span>
+                <span class="playerchev" aria-hidden="true"></span>
+              </summary>
+              <div class="hrlog"><span class="hrlogtitle">HOME RUN LOG &middot; SINCE JUL 6</span><div class="hrgame"><time>Jul 17</time><strong>1 HR</strong><span>vs Texas Rangers</span></div><div class="hrgame"><time>Jul 9</time><strong>1 HR</strong><span>@ Pittsburgh Pirates</span></div><div class="hrgame"><time>Jul 6</time><strong>2 HR</strong><span>vs New York Mets</span></div></div>
+            </details>
+            <details class="player">
+              <summary class="row">
+                <span class="pos">2B</span>
+                <div class="mid">
+                  <span class="pname">Jose Altuve <em>Astros</em></span>
+                  <span class="pline">0-4</span>
+                </div>
+                <span class="phr">12<em>+4</em></span>
+                <span class="playerchev" aria-hidden="true"></span>
+              </summary>
+              <div class="hrlog"><span class="hrlogtitle">HOME RUN LOG &middot; SINCE JUL 6</span><div class="hrgame"><time>Jul 19</time><strong>1 HR</strong><span>vs Baltimore Orioles</span></div><div class="hrgame"><time>Jul 12</time><strong>1 HR</strong><span>@ Texas Rangers</span></div><div class="hrgame"><time>Jul 7</time><strong>1 HR</strong><span>@ Washington Nationals</span></div><div class="hrgame"><time>Jul 6</time><strong>1 HR</strong><span>@ Washington Nationals</span></div></div>
+            </details>
+            <details class="player">
+              <summary class="row">
+                <span class="pos">3B</span>
+                <div class="mid">
+                  <span class="pname">Junior Caminero <em>Rays</em></span>
+                  <span class="pline">2-3, 3 BB</span>
+                </div>
+                <span class="phr">29<em>+3</em></span>
+                <span class="playerchev" aria-hidden="true"></span>
+              </summary>
+              <div class="hrlog"><span class="hrlogtitle">HOME RUN LOG &middot; SINCE JUL 6</span><div class="hrgame"><time>Jul 17</time><strong>1 HR</strong><span>@ Boston Red Sox</span></div><div class="hrgame"><time>Jul 10</time><strong>1 HR</strong><span>vs Seattle Mariners</span></div><div class="hrgame"><time>Jul 9</time><strong>1 HR</strong><span>vs New York Yankees</span></div></div>
+            </details>
+            <details class="player">
+              <summary class="row">
+                <span class="pos">SS</span>
+                <div class="mid">
+                  <span class="pname">Colson Montgomery <em>White Sox</em></span>
+                  <span class="pline">No game</span>
+                </div>
+                <span class="phr">24<em>+1</em></span>
+                <span class="playerchev" aria-hidden="true"></span>
+              </summary>
+              <div class="hrlog"><span class="hrlogtitle">HOME RUN LOG &middot; SINCE JUL 6</span><div class="hrgame"><time>Jul 19</time><strong>1 HR</strong><span>@ Toronto Blue Jays</span></div></div>
+            </details>
+            <details class="player">
+              <summary class="row">
+                <span class="pos">RF</span>
+                <div class="mid">
+                  <span class="pname">Aaron Judge <em>Yankees</em></span>
+                  <span class="pline">No game</span>
+                </div>
+                <span class="phr">17<em>+0</em></span>
+                <span class="playerchev" aria-hidden="true"></span>
+              </summary>
+              <div class="hrlog"><span class="hrlogtitle">HOME RUN LOG &middot; SINCE JUL 6</span><div class="hrgame empty">No HR games since draft</div></div>
+            </details>
+            <details class="player">
+              <summary class="row">
+                <span class="pos">CF</span>
+                <div class="mid">
+                  <span class="pname">Andy Pages <em>Dodgers</em></span>
+                  <span class="pline">1-4, 2 K</span>
+                </div>
+                <span class="phr">17<em>+1</em></span>
+                <span class="playerchev" aria-hidden="true"></span>
+              </summary>
+              <div class="hrlog"><span class="hrlogtitle">HOME RUN LOG &middot; SINCE JUL 6</span><div class="hrgame"><time>Jul 10</time><strong>1 HR</strong><span>vs Arizona Diamondbacks</span></div></div>
+            </details>
+            <details class="player">
+              <summary class="row">
+                <span class="pos">LF</span>
+                <div class="mid">
+                  <span class="pname">Cody Bellinger <em>Yankees</em></span>
+                  <span class="pline">No game<span class="tag cold">28 games w/o HR</span></span>
+                </div>
+                <span class="phr">11<em>+0</em></span>
+                <span class="playerchev" aria-hidden="true"></span>
+              </summary>
+              <div class="hrlog"><span class="hrlogtitle">HOME RUN LOG &middot; SINCE JUL 6</span><div class="hrgame empty">No HR games since draft</div></div>
+            </details></div>
         </details>
     </div>
   </div>
@@ -434,10 +572,12 @@
         <section class="race">
           <span class="racetitle">THE RACE &middot; HR SINCE DRAFT</span>
           <div class="racelegend"><span><i style="background:#4ADE80"></i>Guy</span><span><i style="background:#60A5FA"></i>Barmen</span><span><i style="background:#FBBF24"></i>Dimisia</span></div>
-          <svg class="race-desktop-chart" viewBox="0 0 1340 300" width="100%" xmlns="http://www.w3.org/2000/svg"><line x1="46" y1="221.2" x2="1190" y2="221.2" stroke="var(--hair)" stroke-width="1"/><line x1="46" y1="162.5" x2="1190" y2="162.5" stroke="var(--hair)" stroke-width="1"/><line x1="46" y1="103.9" x2="1190" y2="103.9" stroke="var(--hair)" stroke-width="1"/><line x1="46" y1="45.3" x2="1190" y2="45.3" stroke="var(--hair)" stroke-width="1"/><text x="39" y="225.2" text-anchor="end" fill="var(--dim)" font-size="11">+6</text><text x="39" y="166.5" text-anchor="end" fill="var(--dim)" font-size="11">+12</text><text x="39" y="107.9" text-anchor="end" fill="var(--dim)" font-size="11">+18</text><text x="39" y="49.3" text-anchor="end" fill="var(--dim)" font-size="11">+24</text><text x="46.0" y="288" text-anchor="start" fill="var(--dim)" font-size="11">Jul</text><polyline points="46.0,191.8 134.0,172.3 222.0,133.2 310.0,123.5 398.0,113.7 486.0,113.7 574.0,113.7 662.0,113.7 750.0,113.7 838.0,103.9 926.0,94.2 1014.0,94.2 1102.0,64.8 1190.0,45.3" fill="none" stroke="#60A5FA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="1190.0" cy="45.3" r="3" fill="#60A5FA"/><text x="1198" y="49.3" fill="#60A5FA" font-size="14" font-weight="700">Team Barmen +24</text><polyline points="46.0,211.4 134.0,191.8 222.0,182.1 310.0,182.1 398.0,172.3 486.0,172.3 574.0,172.3 662.0,172.3 750.0,172.3 838.0,162.5 926.0,162.5 1014.0,123.5 1102.0,94.2 1190.0,55.1" fill="none" stroke="#4ADE80" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="1190.0" cy="55.1" r="3" fill="#4ADE80"/><text x="1198" y="77.1" fill="#4ADE80" font-size="14" font-weight="700">Team Guy +23</text><polyline points="46.0,240.7 134.0,221.2 222.0,191.8 310.0,182.1 398.0,162.5 486.0,162.5 574.0,162.5 662.0,162.5 750.0,162.5 838.0,133.2 926.0,133.2 1014.0,113.7 1102.0,94.2 1190.0,84.4" fill="none" stroke="#FBBF24" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="1190.0" cy="84.4" r="3" fill="#FBBF24"/><text x="1198" y="106.4" fill="#FBBF24" font-size="14" font-weight="700">Team Dimisia +20</text></svg>
-          <svg class="race-mobile-chart" viewBox="0 0 390 500" width="100%" xmlns="http://www.w3.org/2000/svg"><line x1="38" y1="388.6" x2="372" y2="388.6" stroke="var(--hair)" stroke-width="1"/><line x1="38" y1="304.4" x2="372" y2="304.4" stroke="var(--hair)" stroke-width="1"/><line x1="38" y1="220.2" x2="372" y2="220.2" stroke="var(--hair)" stroke-width="1"/><line x1="38" y1="135.9" x2="372" y2="135.9" stroke="var(--hair)" stroke-width="1"/><line x1="38" y1="51.7" x2="372" y2="51.7" stroke="var(--hair)" stroke-width="1"/><text x="31" y="392.6" text-anchor="end" fill="var(--dim)" font-size="11">+5</text><text x="31" y="308.4" text-anchor="end" fill="var(--dim)" font-size="11">+10</text><text x="31" y="224.2" text-anchor="end" fill="var(--dim)" font-size="11">+15</text><text x="31" y="139.9" text-anchor="end" fill="var(--dim)" font-size="11">+20</text><text x="31" y="55.7" text-anchor="end" fill="var(--dim)" font-size="11">+25</text><text x="38.0" y="488" text-anchor="start" fill="var(--dim)" font-size="11">Jul 8</text><text x="217.8" y="488" text-anchor="middle" fill="var(--dim)" font-size="11">Jul 15</text><text x="372.0" y="488" text-anchor="end" fill="var(--dim)" font-size="11">Jul 21</text><polyline points="38.0,321.2 63.7,287.5 89.4,220.2 115.1,203.3 140.8,186.5 166.5,186.5 192.2,186.5 217.8,186.5 243.5,186.5 269.2,169.6 294.9,152.8 320.6,152.8 346.3,102.2 372.0,68.5" fill="none" stroke="#60A5FA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="372.0" cy="68.5" r="5" fill="#60A5FA"/><polyline points="38.0,354.9 63.7,321.2 89.4,304.4 115.1,304.4 140.8,287.5 166.5,287.5 192.2,287.5 217.8,287.5 243.5,287.5 269.2,270.7 294.9,270.7 320.6,203.3 346.3,152.8 372.0,85.4" fill="none" stroke="#4ADE80" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="372.0" cy="85.4" r="5" fill="#4ADE80"/><polyline points="38.0,405.5 63.7,371.8 89.4,321.2 115.1,304.4 140.8,270.7 166.5,270.7 192.2,270.7 217.8,270.7 243.5,270.7 269.2,220.2 294.9,220.2 320.6,186.5 346.3,152.8 372.0,135.9" fill="none" stroke="#FBBF24" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="372.0" cy="135.9" r="5" fill="#FBBF24"/></svg>
+          <svg class="racechart race-desktop-chart" data-w="1340" data-h="300" data-pl="46" data-pr="150" data-pt="16" data-pb="30" data-lo="1" data-hi="27" viewBox="0 0 1340 300" width="100%" xmlns="http://www.w3.org/2000/svg"><line x1="46" y1="221.2" x2="1190" y2="221.2" stroke="var(--hair)" stroke-width="1"/><line x1="46" y1="162.5" x2="1190" y2="162.5" stroke="var(--hair)" stroke-width="1"/><line x1="46" y1="103.9" x2="1190" y2="103.9" stroke="var(--hair)" stroke-width="1"/><line x1="46" y1="45.3" x2="1190" y2="45.3" stroke="var(--hair)" stroke-width="1"/><text x="39" y="225.2" text-anchor="end" fill="var(--dim)" font-size="11">+6</text><text x="39" y="166.5" text-anchor="end" fill="var(--dim)" font-size="11">+12</text><text x="39" y="107.9" text-anchor="end" fill="var(--dim)" font-size="11">+18</text><text x="39" y="49.3" text-anchor="end" fill="var(--dim)" font-size="11">+24</text><text x="46.0" y="288" text-anchor="start" fill="var(--dim)" font-size="11">Jul</text><polyline points="46.0,191.8 134.0,172.3 222.0,133.2 310.0,123.5 398.0,113.7 486.0,113.7 574.0,113.7 662.0,113.7 750.0,113.7 838.0,103.9 926.0,94.2 1014.0,94.2 1102.0,64.8 1190.0,45.3" fill="none" stroke="#60A5FA" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="1190.0" cy="45.3" r="3" fill="#60A5FA"/><text x="1198" y="49.3" fill="#60A5FA" font-size="14" font-weight="700">Team Barmen +24</text><polyline points="46.0,211.4 134.0,191.8 222.0,182.1 310.0,182.1 398.0,172.3 486.0,172.3 574.0,172.3 662.0,172.3 750.0,172.3 838.0,162.5 926.0,162.5 1014.0,123.5 1102.0,94.2 1190.0,55.1" fill="none" stroke="#4ADE80" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="1190.0" cy="55.1" r="3" fill="#4ADE80"/><text x="1198" y="77.1" fill="#4ADE80" font-size="14" font-weight="700">Team Guy +23</text><polyline points="46.0,240.7 134.0,221.2 222.0,191.8 310.0,182.1 398.0,162.5 486.0,162.5 574.0,162.5 662.0,162.5 750.0,162.5 838.0,133.2 926.0,133.2 1014.0,113.7 1102.0,94.2 1190.0,84.4" fill="none" stroke="#FBBF24" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="1190.0" cy="84.4" r="3" fill="#FBBF24"/><text x="1198" y="106.4" fill="#FBBF24" font-size="14" font-weight="700">Team Dimisia +20</text><line class="raceguide" y1="16" y2="270"/><circle class="racecursor" data-team="0" r="5" fill="#4ADE80" stroke="var(--panel)" stroke-width="2"/><circle class="racecursor" data-team="1" r="5" fill="#60A5FA" stroke="var(--panel)" stroke-width="2"/><circle class="racecursor" data-team="2" r="5" fill="#FBBF24" stroke="var(--panel)" stroke-width="2"/></svg>
+          <svg class="racechart race-mobile-chart" data-w="390" data-h="500" data-pl="38" data-pr="18" data-pt="18" data-pb="44" data-lo="1" data-hi="27" viewBox="0 0 390 500" width="100%" xmlns="http://www.w3.org/2000/svg"><line x1="38" y1="388.6" x2="372" y2="388.6" stroke="var(--hair)" stroke-width="1"/><line x1="38" y1="304.4" x2="372" y2="304.4" stroke="var(--hair)" stroke-width="1"/><line x1="38" y1="220.2" x2="372" y2="220.2" stroke="var(--hair)" stroke-width="1"/><line x1="38" y1="135.9" x2="372" y2="135.9" stroke="var(--hair)" stroke-width="1"/><line x1="38" y1="51.7" x2="372" y2="51.7" stroke="var(--hair)" stroke-width="1"/><text x="31" y="392.6" text-anchor="end" fill="var(--dim)" font-size="11">+5</text><text x="31" y="308.4" text-anchor="end" fill="var(--dim)" font-size="11">+10</text><text x="31" y="224.2" text-anchor="end" fill="var(--dim)" font-size="11">+15</text><text x="31" y="139.9" text-anchor="end" fill="var(--dim)" font-size="11">+20</text><text x="31" y="55.7" text-anchor="end" fill="var(--dim)" font-size="11">+25</text><text x="38.0" y="488" text-anchor="start" fill="var(--dim)" font-size="11">Jul 8</text><text x="217.8" y="488" text-anchor="middle" fill="var(--dim)" font-size="11">Jul 15</text><text x="372.0" y="488" text-anchor="end" fill="var(--dim)" font-size="11">Jul 21</text><polyline points="38.0,321.2 63.7,287.5 89.4,220.2 115.1,203.3 140.8,186.5 166.5,186.5 192.2,186.5 217.8,186.5 243.5,186.5 269.2,169.6 294.9,152.8 320.6,152.8 346.3,102.2 372.0,68.5" fill="none" stroke="#60A5FA" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="372.0" cy="68.5" r="5" fill="#60A5FA"/><polyline points="38.0,354.9 63.7,321.2 89.4,304.4 115.1,304.4 140.8,287.5 166.5,287.5 192.2,287.5 217.8,287.5 243.5,287.5 269.2,270.7 294.9,270.7 320.6,203.3 346.3,152.8 372.0,85.4" fill="none" stroke="#4ADE80" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="372.0" cy="85.4" r="5" fill="#4ADE80"/><polyline points="38.0,405.5 63.7,371.8 89.4,321.2 115.1,304.4 140.8,270.7 166.5,270.7 192.2,270.7 217.8,270.7 243.5,270.7 269.2,220.2 294.9,220.2 320.6,186.5 346.3,152.8 372.0,135.9" fill="none" stroke="#FBBF24" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="372.0" cy="135.9" r="5" fill="#FBBF24"/><line class="raceguide" y1="18" y2="456"/><circle class="racecursor" data-team="0" r="7" fill="#4ADE80" stroke="var(--panel)" stroke-width="2"/><circle class="racecursor" data-team="1" r="7" fill="#60A5FA" stroke="var(--panel)" stroke-width="2"/><circle class="racecursor" data-team="2" r="7" fill="#FBBF24" stroke="var(--panel)" stroke-width="2"/></svg>
+          <div class="racetooltip" role="status" aria-live="polite"></div>
           <div class="racecards"><div class="racecard"><span class="racecard-rank">1</span><span class="racecard-name">Team Barmen</span><strong>+24</strong><em>LEADER</em></div><div class="racecard"><span class="racecard-rank">2</span><span class="racecard-name">Team Guy</span><strong>+23</strong><em>1 BACK</em></div><div class="racecard"><span class="racecard-rank">3</span><span class="racecard-name">Team Dimisia</span><strong>+20</strong><em>4 BACK</em></div></div>
         </section>
+        <script>window.RACE_DATA = {"dates": ["2026-07-08", "2026-07-09", "2026-07-10", "2026-07-11", "2026-07-12", "2026-07-13", "2026-07-14", "2026-07-15", "2026-07-16", "2026-07-17", "2026-07-18", "2026-07-19", "2026-07-20", "2026-07-21"], "teams": [{"name": "Team Guy", "series": [7, 9, 10, 10, 11, 11, 11, 11, 11, 12, 12, 16, 19, 23]}, {"name": "Team Barmen", "series": [9, 11, 15, 16, 17, 17, 17, 17, 17, 18, 19, 19, 22, 24]}, {"name": "Team Dimisia", "series": [4, 6, 9, 10, 12, 12, 12, 12, 12, 15, 15, 17, 19, 20]}]};</script>
   </div>
   <div id="tab-stats" class="tabpane">
     
@@ -459,10 +599,10 @@
         <th onclick="sortStats(6,'num')">RBI</th>
         <th onclick="sortStats(7,'num')">K</th>
       </tr></thead>
-      <tbody id="statsbody"><tr data-team="Team Barmen" data-search="kyle schwarber phillies"><td data-v="Kyle Schwarber">Kyle Schwarber</td><td data-v="Team Barmen">Barmen</td><td data-v="Phillies">Phillies</td><td data-v="33" class="n hrcol">33</td><td data-v="91" class="n">91</td><td data-v=".248" class="n">.248</td><td data-v="61" class="n">61</td><td data-v="152" class="n">152</td></tr><tr data-team="Team Barmen" data-search="dillon dingler tigers"><td data-v="Dillon Dingler">Dillon Dingler</td><td data-v="Team Barmen">Barmen</td><td data-v="Tigers">Tigers</td><td data-v="22" class="n hrcol">22</td><td data-v="93" class="n">93</td><td data-v=".271" class="n">.271</td><td data-v="65" class="n">65</td><td data-v="80" class="n">80</td></tr><tr data-team="Team Barmen" data-search="ben rice yankees"><td data-v="Ben Rice">Ben Rice</td><td data-v="Team Barmen">Barmen</td><td data-v="Yankees">Yankees</td><td data-v="29" class="n hrcol">29</td><td data-v="99" class="n">99</td><td data-v=".281" class="n">.281</td><td data-v="68" class="n">68</td><td data-v="94" class="n">94</td></tr><tr data-team="Team Barmen" data-search="brandon lowe pirates"><td data-v="Brandon Lowe">Brandon Lowe</td><td data-v="Team Barmen">Barmen</td><td data-v="Pirates">Pirates</td><td data-v="21" class="n hrcol">21</td><td data-v="90" class="n">90</td><td data-v=".244" class="n">.244</td><td data-v="65" class="n">65</td><td data-v="113" class="n">113</td></tr><tr data-team="Team Barmen" data-search="miguel vargas white sox"><td data-v="Miguel Vargas">Miguel Vargas</td><td data-v="Team Barmen">Barmen</td><td data-v="White Sox">White Sox</td><td data-v="21" class="n hrcol">21</td><td data-v="90" class="n">90</td><td data-v=".247" class="n">.247</td><td data-v="61" class="n">61</td><td data-v="72" class="n">72</td></tr><tr data-team="Team Barmen" data-search="elly de la cruz reds"><td data-v="Elly De La Cruz">Elly De La Cruz</td><td data-v="Team Barmen">Barmen</td><td data-v="Reds">Reds</td><td data-v="17" class="n hrcol">17</td><td data-v="90" class="n">90</td><td data-v=".280" class="n">.280</td><td data-v="46" class="n">46</td><td data-v="98" class="n">98</td></tr><tr data-team="Team Barmen" data-search="james wood nationals"><td data-v="James Wood">James Wood</td><td data-v="Team Barmen">Barmen</td><td data-v="Nationals">Nationals</td><td data-v="28" class="n hrcol">28</td><td data-v="107" class="n">107</td><td data-v=".273" class="n">.273</td><td data-v="68" class="n">68</td><td data-v="141" class="n">141</td></tr><tr data-team="Team Barmen" data-search="pete crow-armstrong cubs"><td data-v="Pete Crow-Armstrong">Pete Crow-Armstrong</td><td data-v="Team Barmen">Barmen</td><td data-v="Cubs">Cubs</td><td data-v="21" class="n hrcol">21</td><td data-v="107" class="n">107</td><td data-v=".285" class="n">.285</td><td data-v="55" class="n">55</td><td data-v="114" class="n">114</td></tr><tr data-team="Team Barmen" data-search="ian happ cubs"><td data-v="Ian Happ">Ian Happ</td><td data-v="Team Barmen">Barmen</td><td data-v="Cubs">Cubs</td><td data-v="18" class="n hrcol">18</td><td data-v="78" class="n">78</td><td data-v=".218" class="n">.218</td><td data-v="45" class="n">45</td><td data-v="129" class="n">129</td></tr><tr data-team="Team Guy" data-search="shohei ohtani dodgers"><td data-v="Shohei Ohtani">Shohei Ohtani</td><td data-v="Team Guy">Guy</td><td data-v="Dodgers">Dodgers</td><td data-v="22" class="n hrcol">22</td><td data-v="102" class="n">102</td><td data-v=".287" class="n">.287</td><td data-v="60" class="n">60</td><td data-v="99" class="n">99</td></tr><tr data-team="Team Guy" data-search="hunter goodman rockies"><td data-v="Hunter Goodman">Hunter Goodman</td><td data-v="Team Guy">Guy</td><td data-v="Rockies">Rockies</td><td data-v="31" class="n hrcol">31</td><td data-v="91" class="n">91</td><td data-v=".257" class="n">.257</td><td data-v="57" class="n">57</td><td data-v="127" class="n">127</td></tr><tr data-team="Team Guy" data-search="bryce harper phillies"><td data-v="Bryce Harper">Bryce Harper</td><td data-v="Team Guy">Guy</td><td data-v="Phillies">Phillies</td><td data-v="21" class="n hrcol">21</td><td data-v="93" class="n">93</td><td data-v=".258" class="n">.258</td><td data-v="60" class="n">60</td><td data-v="88" class="n">88</td></tr><tr data-team="Team Guy" data-search="ketel marte diamondbacks"><td data-v="Ketel Marte">Ketel Marte</td><td data-v="Team Guy">Guy</td><td data-v="Diamondbacks">Diamondbacks</td><td data-v="18" class="n hrcol">18</td><td data-v="100" class="n">100</td><td data-v=".256" class="n">.256</td><td data-v="59" class="n">59</td><td data-v="62" class="n">62</td></tr><tr data-team="Team Guy" data-search="max muncy dodgers"><td data-v="Max Muncy">Max Muncy</td><td data-v="Team Guy">Guy</td><td data-v="Dodgers">Dodgers</td><td data-v="19" class="n hrcol">19</td><td data-v="81" class="n">81</td><td data-v=".263" class="n">.263</td><td data-v="45" class="n">45</td><td data-v="82" class="n">82</td></tr><tr data-team="Team Guy" data-search="cj abrams nationals"><td data-v="CJ Abrams">CJ Abrams</td><td data-v="Team Guy">Guy</td><td data-v="Nationals">Nationals</td><td data-v="24" class="n hrcol">24</td><td data-v="102" class="n">102</td><td data-v=".279" class="n">.279</td><td data-v="76" class="n">76</td><td data-v="90" class="n">90</td></tr><tr data-team="Team Guy" data-search="jordan walker cardinals"><td data-v="Jordan Walker">Jordan Walker</td><td data-v="Team Guy">Guy</td><td data-v="Cardinals">Cardinals</td><td data-v="22" class="n hrcol">22</td><td data-v="110" class="n">110</td><td data-v=".292" class="n">.292</td><td data-v="76" class="n">76</td><td data-v="103" class="n">103</td></tr><tr data-team="Team Guy" data-search="byron buxton twins"><td data-v="Byron Buxton">Byron Buxton</td><td data-v="Team Guy">Guy</td><td data-v="Twins">Twins</td><td data-v="25" class="n hrcol">25</td><td data-v="86" class="n">86</td><td data-v=".275" class="n">.275</td><td data-v="45" class="n">45</td><td data-v="83" class="n">83</td></tr><tr data-team="Team Guy" data-search="juan soto mets"><td data-v="Juan Soto">Juan Soto</td><td data-v="Team Guy">Guy</td><td data-v="Mets">Mets</td><td data-v="21" class="n hrcol">21</td><td data-v="83" class="n">83</td><td data-v=".283" class="n">.283</td><td data-v="52" class="n">52</td><td data-v="48" class="n">48</td></tr><tr data-team="Team Dimisia" data-search="yordan alvarez astros"><td data-v="Yordan Alvarez">Yordan Alvarez</td><td data-v="Team Dimisia">Dimisia</td><td data-v="Astros">Astros</td><td data-v="33" class="n hrcol">33</td><td data-v="120" class="n">120</td><td data-v=".326" class="n">.326</td><td data-v="75" class="n">75</td><td data-v="76" class="n">76</td></tr><tr data-team="Team Dimisia" data-search="shea langeliers athletics"><td data-v="Shea Langeliers">Shea Langeliers</td><td data-v="Team Dimisia">Dimisia</td><td data-v="Athletics">Athletics</td><td data-v="23" class="n hrcol">23</td><td data-v="96" class="n">96</td><td data-v=".260" class="n">.260</td><td data-v="51" class="n">51</td><td data-v="94" class="n">94</td></tr><tr data-team="Team Dimisia" data-search="matt olson braves"><td data-v="Matt Olson">Matt Olson</td><td data-v="Team Dimisia">Dimisia</td><td data-v="Braves">Braves</td><td data-v="26" class="n hrcol">26</td><td data-v="104" class="n">104</td><td data-v=".267" class="n">.267</td><td data-v="59" class="n">59</td><td data-v="106" class="n">106</td></tr><tr data-team="Team Dimisia" data-search="jose altuve astros"><td data-v="Jose Altuve">Jose Altuve</td><td data-v="Team Dimisia">Dimisia</td><td data-v="Astros">Astros</td><td data-v="12" class="n hrcol">12</td><td data-v="71" class="n">71</td><td data-v=".232" class="n">.232</td><td data-v="29" class="n">29</td><td data-v="74" class="n">74</td></tr><tr data-team="Team Dimisia" data-search="junior caminero rays"><td data-v="Junior Caminero">Junior Caminero</td><td data-v="Team Dimisia">Dimisia</td><td data-v="Rays">Rays</td><td data-v="29" class="n hrcol">29</td><td data-v="109" class="n">109</td><td data-v=".288" class="n">.288</td><td data-v="62" class="n">62</td><td data-v="80" class="n">80</td></tr><tr data-team="Team Dimisia" data-search="colson montgomery white sox"><td data-v="Colson Montgomery">Colson Montgomery</td><td data-v="Team Dimisia">Dimisia</td><td data-v="White Sox">White Sox</td><td data-v="24" class="n hrcol">24</td><td data-v="79" class="n">79</td><td data-v=".222" class="n">.222</td><td data-v="57" class="n">57</td><td data-v="129" class="n">129</td></tr><tr data-team="Team Dimisia" data-search="aaron judge yankees"><td data-v="Aaron Judge">Aaron Judge</td><td data-v="Team Dimisia">Dimisia</td><td data-v="Yankees">Yankees</td><td data-v="17" class="n hrcol">17</td><td data-v="53" class="n">53</td><td data-v=".248" class="n">.248</td><td data-v="38" class="n">38</td><td data-v="72" class="n">72</td></tr><tr data-team="Team Dimisia" data-search="andy pages dodgers"><td data-v="Andy Pages">Andy Pages</td><td data-v="Team Dimisia">Dimisia</td><td data-v="Dodgers">Dodgers</td><td data-v="17" class="n hrcol">17</td><td data-v="104" class="n">104</td><td data-v=".269" class="n">.269</td><td data-v="68" class="n">68</td><td data-v="88" class="n">88</td></tr><tr data-team="Team Dimisia" data-search="cody bellinger yankees"><td data-v="Cody Bellinger">Cody Bellinger</td><td data-v="Team Dimisia">Dimisia</td><td data-v="Yankees">Yankees</td><td data-v="11" class="n hrcol">11</td><td data-v="92" class="n">92</td><td data-v=".255" class="n">.255</td><td data-v="52" class="n">52</td><td data-v="66" class="n">66</td></tr></tbody>
+      <tbody id="statsbody"><tr data-team="Team Barmen" data-search="kyle schwarber phillies"><td data-v="Kyle Schwarber">Kyle Schwarber</td><td data-v="Team Barmen">Barmen</td><td data-v="Phillies">Phillies</td><td data-v="33" class="n hrcol">33</td><td data-v="91" class="n">91</td><td data-v=".248" class="n">.248</td><td data-v="61" class="n">61</td><td data-v="152" class="n">152</td></tr><tr data-team="Team Barmen" data-search="dillon dingler tigers"><td data-v="Dillon Dingler">Dillon Dingler</td><td data-v="Team Barmen">Barmen</td><td data-v="Tigers">Tigers</td><td data-v="22" class="n hrcol">22</td><td data-v="93" class="n">93</td><td data-v=".271" class="n">.271</td><td data-v="65" class="n">65</td><td data-v="80" class="n">80</td></tr><tr data-team="Team Barmen" data-search="ben rice yankees"><td data-v="Ben Rice">Ben Rice</td><td data-v="Team Barmen">Barmen</td><td data-v="Yankees">Yankees</td><td data-v="29" class="n hrcol">29</td><td data-v="99" class="n">99</td><td data-v=".280" class="n">.280</td><td data-v="68" class="n">68</td><td data-v="95" class="n">95</td></tr><tr data-team="Team Barmen" data-search="brandon lowe pirates"><td data-v="Brandon Lowe">Brandon Lowe</td><td data-v="Team Barmen">Barmen</td><td data-v="Pirates">Pirates</td><td data-v="21" class="n hrcol">21</td><td data-v="90" class="n">90</td><td data-v=".244" class="n">.244</td><td data-v="65" class="n">65</td><td data-v="113" class="n">113</td></tr><tr data-team="Team Barmen" data-search="miguel vargas white sox"><td data-v="Miguel Vargas">Miguel Vargas</td><td data-v="Team Barmen">Barmen</td><td data-v="White Sox">White Sox</td><td data-v="21" class="n hrcol">21</td><td data-v="90" class="n">90</td><td data-v=".247" class="n">.247</td><td data-v="61" class="n">61</td><td data-v="72" class="n">72</td></tr><tr data-team="Team Barmen" data-search="elly de la cruz reds"><td data-v="Elly De La Cruz">Elly De La Cruz</td><td data-v="Team Barmen">Barmen</td><td data-v="Reds">Reds</td><td data-v="17" class="n hrcol">17</td><td data-v="90" class="n">90</td><td data-v=".280" class="n">.280</td><td data-v="46" class="n">46</td><td data-v="98" class="n">98</td></tr><tr data-team="Team Barmen" data-search="james wood nationals"><td data-v="James Wood">James Wood</td><td data-v="Team Barmen">Barmen</td><td data-v="Nationals">Nationals</td><td data-v="28" class="n hrcol">28</td><td data-v="107" class="n">107</td><td data-v=".273" class="n">.273</td><td data-v="68" class="n">68</td><td data-v="141" class="n">141</td></tr><tr data-team="Team Barmen" data-search="pete crow-armstrong cubs"><td data-v="Pete Crow-Armstrong">Pete Crow-Armstrong</td><td data-v="Team Barmen">Barmen</td><td data-v="Cubs">Cubs</td><td data-v="21" class="n hrcol">21</td><td data-v="107" class="n">107</td><td data-v=".285" class="n">.285</td><td data-v="55" class="n">55</td><td data-v="114" class="n">114</td></tr><tr data-team="Team Barmen" data-search="ian happ cubs"><td data-v="Ian Happ">Ian Happ</td><td data-v="Team Barmen">Barmen</td><td data-v="Cubs">Cubs</td><td data-v="18" class="n hrcol">18</td><td data-v="78" class="n">78</td><td data-v=".218" class="n">.218</td><td data-v="45" class="n">45</td><td data-v="129" class="n">129</td></tr><tr data-team="Team Guy" data-search="shohei ohtani dodgers"><td data-v="Shohei Ohtani">Shohei Ohtani</td><td data-v="Team Guy">Guy</td><td data-v="Dodgers">Dodgers</td><td data-v="22" class="n hrcol">22</td><td data-v="102" class="n">102</td><td data-v=".287" class="n">.287</td><td data-v="60" class="n">60</td><td data-v="99" class="n">99</td></tr><tr data-team="Team Guy" data-search="hunter goodman rockies"><td data-v="Hunter Goodman">Hunter Goodman</td><td data-v="Team Guy">Guy</td><td data-v="Rockies">Rockies</td><td data-v="31" class="n hrcol">31</td><td data-v="91" class="n">91</td><td data-v=".257" class="n">.257</td><td data-v="57" class="n">57</td><td data-v="127" class="n">127</td></tr><tr data-team="Team Guy" data-search="bryce harper phillies"><td data-v="Bryce Harper">Bryce Harper</td><td data-v="Team Guy">Guy</td><td data-v="Phillies">Phillies</td><td data-v="21" class="n hrcol">21</td><td data-v="93" class="n">93</td><td data-v=".258" class="n">.258</td><td data-v="60" class="n">60</td><td data-v="88" class="n">88</td></tr><tr data-team="Team Guy" data-search="ketel marte diamondbacks"><td data-v="Ketel Marte">Ketel Marte</td><td data-v="Team Guy">Guy</td><td data-v="Diamondbacks">Diamondbacks</td><td data-v="18" class="n hrcol">18</td><td data-v="100" class="n">100</td><td data-v=".256" class="n">.256</td><td data-v="59" class="n">59</td><td data-v="62" class="n">62</td></tr><tr data-team="Team Guy" data-search="max muncy dodgers"><td data-v="Max Muncy">Max Muncy</td><td data-v="Team Guy">Guy</td><td data-v="Dodgers">Dodgers</td><td data-v="19" class="n hrcol">19</td><td data-v="81" class="n">81</td><td data-v=".263" class="n">.263</td><td data-v="45" class="n">45</td><td data-v="82" class="n">82</td></tr><tr data-team="Team Guy" data-search="cj abrams nationals"><td data-v="CJ Abrams">CJ Abrams</td><td data-v="Team Guy">Guy</td><td data-v="Nationals">Nationals</td><td data-v="24" class="n hrcol">24</td><td data-v="102" class="n">102</td><td data-v=".279" class="n">.279</td><td data-v="76" class="n">76</td><td data-v="90" class="n">90</td></tr><tr data-team="Team Guy" data-search="jordan walker cardinals"><td data-v="Jordan Walker">Jordan Walker</td><td data-v="Team Guy">Guy</td><td data-v="Cardinals">Cardinals</td><td data-v="22" class="n hrcol">22</td><td data-v="110" class="n">110</td><td data-v=".292" class="n">.292</td><td data-v="76" class="n">76</td><td data-v="103" class="n">103</td></tr><tr data-team="Team Guy" data-search="byron buxton twins"><td data-v="Byron Buxton">Byron Buxton</td><td data-v="Team Guy">Guy</td><td data-v="Twins">Twins</td><td data-v="25" class="n hrcol">25</td><td data-v="86" class="n">86</td><td data-v=".275" class="n">.275</td><td data-v="45" class="n">45</td><td data-v="83" class="n">83</td></tr><tr data-team="Team Guy" data-search="juan soto mets"><td data-v="Juan Soto">Juan Soto</td><td data-v="Team Guy">Guy</td><td data-v="Mets">Mets</td><td data-v="21" class="n hrcol">21</td><td data-v="83" class="n">83</td><td data-v=".283" class="n">.283</td><td data-v="52" class="n">52</td><td data-v="48" class="n">48</td></tr><tr data-team="Team Dimisia" data-search="yordan alvarez astros"><td data-v="Yordan Alvarez">Yordan Alvarez</td><td data-v="Team Dimisia">Dimisia</td><td data-v="Astros">Astros</td><td data-v="33" class="n hrcol">33</td><td data-v="120" class="n">120</td><td data-v=".326" class="n">.326</td><td data-v="75" class="n">75</td><td data-v="76" class="n">76</td></tr><tr data-team="Team Dimisia" data-search="shea langeliers athletics"><td data-v="Shea Langeliers">Shea Langeliers</td><td data-v="Team Dimisia">Dimisia</td><td data-v="Athletics">Athletics</td><td data-v="23" class="n hrcol">23</td><td data-v="96" class="n">96</td><td data-v=".260" class="n">.260</td><td data-v="51" class="n">51</td><td data-v="94" class="n">94</td></tr><tr data-team="Team Dimisia" data-search="matt olson braves"><td data-v="Matt Olson">Matt Olson</td><td data-v="Team Dimisia">Dimisia</td><td data-v="Braves">Braves</td><td data-v="26" class="n hrcol">26</td><td data-v="104" class="n">104</td><td data-v=".267" class="n">.267</td><td data-v="59" class="n">59</td><td data-v="106" class="n">106</td></tr><tr data-team="Team Dimisia" data-search="jose altuve astros"><td data-v="Jose Altuve">Jose Altuve</td><td data-v="Team Dimisia">Dimisia</td><td data-v="Astros">Astros</td><td data-v="12" class="n hrcol">12</td><td data-v="71" class="n">71</td><td data-v=".232" class="n">.232</td><td data-v="29" class="n">29</td><td data-v="74" class="n">74</td></tr><tr data-team="Team Dimisia" data-search="junior caminero rays"><td data-v="Junior Caminero">Junior Caminero</td><td data-v="Team Dimisia">Dimisia</td><td data-v="Rays">Rays</td><td data-v="29" class="n hrcol">29</td><td data-v="109" class="n">109</td><td data-v=".288" class="n">.288</td><td data-v="62" class="n">62</td><td data-v="80" class="n">80</td></tr><tr data-team="Team Dimisia" data-search="colson montgomery white sox"><td data-v="Colson Montgomery">Colson Montgomery</td><td data-v="Team Dimisia">Dimisia</td><td data-v="White Sox">White Sox</td><td data-v="24" class="n hrcol">24</td><td data-v="79" class="n">79</td><td data-v=".222" class="n">.222</td><td data-v="57" class="n">57</td><td data-v="129" class="n">129</td></tr><tr data-team="Team Dimisia" data-search="aaron judge yankees"><td data-v="Aaron Judge">Aaron Judge</td><td data-v="Team Dimisia">Dimisia</td><td data-v="Yankees">Yankees</td><td data-v="17" class="n hrcol">17</td><td data-v="53" class="n">53</td><td data-v=".248" class="n">.248</td><td data-v="38" class="n">38</td><td data-v="72" class="n">72</td></tr><tr data-team="Team Dimisia" data-search="andy pages dodgers"><td data-v="Andy Pages">Andy Pages</td><td data-v="Team Dimisia">Dimisia</td><td data-v="Dodgers">Dodgers</td><td data-v="17" class="n hrcol">17</td><td data-v="104" class="n">104</td><td data-v=".269" class="n">.269</td><td data-v="68" class="n">68</td><td data-v="88" class="n">88</td></tr><tr data-team="Team Dimisia" data-search="cody bellinger yankees"><td data-v="Cody Bellinger">Cody Bellinger</td><td data-v="Team Dimisia">Dimisia</td><td data-v="Yankees">Yankees</td><td data-v="11" class="n hrcol">11</td><td data-v="92" class="n">92</td><td data-v=".254" class="n">.254</td><td data-v="52" class="n">52</td><td data-v="67" class="n">67</td></tr></tbody>
     </table></div>
   </div>
-  <footer>Updated Jul 22, 2026 01:12 PM ET &middot; data: MLB Stats API</footer>
+  <footer>Updated Jul 22, 2026 01:35 PM ET &middot; data: MLB Stats API</footer>
   
 <script>
 function showTab(id, btn) {
@@ -496,6 +636,52 @@ function sortStats(col, type) {
     th.classList.toggle('desc', i === col && dir === -1);
   });
 }
+function initRaceTooltips() {
+  const data = window.RACE_DATA;
+  if (!data) return;
+  const tip = document.querySelector('.racetooltip');
+  const colors = ['#4ADE80','#60A5FA','#FBBF24','#F472B6','#A78BFA'];
+  let touching = false;
+  function hide() {
+    tip.classList.remove('show');
+    document.querySelectorAll('.raceguide,.racecursor').forEach(el => el.classList.remove('show'));
+  }
+  function show(svg, e) {
+    const box = svg.getBoundingClientRect();
+    const W = +svg.dataset.w, H = +svg.dataset.h;
+    const PL = +svg.dataset.pl, PR = +svg.dataset.pr;
+    const PT = +svg.dataset.pt, PB = +svg.dataset.pb;
+    const lo = +svg.dataset.lo, hi = +svg.dataset.hi;
+    const px = (e.clientX - box.left) / box.width * W;
+    const idx = Math.max(0, Math.min(data.dates.length - 1,
+      Math.round((px - PL) / (W - PL - PR) * (data.dates.length - 1))));
+    const x = PL + (W - PL - PR) * idx / (data.dates.length - 1);
+    const date = new Date(data.dates[idx] + 'T12:00:00');
+    tip.innerHTML = '<strong>' + date.toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'}) + '</strong>' +
+      data.teams.map((t,i) => '<span><i style="background:' + colors[i] + '"></i>' +
+        t.name + '<b>+' + t.series[idx] + '</b></span>').join('');
+    tip.classList.add('show');
+    svg.querySelector('.raceguide').setAttribute('x1', x);
+    svg.querySelector('.raceguide').setAttribute('x2', x);
+    svg.querySelector('.raceguide').classList.add('show');
+    svg.querySelectorAll('.racecursor').forEach((dot, i) => {
+      const y = PT + (H - PT - PB) * (1 - (data.teams[i].series[idx] - lo) / Math.max(1, hi - lo));
+      dot.setAttribute('cx', x); dot.setAttribute('cy', y); dot.classList.add('show');
+    });
+    const raceBox = svg.closest('.race').getBoundingClientRect();
+    tip.style.left = Math.max(8, Math.min(raceBox.width - tip.offsetWidth - 8,
+      e.clientX - raceBox.left + 12)) + 'px';
+    tip.style.top = Math.max(42, e.clientY - raceBox.top - tip.offsetHeight - 12) + 'px';
+  }
+  document.querySelectorAll('.racechart').forEach(svg => {
+    svg.addEventListener('pointerdown', e => { touching = e.pointerType !== 'mouse'; svg.setPointerCapture(e.pointerId); show(svg,e); });
+    svg.addEventListener('pointermove', e => { if (e.pointerType === 'mouse' || touching) show(svg,e); });
+    svg.addEventListener('pointerup', e => { touching = false; });
+    svg.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') hide(); });
+  });
+  document.addEventListener('pointerdown', e => { if (!e.target.closest('.race')) hide(); });
+}
+initRaceTooltips();
 </script>
 
 </body></html>

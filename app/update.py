@@ -66,15 +66,38 @@ def lookup_player_ids(names: list[str], season: int) -> dict[str, int]:
 
 
 def fetch_stats(ids: dict[str, int], season: int, game_date: str) -> dict[int, dict]:
-    """One batched call: season totals + last-night line + full game log."""
+    """Two batched calls: current stats/date range and unbounded game logs."""
     hydrate = (
-        f"stats(group=[hitting],type=[season,byDateRange,gameLog],"
+        f"stats(group=[hitting],type=[season,byDateRange],"
         f"startDate={game_date},endDate={game_date},season={season})"
     )
     data = get(f"{API}/people", {
         "personIds": ",".join(str(i) for i in ids.values()),
         "hydrate": hydrate,
     })
+    game_data = get(f"{API}/people", {
+        "personIds": ",".join(str(i) for i in ids.values()),
+        "hydrate": f"stats(group=[hitting],type=[gameLog],season={season})",
+    })
+    game_logs = {}
+    for person in game_data.get("people", []):
+        splits = [
+            split
+            for block in person.get("stats", [])
+            if block.get("type", {}).get("displayName") == "gameLog"
+            for split in block.get("splits", [])
+        ]
+        game_logs[person["id"]] = [
+            {
+                "date": s.get("date", ""),
+                "hr": int(s["stat"].get("homeRuns", 0) or 0),
+                "ab": int(s["stat"].get("atBats", 0) or 0),
+                "opponent": s.get("opponent", {}).get("name", "Unknown"),
+                "is_home": bool(s.get("isHome", False)),
+                "game_pk": s.get("game", {}).get("gamePk"),
+            }
+            for s in splits
+        ]
     out = {}
     for person in data.get("people", []):
         season_hr, line, games = 0, None, []
@@ -102,15 +125,7 @@ def fetch_stats(ids: dict[str, int], season: int, game_date: str) -> dict[int, d
                     "k":   int(stat.get("strikeOuts", 0) or 0),
                     "r":   int(stat.get("runs", 0) or 0),
                 }
-            elif btype == "gameLog":
-                games = [
-                    {
-                        "date": s.get("date", ""),
-                        "hr": int(s["stat"].get("homeRuns", 0) or 0),
-                        "ab": int(s["stat"].get("atBats", 0) or 0),
-                    }
-                    for s in splits
-                ]
+        games = game_logs.get(person["id"], [])
         games.sort(key=lambda g: g["date"])
         out[person["id"]] = {"season_hr": season_hr, "line": line,
                              "games": games, "season_line": season_line}
@@ -164,6 +179,7 @@ def build_state(league: dict, ids: dict[str, int], stats: dict[int, dict],
     now = datetime.now(EASTERN)
     week_start = (now - timedelta(days=7)).strftime("%Y-%m-%d")
     is_sunday = now.weekday() == 6
+    draft_date = league["draft_date"]
 
     teams, played, all_players = [], [], []
     for team in league["teams"]:
@@ -182,6 +198,8 @@ def build_state(league: dict, ids: dict[str, int], stats: dict[int, dict],
                 "week_hr": week_hr(s["games"], week_start),
                 "season_line": s.get("season_line",
                                      {"h": 0, "avg": ".000", "rbi": 0, "k": 0}),
+                "hr_games": [g for g in reversed(s["games"])
+                             if g["date"] >= draft_date and g["hr"] > 0],
                 **streaks(s["games"]),
             }
             roster.append(row)
@@ -369,7 +387,15 @@ def race_chart(race: dict) -> str:
                 lines += (f'<text x="{W-PR+8}" y="{ly+4:.1f}" fill="{color}" font-size="14" '
                           f'font-weight="700">{t["name"]} +{t["series"][-1]}</text>')
         cls = "race-mobile-chart" if mobile else "race-desktop-chart"
-        return f'<svg class="{cls}" viewBox="0 0 {W} {H}" width="100%" xmlns="http://www.w3.org/2000/svg">{grid}{labels}{lines}</svg>'
+        cursors = "".join(
+            f'<circle class="racecursor" data-team="{i}" r="{7 if mobile else 5}" '
+            f'fill="{RACE_COLORS[i % len(RACE_COLORS)]}" stroke="var(--panel)" stroke-width="2"/>'
+            for i in range(len(teams))
+        )
+        return (f'<svg class="racechart {cls}" data-w="{W}" data-h="{H}" data-pl="{PL}" '
+                f'data-pr="{PR}" data-pt="{PT}" data-pb="{PB}" data-lo="{lo}" data-hi="{hi}" '
+                f'viewBox="0 0 {W} {H}" width="100%" xmlns="http://www.w3.org/2000/svg">'
+                f'{grid}{labels}{lines}<line class="raceguide" y1="{PT}" y2="{H-PB}"/>{cursors}</svg>')
 
     legend = "".join(
         f'<span><i style="background:{RACE_COLORS[i % len(RACE_COLORS)]}"></i>{t["name"].replace("Team ", "")}</span>'
@@ -390,8 +416,10 @@ def race_chart(race: dict) -> str:
           <div class="racelegend">{legend}</div>
           {chart_svg(1340, 300, False)}
           {chart_svg(390, 500, True)}
+          <div class="racetooltip" role="status" aria-live="polite"></div>
           <div class="racecards">{cards}</div>
-        </section>"""
+        </section>
+        <script>window.RACE_DATA = {json.dumps(race)};</script>"""
 
 
 TABS_JS = """
@@ -427,6 +455,52 @@ function sortStats(col, type) {
     th.classList.toggle('desc', i === col && dir === -1);
   });
 }
+function initRaceTooltips() {
+  const data = window.RACE_DATA;
+  if (!data) return;
+  const tip = document.querySelector('.racetooltip');
+  const colors = ['#4ADE80','#60A5FA','#FBBF24','#F472B6','#A78BFA'];
+  let touching = false;
+  function hide() {
+    tip.classList.remove('show');
+    document.querySelectorAll('.raceguide,.racecursor').forEach(el => el.classList.remove('show'));
+  }
+  function show(svg, e) {
+    const box = svg.getBoundingClientRect();
+    const W = +svg.dataset.w, H = +svg.dataset.h;
+    const PL = +svg.dataset.pl, PR = +svg.dataset.pr;
+    const PT = +svg.dataset.pt, PB = +svg.dataset.pb;
+    const lo = +svg.dataset.lo, hi = +svg.dataset.hi;
+    const px = (e.clientX - box.left) / box.width * W;
+    const idx = Math.max(0, Math.min(data.dates.length - 1,
+      Math.round((px - PL) / (W - PL - PR) * (data.dates.length - 1))));
+    const x = PL + (W - PL - PR) * idx / (data.dates.length - 1);
+    const date = new Date(data.dates[idx] + 'T12:00:00');
+    tip.innerHTML = '<strong>' + date.toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'}) + '</strong>' +
+      data.teams.map((t,i) => '<span><i style="background:' + colors[i] + '"></i>' +
+        t.name + '<b>+' + t.series[idx] + '</b></span>').join('');
+    tip.classList.add('show');
+    svg.querySelector('.raceguide').setAttribute('x1', x);
+    svg.querySelector('.raceguide').setAttribute('x2', x);
+    svg.querySelector('.raceguide').classList.add('show');
+    svg.querySelectorAll('.racecursor').forEach((dot, i) => {
+      const y = PT + (H - PT - PB) * (1 - (data.teams[i].series[idx] - lo) / Math.max(1, hi - lo));
+      dot.setAttribute('cx', x); dot.setAttribute('cy', y); dot.classList.add('show');
+    });
+    const raceBox = svg.closest('.race').getBoundingClientRect();
+    tip.style.left = Math.max(8, Math.min(raceBox.width - tip.offsetWidth - 8,
+      e.clientX - raceBox.left + 12)) + 'px';
+    tip.style.top = Math.max(42, e.clientY - raceBox.top - tip.offsetHeight - 12) + 'px';
+  }
+  document.querySelectorAll('.racechart').forEach(svg => {
+    svg.addEventListener('pointerdown', e => { touching = e.pointerType !== 'mouse'; svg.setPointerCapture(e.pointerId); show(svg,e); });
+    svg.addEventListener('pointermove', e => { if (e.pointerType === 'mouse' || touching) show(svg,e); });
+    svg.addEventListener('pointerup', e => { touching = false; });
+    svg.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') hide(); });
+  });
+  document.addEventListener('pointerdown', e => { if (!e.target.closest('.race')) hide(); });
+}
+initRaceTooltips();
 </script>
 """
 
@@ -506,15 +580,26 @@ def render_html(state: dict) -> str:
         for r in t["roster"]:
             hr_pill = f'<span class="hrpill">HR&thinsp;&times;{r["hr_last_night"]}</span>' \
                 if r["hr_last_night"] else ""
+            hr_log = "".join(
+                f'<div class="hrgame"><time>{datetime.strptime(g["date"], "%Y-%m-%d").strftime("%b")} '
+                f'{datetime.strptime(g["date"], "%Y-%m-%d").day}</time>'
+                f'<strong>{g["hr"]} HR</strong>'
+                f'<span>{"vs" if g["is_home"] else "@"} {g["opponent"]}</span></div>'
+                for g in r["hr_games"]
+            ) or '<div class="hrgame empty">No HR games since draft</div>'
             rows += f"""
-            <div class="row{' rowhr' if r['hr_last_night'] else ''}">
-              <span class="pos">{r['pos']}</span>
-              <div class="mid">
-                <span class="pname">{r['name']} <em>{r['mlb_team']}</em></span>
-                <span class="pline">{fmt_line(r['line'])}{hr_pill}{streak_tag(r)}</span>
-              </div>
-              <span class="phr">{r['season_hr']}<em>+{r['gained']}</em></span>
-            </div>"""
+            <details class="player">
+              <summary class="row{' rowhr' if r['hr_last_night'] else ''}">
+                <span class="pos">{r['pos']}</span>
+                <div class="mid">
+                  <span class="pname">{r['name']} <em>{r['mlb_team']}</em></span>
+                  <span class="pline">{fmt_line(r['line'])}{hr_pill}{streak_tag(r)}</span>
+                </div>
+                <span class="phr">{r['season_hr']}<em>+{r['gained']}</em></span>
+                <span class="playerchev" aria-hidden="true"></span>
+              </summary>
+              <div class="hrlog"><span class="hrlogtitle">HOME RUN LOG &middot; SINCE JUL 6</span>{hr_log}</div>
+            </details>"""
         lead = ' teamlead' if i == 0 else ''
         night = f'<span class="nighthr">+{t["hr_last_night"]} last night</span>' \
             if t["hr_last_night"] else ''
@@ -603,10 +688,12 @@ def render_html(state: dict) -> str:
               border-bottom:2px solid var(--dim); transform:rotate(45deg);
               transition:transform .18s ease; }}
   .team[open] .chevron {{ transform:rotate(225deg); }}
-  .row {{ display:grid; grid-template-columns:34px 1fr 62px; gap:8px;
-          padding:8px 14px; align-items:center;
-          border-bottom:1px solid rgba(41,64,47,.5); }}
-  .row:last-child {{ border-bottom:none; }}
+  .row {{ display:grid; grid-template-columns:34px 1fr 62px 12px; gap:8px;
+           padding:8px 14px; align-items:center;
+           border-bottom:1px solid rgba(41,64,47,.5); }}
+  .player:last-child .row {{ border-bottom:none; }}
+  .row {{ cursor:pointer; list-style:none; }}
+  .row::-webkit-details-marker {{ display:none; }}
   .rowhr {{ background:rgba(255,182,39,.09); }}
   .pos {{ color:var(--dim); font-size:12px; }}
   .mid {{ min-width:0; }}
@@ -622,9 +709,22 @@ def render_html(state: dict) -> str:
   .cold {{ color:var(--ice); border:1px solid var(--ice); }}
   .phr {{ text-align:right; font-weight:700; font-size:20px; color:var(--ice); }}
   .phr em {{ display:block; font-style:normal; color:var(--dim); font-size:11px;
-             font-weight:400; }}
+              font-weight:400; }}
+  .playerchev {{ width:7px; height:7px; border-right:1px solid var(--dim);
+                 border-bottom:1px solid var(--dim); transform:rotate(45deg);
+                 transition:transform .18s ease; }}
+  .player[open] .playerchev {{ transform:rotate(225deg); }}
+  .hrlog {{ padding:9px 14px 11px 56px; background:rgba(12,20,24,.55);
+            border-bottom:1px solid var(--hair); }}
+  .hrlogtitle {{ display:block; color:var(--dim); font-size:10px;
+                 letter-spacing:1px; margin-bottom:5px; }}
+  .hrgame {{ display:grid; grid-template-columns:58px 44px 1fr; gap:8px;
+             padding:4px 0; font-size:12px; }}
+  .hrgame time {{ color:var(--dim); }}
+  .hrgame strong {{ color:var(--led); }}
+  .hrgame.empty {{ display:block; color:var(--dim); }}
   .race {{ margin-top:16px; border:1px solid var(--hair); background:var(--panel);
-           padding:12px 16px 6px; display:block; }}
+           padding:12px 16px 6px; display:block; position:relative; }}
   .racetitle {{ font-family:"Archivo Black",sans-serif; font-size:13px;
                  color:var(--led); letter-spacing:1px; display:block; margin-bottom:6px; }}
   .racelegend {{ display:none; gap:14px; flex-wrap:wrap; color:var(--dim);
@@ -632,6 +732,21 @@ def render_html(state: dict) -> str:
   .racelegend span {{ display:flex; align-items:center; gap:5px; }}
   .racelegend i {{ width:18px; height:4px; border-radius:2px; }}
   .race-mobile-chart, .racecards {{ display:none; }}
+  .racechart {{ touch-action:pan-y; user-select:none; }}
+  .raceguide {{ stroke:var(--chalk); stroke-width:1; stroke-dasharray:4 4;
+                opacity:0; pointer-events:none; }}
+  .racecursor {{ opacity:0; pointer-events:none; }}
+  .raceguide.show, .racecursor.show {{ opacity:1; }}
+  .racetooltip {{ display:none; position:absolute; z-index:4; min-width:190px;
+                  padding:9px 11px; background:#0C1116; border:1px solid var(--hair);
+                  box-shadow:0 8px 24px rgba(0,0,0,.35); pointer-events:none; }}
+  .racetooltip.show {{ display:block; }}
+  .racetooltip > strong {{ display:block; margin-bottom:5px; font-size:12px; }}
+  .racetooltip span {{ display:grid; grid-template-columns:9px 1fr auto;
+                       align-items:center; gap:7px; color:var(--dim); font-size:11px;
+                       padding:2px 0; }}
+  .racetooltip i {{ width:7px; height:7px; border-radius:50%; }}
+  .racetooltip b {{ color:var(--chalk); font-size:13px; }}
   .racecards {{ gap:8px; margin-top:10px; }}
   .racecard {{ display:grid; grid-template-columns:22px 1fr auto; align-items:center;
                gap:7px; border:1px solid var(--hair); padding:10px 11px; }}
