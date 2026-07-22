@@ -1,2 +1,3 @@
 requests
 playwright
+tzdata; platform_system == "Windows"

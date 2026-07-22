@@ -282,7 +282,7 @@ def load_history() -> dict:
     path = DOCS / "history.json"
     if path.exists():
         try:
-            return json.loads(path.read_text())
+            return json.loads(path.read_text(encoding="utf-8"))
         except Exception:
             print("WARNING: history.json unreadable; starting fresh", file=sys.stderr)
     return {"dates": [], "totals": {}}
@@ -678,7 +678,7 @@ def make_icon(png_path: Path) -> None:
             "font:900 64px Arial'><span style='color:#4ADE80;"
             "text-shadow:0 0 18px rgba(74,222,128,.6)'>HR</span></body>")
     tmp = png_path.parent / "_icon.html"
-    tmp.write_text(html)
+    tmp.write_text(html, encoding="utf-8")
     try:
         from playwright.sync_api import sync_playwright
         with sync_playwright() as pw:
@@ -694,7 +694,7 @@ def make_icon(png_path: Path) -> None:
 # ------------------------------------------------------------------- main ---
 
 def main() -> int:
-    league = json.loads((ROOT / "league.json").read_text())
+    league = json.loads((ROOT / "league.json").read_text(encoding="utf-8"))
     season = league["season"]
     yesterday = (datetime.now(EASTERN) - timedelta(days=1)).strftime("%Y-%m-%d")
 
@@ -711,16 +711,18 @@ def main() -> int:
 
     DOCS.mkdir(exist_ok=True)
     history = update_history(load_history(), yesterday, state["teams"])
-    (DOCS / "history.json").write_text(json.dumps(history, indent=2))
+    (DOCS / "history.json").write_text(json.dumps(history, indent=2), encoding="utf-8")
     state["race"] = race_from_history(history, [t["name"] for t in league["teams"]])
-    (DOCS / "index.html").write_text(render_html(state))
+    (DOCS / "index.html").write_text(render_html(state), encoding="utf-8")
     (DOCS / "manifest.json").write_text(json.dumps({
         "name": state["league_name"], "short_name": "HR League",
         "start_url": ".", "display": "standalone",
         "background_color": "#101418", "theme_color": "#101418",
         "icons": [{"src": "icon.png", "sizes": "180x180", "type": "image/png"}],
-    }, indent=2))
-    (DOCS / "data.json").write_text(json.dumps(state, indent=2, default=str))
+    }, indent=2), encoding="utf-8")
+    (DOCS / "data.json").write_text(
+        json.dumps(state, indent=2, default=str), encoding="utf-8"
+    )
     print(f"Rendered dashboard for {yesterday}: "
           + ", ".join(f"{t['name']} {t['season_total']}" for t in state["teams"]))
 

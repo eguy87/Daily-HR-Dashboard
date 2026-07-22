@@ -7,7 +7,32 @@ Every morning at 7:45 AM ET, a GitHub Action pulls last night's box scores from 
 
 Scoring: a team's score is its total season HRs. The dashboard also shows `+X since draft` for every player and team, computed against the `start_hr` baselines in `league.json`.
 
-## One-time setup (~15 min)
+## Run locally
+
+Requirements: Python 3.10+ and PowerShell.
+
+```powershell
+.\setup.ps1
+.\start.ps1
+```
+
+The launcher refreshes the MLB data, serves `docs/` at
+`http://127.0.0.1:8000`, and opens it in your browser. Later, use
+`.\start.ps1 -SkipBuild` to serve the last generated dashboard without calling
+the MLB API. Choose another port with `.\start.ps1 -Port 8080`.
+
+On macOS/Linux, run the equivalent commands directly:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+playwright install chromium
+python update.py
+python serve.py --open
+```
+
+## GitHub setup (~15 min)
 
 1. **Create the repo.** On github.com: New repository (public — required for free Pages) → upload these files, keeping the folder structure (`.github/workflows/daily.yml` must keep its path).
 2. **Enable Pages.** Repo → Settings → Pages → Source: *Deploy from a branch* → Branch: `main`, folder `/docs` → Save.
