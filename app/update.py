@@ -199,7 +199,7 @@ def build_state(league: dict, ids: dict[str, int], stats: dict[int, dict],
             "pace": round(season_total * SEASON_GAMES / avg_gp) if avg_gp else None,
             "roster": roster,
         })
-    teams.sort(key=lambda t: t["season_total"], reverse=True)
+    teams.sort(key=lambda t: t["gained"], reverse=True)
 
     potn = max(played, key=lambda p: night_score(p["line"]), default=None)
     if potn and night_score(potn["line"]) <= 0:
@@ -301,11 +301,12 @@ def update_history(history: dict, game_date: str, teams: list[dict]) -> dict:
     return history
 
 
-def race_from_history(history: dict, team_order: list[str]) -> dict:
-    """Shape history into the chart's input, forward-filling any gaps."""
+def race_from_history(history: dict, teams_config: list[dict]) -> dict:
+    """Shape season-total history into a since-draft race series."""
     dates = history["dates"]
     teams = []
-    for name in team_order:
+    for team in teams_config:
+        name, start_total = team["name"], team["start_total"]
         raw = history["totals"].get(name, [])
         series, prev = [], None
         for i in range(len(dates)):
@@ -314,7 +315,7 @@ def race_from_history(history: dict, team_order: list[str]) -> dict:
             series.append(prev)
         first = next((v for v in series if v is not None), 0)
         series = [first if v is None else v for v in series]
-        teams.append({"name": name, "series": series})
+        teams.append({"name": name, "series": [v - start_total for v in series]})
     return {"dates": dates, "teams": teams}
 
 
@@ -325,44 +326,71 @@ def race_chart(race: dict) -> str:
     dates, teams = race.get("dates", []), race.get("teams", [])
     if len(dates) < 2 or not teams:
         return ""
-    W, H, PL, PR, PT, PB = 1340, 300, 46, 150, 16, 30
     lo = min(min(t["series"]) for t in teams)
     hi = max(max(t["series"]) for t in teams)
     lo, hi = max(0, lo - 3), hi + 3
-    def x(i): return PL + (W - PL - PR) * i / (len(dates) - 1)
-    def y(v): return PT + (H - PT - PB) * (1 - (v - lo) / (hi - lo))
-    grid, labels = "", ""
-    for gv in range(int(lo) // 20 * 20 + 20, int(hi) + 1, 20):
-        gy = y(gv)
-        grid += f'<line x1="{PL}" y1="{gy:.1f}" x2="{W-PR}" y2="{gy:.1f}" stroke="var(--hair)" stroke-width="1"/>'
-        labels += f'<text x="{PL-8}" y="{gy+4:.1f}" text-anchor="end" fill="var(--dim)" font-size="12">{gv}</text>'
-    # month ticks
-    seen = set()
-    for i, d in enumerate(dates):
-        m = d[:7]
-        if m not in seen:
-            seen.add(m)
-            label = datetime.strptime(d, "%Y-%m-%d").strftime("%b")
-            labels += f'<text x="{x(i):.1f}" y="{H-8}" fill="var(--dim)" font-size="12">{label}</text>'
-    lines = ""
+
+    def chart_svg(W: int, H: int, mobile: bool) -> str:
+        PL, PR, PT, PB = (38, 18, 18, 44) if mobile else (46, 150, 16, 30)
+        x = lambda i: PL + (W - PL - PR) * i / (len(dates) - 1)
+        y = lambda v: PT + (H - PT - PB) * (1 - (v - lo) / max(1, hi - lo))
+        step = max(2, round((hi - lo) / (5 if mobile else 4)))
+        grid, labels = "", ""
+        gv = int(lo // step * step + step)
+        while gv <= hi:
+            gy = y(gv)
+            grid += f'<line x1="{PL}" y1="{gy:.1f}" x2="{W-PR}" y2="{gy:.1f}" stroke="var(--hair)" stroke-width="1"/>'
+            labels += f'<text x="{PL-7}" y="{gy+4:.1f}" text-anchor="end" fill="var(--dim)" font-size="11">+{gv}</text>'
+            gv += step
+        tick_indexes = sorted({0, len(dates) // 2, len(dates) - 1}) if mobile else [
+            i for i, d in enumerate(dates)
+            if i == 0 or d[:7] != dates[i - 1][:7]
+        ]
+        for i in tick_indexes:
+            tick_date = datetime.strptime(dates[i], "%Y-%m-%d")
+            label = f"{tick_date.strftime('%b')} {tick_date.day}" \
+                if mobile else tick_date.strftime("%b")
+            anchor = "start" if i == 0 else ("end" if i == len(dates) - 1 else "middle")
+            labels += f'<text x="{x(i):.1f}" y="{H-12}" text-anchor="{anchor}" fill="var(--dim)" font-size="11">{label}</text>'
+        lines = ""
+        order = sorted(range(len(teams)), key=lambda i: -teams[i]["series"][-1])
+        used_y = []
+        for ti in order:
+            t, color = teams[ti], RACE_COLORS[ti % len(RACE_COLORS)]
+            pts = " ".join(f"{x(i):.1f},{y(v):.1f}" for i, v in enumerate(t["series"]))
+            width = 5 if mobile else 3
+            lines += f'<polyline points="{pts}" fill="none" stroke="{color}" stroke-width="{width}" stroke-linecap="round" stroke-linejoin="round"/>'
+            lines += f'<circle cx="{x(len(dates)-1):.1f}" cy="{y(t["series"][-1]):.1f}" r="{5 if mobile else 3}" fill="{color}"/>'
+            if not mobile:
+                ly = y(t["series"][-1])
+                while any(abs(ly - u) < 18 for u in used_y):
+                    ly += 18
+                used_y.append(ly)
+                lines += (f'<text x="{W-PR+8}" y="{ly+4:.1f}" fill="{color}" font-size="14" '
+                          f'font-weight="700">{t["name"]} +{t["series"][-1]}</text>')
+        cls = "race-mobile-chart" if mobile else "race-desktop-chart"
+        return f'<svg class="{cls}" viewBox="0 0 {W} {H}" width="100%" xmlns="http://www.w3.org/2000/svg">{grid}{labels}{lines}</svg>'
+
+    legend = "".join(
+        f'<span><i style="background:{RACE_COLORS[i % len(RACE_COLORS)]}"></i>{t["name"].replace("Team ", "")}</span>'
+        for i, t in enumerate(teams)
+    )
     order = sorted(range(len(teams)), key=lambda i: -teams[i]["series"][-1])
-    used_y = []
-    for rank, ti in enumerate(order):
-        t, color = teams[ti], RACE_COLORS[ti % len(RACE_COLORS)]
-        pts = " ".join(f"{x(i):.1f},{y(v):.1f}" for i, v in enumerate(t["series"]))
-        lines += f'<polyline points="{pts}" fill="none" stroke="{color}" stroke-width="3" stroke-linejoin="round"/>'
-        ly = y(t["series"][-1])
-        while any(abs(ly - u) < 18 for u in used_y):
-            ly += 18
-        used_y.append(ly)
-        lines += (f'<text x="{W-PR+8}" y="{ly+4:.1f}" fill="{color}" font-size="14" '
-                  f'font-weight="700">{t["name"]} {t["series"][-1]}</text>')
+    leader = teams[order[0]]["series"][-1]
+    cards = "".join(
+        f'<div class="racecard"><span class="racecard-rank">{rank + 1}</span>'
+        f'<span class="racecard-name">{teams[i]["name"]}</span>'
+        f'<strong>+{teams[i]["series"][-1]}</strong>'
+        f'<em>{"LEADER" if rank == 0 else str(leader - teams[i]["series"][-1]) + " BACK"}</em></div>'
+        for rank, i in enumerate(order)
+    )
     return f"""
         <section class="race">
-          <span class="racetitle">THE RACE &middot; SEASON HR TOTALS</span>
-          <svg viewBox="0 0 {W} {H}" width="100%" xmlns="http://www.w3.org/2000/svg">
-            {grid}{labels}{lines}
-          </svg>
+          <span class="racetitle">THE RACE &middot; HR SINCE DRAFT</span>
+          <div class="racelegend">{legend}</div>
+          {chart_svg(1340, 300, False)}
+          {chart_svg(390, 500, True)}
+          <div class="racecards">{cards}</div>
         </section>"""
 
 
@@ -490,17 +518,20 @@ def render_html(state: dict) -> str:
         lead = ' teamlead' if i == 0 else ''
         night = f'<span class="nighthr">+{t["hr_last_night"]} last night</span>' \
             if t["hr_last_night"] else ''
-        pace = f'pace {t["pace"]}' if t["pace"] else ''
+        open_attr = ' open' if i == 0 else ''
         teams_html += f"""
-        <section class="team{lead}">
-          <header class="teamhead">
+        <details class="team{lead}"{open_attr}>
+          <summary class="teamhead">
             <div><span class="rank">{rank_labels[i]}</span>
             <h2>{t['name']}</h2>{night}</div>
-            <div class="total"><span class="led">{t['season_total']}</span>
-              <span class="totlbl">HR &middot; +{t['gained']} draft &middot; {pace}</span></div>
-          </header>
-          {rows}
-        </section>"""
+            <div class="scorewrap">
+              <div class="total"><span class="led">+{t['gained']}</span>
+                <span class="totlbl">SINCE DRAFT &middot; {t['season_total']} SEASON HR</span></div>
+              <span class="chevron" aria-hidden="true"></span>
+            </div>
+          </summary>
+          <div class="roster">{rows}</div>
+        </details>"""
 
     no_games = '<div class="banner nogames">No games last night — scoreboard unchanged.</div>' \
         if not state["any_games"] else ""
@@ -554,7 +585,9 @@ def render_html(state: dict) -> str:
   .team {{ border:1px solid var(--hair); background:var(--panel); }}
   .teamlead {{ border-color:var(--led); box-shadow:0 0 0 1px var(--led); }}
   .teamhead {{ display:flex; align-items:center; justify-content:space-between;
-               padding:12px 14px 10px; border-bottom:1px solid var(--hair); }}
+               padding:12px 14px 10px; cursor:pointer; list-style:none; }}
+  .teamhead::-webkit-details-marker {{ display:none; }}
+  .team[open] .teamhead {{ border-bottom:1px solid var(--hair); }}
   .rank {{ font-family:"Archivo Black",sans-serif; font-size:12px; color:var(--dim); }}
   .teamlead .rank {{ color:var(--led); }}
   .teamhead h2 {{ font-family:"Archivo Black",sans-serif; font-size:21px;
@@ -564,7 +597,12 @@ def render_html(state: dict) -> str:
   .led {{ font-weight:700; font-size:38px; color:var(--led);
           text-shadow:0 0 14px rgba(255,182,39,.45); line-height:1; }}
   .totlbl {{ display:block; color:var(--dim); font-size:11px; margin-top:2px;
-             white-space:nowrap; }}
+              white-space:nowrap; }}
+  .scorewrap {{ display:flex; align-items:center; gap:12px; }}
+  .chevron {{ width:9px; height:9px; border-right:2px solid var(--dim);
+              border-bottom:2px solid var(--dim); transform:rotate(45deg);
+              transition:transform .18s ease; }}
+  .team[open] .chevron {{ transform:rotate(225deg); }}
   .row {{ display:grid; grid-template-columns:34px 1fr 62px; gap:8px;
           padding:8px 14px; align-items:center;
           border-bottom:1px solid rgba(41,64,47,.5); }}
@@ -588,7 +626,20 @@ def render_html(state: dict) -> str:
   .race {{ margin-top:16px; border:1px solid var(--hair); background:var(--panel);
            padding:12px 16px 6px; display:block; }}
   .racetitle {{ font-family:"Archivo Black",sans-serif; font-size:13px;
-                color:var(--led); letter-spacing:1px; display:block; margin-bottom:6px; }}
+                 color:var(--led); letter-spacing:1px; display:block; margin-bottom:6px; }}
+  .racelegend {{ display:none; gap:14px; flex-wrap:wrap; color:var(--dim);
+                 font-size:11px; font-weight:700; text-transform:uppercase; }}
+  .racelegend span {{ display:flex; align-items:center; gap:5px; }}
+  .racelegend i {{ width:18px; height:4px; border-radius:2px; }}
+  .race-mobile-chart, .racecards {{ display:none; }}
+  .racecards {{ gap:8px; margin-top:10px; }}
+  .racecard {{ display:grid; grid-template-columns:22px 1fr auto; align-items:center;
+               gap:7px; border:1px solid var(--hair); padding:10px 11px; }}
+  .racecard-rank {{ color:var(--dim); font-family:"Archivo Black",sans-serif; }}
+  .racecard-name {{ font-size:13px; font-weight:700; text-transform:uppercase; }}
+  .racecard strong {{ color:var(--led); font-size:22px; }}
+  .racecard em {{ grid-column:2 / -1; color:var(--dim); font-size:10px;
+                  font-style:normal; letter-spacing:1px; }}
   .tabs {{ display:flex; gap:8px; margin-top:14px; }}
   .tabbtn {{ font:700 14px "Chivo Mono",monospace; letter-spacing:.5px;
              background:var(--panel); color:var(--dim); border:1px solid var(--hair);
@@ -625,6 +676,11 @@ def render_html(state: dict) -> str:
     .led {{ font-size:34px; }}
     .weekly {{ flex-direction:column; gap:4px; }}
     .wkteams {{ margin-left:0; }}
+    .race {{ padding:14px 10px 12px; }}
+    .racelegend {{ display:flex; margin:8px 2px 4px; }}
+    .race-desktop-chart {{ display:none; }}
+    .race-mobile-chart {{ display:block; width:100%; height:auto; }}
+    .racecards {{ display:grid; }}
   }}
 </style></head><body>
   <div class="masthead">
@@ -712,7 +768,7 @@ def main() -> int:
     DOCS.mkdir(exist_ok=True)
     history = update_history(load_history(), yesterday, state["teams"])
     (DOCS / "history.json").write_text(json.dumps(history, indent=2), encoding="utf-8")
-    state["race"] = race_from_history(history, [t["name"] for t in league["teams"]])
+    state["race"] = race_from_history(history, league["teams"])
     (DOCS / "index.html").write_text(render_html(state), encoding="utf-8")
     (DOCS / "manifest.json").write_text(json.dumps({
         "name": state["league_name"], "short_name": "HR League",
@@ -724,7 +780,7 @@ def main() -> int:
         json.dumps(state, indent=2, default=str), encoding="utf-8"
     )
     print(f"Rendered dashboard for {yesterday}: "
-          + ", ".join(f"{t['name']} {t['season_total']}" for t in state["teams"]))
+          + ", ".join(f"{t['name']} +{t['gained']}" for t in state["teams"]))
 
     try:
         screenshot(DOCS / "index.html", DOCS / "dashboard.png")
