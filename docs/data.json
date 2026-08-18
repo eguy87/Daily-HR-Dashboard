@@ -1,6 +1,6 @@
 {
   "league_name": "HR Derby League",
-  "game_date": "2026-08-16",
+  "game_date": "2026-08-17",
   "race": {
     "dates": [
       "2026-07-08",
@@ -42,7 +42,8 @@
       "2026-08-13",
       "2026-08-14",
       "2026-08-15",
-      "2026-08-16"
+      "2026-08-16",
+      "2026-08-17"
     ],
     "teams": [
       {
@@ -87,7 +88,8 @@
           48,
           48,
           48,
-          50
+          50,
+          53
         ]
       },
       {
@@ -132,7 +134,8 @@
           56,
           59,
           59,
-          62
+          62,
+          64
         ]
       },
       {
@@ -177,21 +180,22 @@
           42,
           44,
           44,
+          46,
           46
         ]
       }
     ]
   },
-  "generated_at": "Aug 17, 2026 08:01 AM ET",
+  "generated_at": "Aug 18, 2026 08:02 AM ET",
   "teams": [
     {
       "name": "Team Barmen",
       "start_total": 186,
-      "season_total": 248,
-      "gained": 62,
-      "hr_last_night": 3,
-      "week_hr": 10,
-      "pace": 322,
+      "season_total": 250,
+      "gained": 64,
+      "hr_last_night": 2,
+      "week_hr": 12,
+      "pace": 323,
       "roster": [
         {
           "pos": "DH",
@@ -204,18 +208,18 @@
             "ab": 4,
             "h": 1,
             "hr": 0,
-            "rbi": 0,
-            "bb": 1,
-            "k": 1,
-            "r": 1
+            "rbi": 1,
+            "bb": 0,
+            "k": 2,
+            "r": 0
           },
           "hr_last_night": 0,
           "week_hr": 2,
           "season_line": {
-            "h": 109,
+            "h": 110,
             "avg": ".247",
-            "rbi": 72,
-            "k": 180
+            "rbi": 73,
+            "k": 182
           },
           "hr_games": [
             {
@@ -260,7 +264,7 @@
             }
           ],
           "hr_streak": 0,
-          "drought": 2
+          "drought": 3
         },
         {
           "pos": "C",
@@ -270,10 +274,10 @@
           "season_hr": 26,
           "gained": 7,
           "line": {
-            "ab": 4,
+            "ab": 5,
             "h": 1,
             "hr": 0,
-            "rbi": 1,
+            "rbi": 0,
             "bb": 1,
             "k": 1,
             "r": 0
@@ -281,10 +285,10 @@
           "hr_last_night": 0,
           "week_hr": 0,
           "season_line": {
-            "h": 114,
-            "avg": ".259",
+            "h": 115,
+            "avg": ".258",
             "rbi": 82,
-            "k": 108
+            "k": 109
           },
           "hr_games": [
             {
@@ -337,7 +341,7 @@
             }
           ],
           "hr_streak": 0,
-          "drought": 9
+          "drought": 10
         },
         {
           "pos": "1B",
@@ -346,16 +350,8 @@
           "start_hr": 24,
           "season_hr": 33,
           "gained": 9,
-          "line": {
-            "ab": 5,
-            "h": 1,
-            "hr": 1,
-            "rbi": 2,
-            "bb": 0,
-            "k": 1,
-            "r": 1
-          },
-          "hr_last_night": 1,
+          "line": null,
+          "hr_last_night": 0,
           "week_hr": 1,
           "season_line": {
             "h": 111,
@@ -443,16 +439,16 @@
             "ab": 4,
             "h": 2,
             "hr": 0,
-            "rbi": 2,
+            "rbi": 0,
             "bb": 0,
-            "k": 2,
-            "r": 1
+            "k": 0,
+            "r": 0
           },
           "hr_last_night": 0,
           "week_hr": 1,
           "season_line": {
-            "h": 117,
-            "avg": ".252",
+            "h": 119,
+            "avg": ".254",
             "rbi": 79,
             "k": 152
           },
@@ -499,7 +495,7 @@
             }
           ],
           "hr_streak": 0,
-          "drought": 2
+          "drought": 3
         },
         {
           "pos": "3B",
@@ -511,19 +507,19 @@
           "line": {
             "ab": 4,
             "h": 1,
-            "hr": 1,
-            "rbi": 1,
+            "hr": 0,
+            "rbi": 0,
             "bb": 1,
-            "k": 1,
+            "k": 2,
             "r": 1
           },
-          "hr_last_night": 1,
+          "hr_last_night": 0,
           "week_hr": 4,
           "season_line": {
-            "h": 108,
+            "h": 109,
             "avg": ".239",
             "rbi": 72,
-            "k": 95
+            "k": 97
           },
           "hr_games": [
             {
@@ -583,8 +579,8 @@
               "game_pk": 824575
             }
           ],
-          "hr_streak": 1,
-          "drought": 0
+          "hr_streak": 0,
+          "drought": 1
         },
         {
           "pos": "SS",
@@ -594,21 +590,21 @@
           "season_hr": 20,
           "gained": 7,
           "line": {
-            "ab": 3,
-            "h": 0,
+            "ab": 8,
+            "h": 2,
             "hr": 0,
-            "rbi": 0,
+            "rbi": 1,
             "bb": 1,
-            "k": 1,
-            "r": 0
+            "k": 5,
+            "r": 1
           },
           "hr_last_night": 0,
           "week_hr": 0,
           "season_line": {
-            "h": 107,
-            "avg": ".262",
-            "rbi": 56,
-            "k": 124
+            "h": 109,
+            "avg": ".261",
+            "rbi": 57,
+            "k": 129
           },
           "hr_games": [
             {
@@ -669,7 +665,7 @@
             }
           ],
           "hr_streak": 0,
-          "drought": 8
+          "drought": 10
         },
         {
           "pos": "RF",
@@ -745,26 +741,34 @@
           "name": "Pete Crow-Armstrong",
           "mlb_team": "Cubs",
           "start_hr": 19,
-          "season_hr": 28,
-          "gained": 9,
+          "season_hr": 30,
+          "gained": 11,
           "line": {
             "ab": 5,
-            "h": 1,
-            "hr": 1,
-            "rbi": 2,
-            "bb": 0,
-            "k": 3,
-            "r": 1
+            "h": 4,
+            "hr": 2,
+            "rbi": 3,
+            "bb": 1,
+            "k": 1,
+            "r": 2
           },
-          "hr_last_night": 1,
-          "week_hr": 2,
+          "hr_last_night": 2,
+          "week_hr": 4,
           "season_line": {
-            "h": 131,
-            "avg": ".276",
-            "rbi": 75,
-            "k": 151
+            "h": 135,
+            "avg": ".281",
+            "rbi": 78,
+            "k": 152
           },
           "hr_games": [
+            {
+              "date": "2026-08-17",
+              "hr": 2,
+              "ab": 5,
+              "opponent": "Chicago White Sox",
+              "is_home": true,
+              "game_pk": 824641
+            },
             {
               "date": "2026-08-16",
               "hr": 1,
@@ -822,7 +826,7 @@
               "game_pk": 824815
             }
           ],
-          "hr_streak": 1,
+          "hr_streak": 2,
           "drought": 0
         },
         {
@@ -837,15 +841,15 @@
             "h": 1,
             "hr": 0,
             "rbi": 0,
-            "bb": 0,
+            "bb": 1,
             "k": 0,
-            "r": 0
+            "r": 1
           },
           "hr_last_night": 0,
           "week_hr": 0,
           "season_line": {
-            "h": 94,
-            "avg": ".214",
+            "h": 95,
+            "avg": ".215",
             "rbi": 51,
             "k": 158
           },
@@ -876,44 +880,52 @@
             }
           ],
           "hr_streak": 0,
-          "drought": 6
+          "drought": 7
         }
       ]
     },
     {
       "name": "Team Guy",
       "start_total": 180,
-      "season_total": 230,
-      "gained": 50,
-      "hr_last_night": 2,
-      "week_hr": 6,
-      "pace": 299,
+      "season_total": 233,
+      "gained": 53,
+      "hr_last_night": 3,
+      "week_hr": 9,
+      "pace": 301,
       "roster": [
         {
           "pos": "DH",
           "name": "Shohei Ohtani",
           "mlb_team": "Dodgers",
           "start_hr": 18,
-          "season_hr": 27,
-          "gained": 9,
+          "season_hr": 29,
+          "gained": 11,
           "line": {
-            "ab": 4,
-            "h": 1,
-            "hr": 0,
-            "rbi": 0,
+            "ab": 5,
+            "h": 4,
+            "hr": 2,
+            "rbi": 3,
             "bb": 0,
-            "k": 1,
-            "r": 0
+            "k": 0,
+            "r": 4
           },
-          "hr_last_night": 0,
-          "week_hr": 1,
+          "hr_last_night": 2,
+          "week_hr": 3,
           "season_line": {
-            "h": 128,
-            "avg": ".289",
-            "rbi": 75,
+            "h": 132,
+            "avg": ".295",
+            "rbi": 78,
             "k": 122
           },
           "hr_games": [
+            {
+              "date": "2026-08-17",
+              "hr": 2,
+              "ab": 5,
+              "opponent": "Colorado Rockies",
+              "is_home": false,
+              "game_pk": 824320
+            },
             {
               "date": "2026-08-12",
               "hr": 1,
@@ -979,8 +991,8 @@
               "game_pk": 823930
             }
           ],
-          "hr_streak": 0,
-          "drought": 4
+          "hr_streak": 1,
+          "drought": 0
         },
         {
           "pos": "C",
@@ -1044,18 +1056,18 @@
           "gained": 5,
           "line": {
             "ab": 4,
-            "h": 1,
+            "h": 3,
             "hr": 0,
             "rbi": 0,
             "bb": 1,
             "k": 0,
-            "r": 2
+            "r": 1
           },
           "hr_last_night": 0,
           "week_hr": 0,
           "season_line": {
-            "h": 112,
-            "avg": ".256",
+            "h": 115,
+            "avg": ".260",
             "rbi": 72,
             "k": 112
           },
@@ -1102,7 +1114,7 @@
             }
           ],
           "hr_streak": 0,
-          "drought": 7
+          "drought": 8
         },
         {
           "pos": "2B",
@@ -1111,15 +1123,7 @@
           "start_hr": 17,
           "season_hr": 21,
           "gained": 4,
-          "line": {
-            "ab": 3,
-            "h": 0,
-            "hr": 0,
-            "rbi": 0,
-            "bb": 1,
-            "k": 1,
-            "r": 1
-          },
+          "line": null,
           "hr_last_night": 0,
           "week_hr": 1,
           "season_line": {
@@ -1171,26 +1175,34 @@
           "mlb_team": "Dodgers",
           "start_hr": 17,
           "mlbam_id": 571970,
-          "season_hr": 24,
-          "gained": 7,
+          "season_hr": 25,
+          "gained": 8,
           "line": {
-            "ab": 3,
-            "h": 1,
+            "ab": 4,
+            "h": 2,
             "hr": 1,
-            "rbi": 1,
-            "bb": 0,
-            "k": 1,
-            "r": 1
+            "rbi": 3,
+            "bb": 1,
+            "k": 0,
+            "r": 2
           },
           "hr_last_night": 1,
-          "week_hr": 2,
+          "week_hr": 3,
           "season_line": {
-            "h": 94,
-            "avg": ".249",
-            "rbi": 60,
+            "h": 96,
+            "avg": ".252",
+            "rbi": 63,
             "k": 111
           },
           "hr_games": [
+            {
+              "date": "2026-08-17",
+              "hr": 1,
+              "ab": 4,
+              "opponent": "Colorado Rockies",
+              "is_home": false,
+              "game_pk": 824320
+            },
             {
               "date": "2026-08-16",
               "hr": 1,
@@ -1248,7 +1260,7 @@
               "game_pk": 823524
             }
           ],
-          "hr_streak": 1,
+          "hr_streak": 2,
           "drought": 0
         },
         {
@@ -1258,15 +1270,7 @@
           "start_hr": 18,
           "season_hr": 29,
           "gained": 11,
-          "line": {
-            "ab": 4,
-            "h": 0,
-            "hr": 0,
-            "rbi": 0,
-            "bb": 0,
-            "k": 1,
-            "r": 0
-          },
+          "line": null,
           "hr_last_night": 0,
           "week_hr": 1,
           "season_line": {
@@ -1360,21 +1364,21 @@
           "season_hr": 24,
           "gained": 4,
           "line": {
-            "ab": 4,
-            "h": 3,
-            "hr": 1,
-            "rbi": 4,
+            "ab": 9,
+            "h": 5,
+            "hr": 0,
+            "rbi": 0,
             "bb": 0,
-            "k": 0,
-            "r": 1
+            "k": 2,
+            "r": 2
           },
-          "hr_last_night": 1,
+          "hr_last_night": 0,
           "week_hr": 1,
           "season_line": {
-            "h": 132,
-            "avg": ".284",
+            "h": 137,
+            "avg": ".289",
             "rbi": 88,
-            "k": 123
+            "k": 125
           },
           "hr_games": [
             {
@@ -1410,8 +1414,8 @@
               "game_pk": 823062
             }
           ],
-          "hr_streak": 1,
-          "drought": 0
+          "hr_streak": 0,
+          "drought": 2
         },
         {
           "pos": "CF",
@@ -1421,25 +1425,25 @@
           "season_hr": 25,
           "gained": 0,
           "line": {
-            "ab": 5,
-            "h": 0,
+            "ab": 3,
+            "h": 1,
             "hr": 0,
             "rbi": 0,
-            "bb": 0,
-            "k": 3,
-            "r": 0
+            "bb": 1,
+            "k": 0,
+            "r": 1
           },
           "hr_last_night": 0,
           "week_hr": 0,
           "season_line": {
-            "h": 88,
+            "h": 89,
             "avg": ".257",
             "rbi": 45,
             "k": 93
           },
           "hr_games": [],
           "hr_streak": 0,
-          "drought": 17
+          "drought": 18
         },
         {
           "pos": "LF",
@@ -1493,9 +1497,9 @@
       "start_total": 172,
       "season_total": 218,
       "gained": 46,
-      "hr_last_night": 2,
-      "week_hr": 7,
-      "pace": 283,
+      "hr_last_night": 0,
+      "week_hr": 6,
+      "pace": 282,
       "roster": [
         {
           "pos": "DH",
@@ -1504,15 +1508,7 @@
           "start_hr": 29,
           "season_hr": 36,
           "gained": 7,
-          "line": {
-            "ab": 4,
-            "h": 1,
-            "hr": 0,
-            "rbi": 0,
-            "bb": 0,
-            "k": 1,
-            "r": 0
-          },
+          "line": null,
           "hr_last_night": 0,
           "week_hr": 1,
           "season_line": {
@@ -1629,19 +1625,19 @@
           "line": {
             "ab": 3,
             "h": 1,
-            "hr": 1,
-            "rbi": 3,
+            "hr": 0,
+            "rbi": 0,
             "bb": 1,
             "k": 1,
-            "r": 1
+            "r": 0
           },
-          "hr_last_night": 1,
+          "hr_last_night": 0,
           "week_hr": 2,
           "season_line": {
-            "h": 127,
+            "h": 128,
             "avg": ".264",
             "rbi": 77,
-            "k": 136
+            "k": 137
           },
           "hr_games": [
             {
@@ -1749,8 +1745,8 @@
               "game_pk": 824900
             }
           ],
-          "hr_streak": 1,
-          "drought": 0
+          "hr_streak": 0,
+          "drought": 1
         },
         {
           "pos": "2B",
@@ -1759,15 +1755,7 @@
           "start_hr": 8,
           "season_hr": 13,
           "gained": 5,
-          "line": {
-            "ab": 3,
-            "h": 1,
-            "hr": 0,
-            "rbi": 0,
-            "bb": 1,
-            "k": 1,
-            "r": 0
-          },
+          "line": null,
           "hr_last_night": 0,
           "week_hr": 0,
           "season_line": {
@@ -1829,21 +1817,21 @@
           "season_hr": 35,
           "gained": 9,
           "line": {
-            "ab": 3,
-            "h": 0,
+            "ab": 4,
+            "h": 1,
             "hr": 0,
             "rbi": 0,
             "bb": 0,
-            "k": 2,
+            "k": 1,
             "r": 0
           },
           "hr_last_night": 0,
-          "week_hr": 2,
+          "week_hr": 1,
           "season_line": {
-            "h": 128,
-            "avg": ".274",
+            "h": 129,
+            "avg": ".273",
             "rbi": 79,
-            "k": 101
+            "k": 102
           },
           "hr_games": [
             {
@@ -1912,7 +1900,7 @@
             }
           ],
           "hr_streak": 0,
-          "drought": 4
+          "drought": 5
         },
         {
           "pos": "SS",
@@ -1921,15 +1909,7 @@
           "start_hr": 23,
           "season_hr": 26,
           "gained": 3,
-          "line": {
-            "ab": 4,
-            "h": 2,
-            "hr": 0,
-            "rbi": 1,
-            "bb": 0,
-            "k": 2,
-            "r": 0
-          },
+          "line": null,
           "hr_last_night": 0,
           "week_hr": 0,
           "season_line": {
@@ -1995,20 +1975,20 @@
           "season_hr": 21,
           "gained": 5,
           "line": {
-            "ab": 3,
-            "h": 1,
-            "hr": 1,
-            "rbi": 1,
+            "ab": 4,
+            "h": 3,
+            "hr": 0,
+            "rbi": 2,
             "bb": 1,
-            "k": 1,
-            "r": 1
+            "k": 0,
+            "r": 2
           },
-          "hr_last_night": 1,
+          "hr_last_night": 0,
           "week_hr": 2,
           "season_line": {
-            "h": 129,
-            "avg": ".270",
-            "rbi": 78,
+            "h": 132,
+            "avg": ".274",
+            "rbi": 80,
             "k": 105
           },
           "hr_games": [
@@ -2053,8 +2033,8 @@
               "game_pk": 823927
             }
           ],
-          "hr_streak": 1,
-          "drought": 0
+          "hr_streak": 0,
+          "drought": 1
         },
         {
           "pos": "LF",
@@ -2080,61 +2060,101 @@
     }
   ],
   "potn": {
-    "pos": "RF",
-    "name": "Jordan Walker",
-    "mlb_team": "Cardinals",
-    "start_hr": 20,
-    "season_hr": 24,
-    "gained": 4,
+    "pos": "DH",
+    "name": "Shohei Ohtani",
+    "mlb_team": "Dodgers",
+    "start_hr": 18,
+    "season_hr": 29,
+    "gained": 11,
     "line": {
-      "ab": 4,
-      "h": 3,
-      "hr": 1,
-      "rbi": 4,
+      "ab": 5,
+      "h": 4,
+      "hr": 2,
+      "rbi": 3,
       "bb": 0,
       "k": 0,
-      "r": 1
+      "r": 4
     },
-    "hr_last_night": 1,
-    "week_hr": 1,
+    "hr_last_night": 2,
+    "week_hr": 3,
     "season_line": {
       "h": 132,
-      "avg": ".284",
-      "rbi": 88,
-      "k": 123
+      "avg": ".295",
+      "rbi": 78,
+      "k": 122
     },
     "hr_games": [
       {
-        "date": "2026-08-16",
-        "hr": 1,
-        "ab": 4,
-        "opponent": "Chicago Cubs",
-        "is_home": false,
-        "game_pk": 824642
-      },
-      {
-        "date": "2026-08-08",
-        "hr": 1,
+        "date": "2026-08-17",
+        "hr": 2,
         "ab": 5,
         "opponent": "Colorado Rockies",
-        "is_home": true,
-        "game_pk": 823021
+        "is_home": false,
+        "game_pk": 824320
       },
       {
-        "date": "2026-07-09",
+        "date": "2026-08-12",
         "hr": 1,
         "ab": 4,
-        "opponent": "Milwaukee Brewers",
+        "opponent": "Kansas City Royals",
         "is_home": true,
-        "game_pk": 823034
+        "game_pk": 823916
+      },
+      {
+        "date": "2026-08-05",
+        "hr": 2,
+        "ab": 5,
+        "opponent": "Chicago Cubs",
+        "is_home": false,
+        "game_pk": 824646
+      },
+      {
+        "date": "2026-07-31",
+        "hr": 1,
+        "ab": 5,
+        "opponent": "Boston Red Sox",
+        "is_home": true,
+        "game_pk": 823922
+      },
+      {
+        "date": "2026-07-28",
+        "hr": 1,
+        "ab": 4,
+        "opponent": "Seattle Mariners",
+        "is_home": true,
+        "game_pk": 823923
+      },
+      {
+        "date": "2026-07-12",
+        "hr": 1,
+        "ab": 4,
+        "opponent": "Arizona Diamondbacks",
+        "is_home": true,
+        "game_pk": 823925
+      },
+      {
+        "date": "2026-07-10",
+        "hr": 1,
+        "ab": 4,
+        "opponent": "Arizona Diamondbacks",
+        "is_home": true,
+        "game_pk": 823927
       },
       {
         "date": "2026-07-07",
         "hr": 1,
         "ab": 4,
-        "opponent": "Milwaukee Brewers",
+        "opponent": "Colorado Rockies",
         "is_home": true,
-        "game_pk": 823062
+        "game_pk": 823929
+      },
+      {
+        "date": "2026-07-06",
+        "hr": 1,
+        "ab": 4,
+        "opponent": "Colorado Rockies",
+        "is_home": true,
+        "game_pk": 823930
       }
     ],
     "hr_streak": 1,
@@ -2142,33 +2162,98 @@
     "team_name": "Team Guy"
   },
   "bad_day": {
-    "pos": "CF",
-    "name": "Byron Buxton",
-    "mlb_team": "Twins",
-    "start_hr": 25,
-    "season_hr": 25,
-    "gained": 0,
+    "pos": "3B",
+    "name": "Junior Caminero",
+    "mlb_team": "Rays",
+    "start_hr": 26,
+    "season_hr": 35,
+    "gained": 9,
     "line": {
-      "ab": 5,
-      "h": 0,
+      "ab": 4,
+      "h": 1,
       "hr": 0,
       "rbi": 0,
       "bb": 0,
-      "k": 3,
+      "k": 1,
       "r": 0
     },
     "hr_last_night": 0,
-    "week_hr": 0,
+    "week_hr": 1,
     "season_line": {
-      "h": 88,
-      "avg": ".257",
-      "rbi": 45,
-      "k": 93
+      "h": 129,
+      "avg": ".273",
+      "rbi": 79,
+      "k": 102
     },
-    "hr_games": [],
+    "hr_games": [
+      {
+        "date": "2026-08-11",
+        "hr": 1,
+        "ab": 3,
+        "opponent": "Athletics",
+        "is_home": false,
+        "game_pk": 824970
+      },
+      {
+        "date": "2026-08-10",
+        "hr": 1,
+        "ab": 5,
+        "opponent": "Athletics",
+        "is_home": false,
+        "game_pk": 824969
+      },
+      {
+        "date": "2026-08-05",
+        "hr": 1,
+        "ab": 3,
+        "opponent": "Colorado Rockies",
+        "is_home": false,
+        "game_pk": 824322
+      },
+      {
+        "date": "2026-08-03",
+        "hr": 2,
+        "ab": 5,
+        "opponent": "Colorado Rockies",
+        "is_home": false,
+        "game_pk": 824324
+      },
+      {
+        "date": "2026-07-31",
+        "hr": 1,
+        "ab": 2,
+        "opponent": "Chicago White Sox",
+        "is_home": true,
+        "game_pk": 822945
+      },
+      {
+        "date": "2026-07-17",
+        "hr": 1,
+        "ab": 4,
+        "opponent": "Boston Red Sox",
+        "is_home": false,
+        "game_pk": 824737
+      },
+      {
+        "date": "2026-07-10",
+        "hr": 1,
+        "ab": 4,
+        "opponent": "Seattle Mariners",
+        "is_home": true,
+        "game_pk": 822955
+      },
+      {
+        "date": "2026-07-09",
+        "hr": 1,
+        "ab": 4,
+        "opponent": "New York Yankees",
+        "is_home": true,
+        "game_pk": 822954
+      }
+    ],
     "hr_streak": 0,
-    "drought": 17,
-    "team_name": "Team Guy"
+    "drought": 5,
+    "team_name": "Team Dimisia"
   },
   "weekly": null,
   "any_games": true
