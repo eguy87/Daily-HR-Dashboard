@@ -222,7 +222,7 @@
       }
     ]
   },
-  "generated_at": "Aug 27, 2026 12:49 PM ET",
+  "generated_at": "Aug 27, 2026 05:19 PM ET",
   "teams": [
     {
       "name": "Team Barmen",
@@ -1232,8 +1232,8 @@
               "game_pk": 824330
             }
           ],
-          "hr_streak": 2,
-          "drought": 0
+          "hr_streak": 0,
+          "drought": 1
         },
         {
           "pos": "1B",
@@ -1494,10 +1494,10 @@
           "hr_last_night": 0,
           "week_hr": 0,
           "season_line": {
-            "h": 132,
+            "h": 133,
             "avg": ".274",
             "rbi": 92,
-            "k": 127
+            "k": 129
           },
           "hr_games": [
             {
@@ -1574,7 +1574,7 @@
             }
           ],
           "hr_streak": 0,
-          "drought": 10
+          "drought": 11
         },
         {
           "pos": "RF",
@@ -1595,10 +1595,10 @@
           "hr_last_night": 0,
           "week_hr": 2,
           "season_line": {
-            "h": 144,
-            "avg": ".285",
+            "h": 146,
+            "avg": ".286",
             "rbi": 97,
-            "k": 134
+            "k": 136
           },
           "hr_games": [
             {
@@ -1659,7 +1659,7 @@
             }
           ],
           "hr_streak": 0,
-          "drought": 4
+          "drought": 5
         },
         {
           "pos": "CF",
