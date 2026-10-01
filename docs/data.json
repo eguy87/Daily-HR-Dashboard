@@ -1,6 +1,6 @@
 {
   "league_name": "HR Derby League",
-  "game_date": "2026-09-29",
+  "game_date": "2026-09-30",
   "race": {
     "dates": [
       "2026-07-08",
@@ -86,7 +86,8 @@
       "2026-09-26",
       "2026-09-27",
       "2026-09-28",
-      "2026-09-29"
+      "2026-09-29",
+      "2026-09-30"
     ],
     "teams": [
       {
@@ -175,6 +176,7 @@
           84,
           85,
           85,
+          85,
           85
         ]
       },
@@ -261,6 +263,7 @@
           122,
           123,
           123,
+          124,
           124,
           124,
           124,
@@ -353,12 +356,13 @@
           80,
           81,
           81,
+          81,
           81
         ]
       }
     ]
   },
-  "generated_at": "Sep 30, 2026 01:01 PM ET",
+  "generated_at": "Oct 01, 2026 01:33 PM ET",
   "teams": [
     {
       "name": "Team Barmen",
@@ -366,7 +370,7 @@
       "season_total": 310,
       "gained": 124,
       "hr_last_night": 0,
-      "week_hr": 5,
+      "week_hr": 2,
       "pace": 310,
       "roster": [
         {
@@ -580,7 +584,7 @@
           "gained": 17,
           "line": null,
           "hr_last_night": 0,
-          "week_hr": 2,
+          "week_hr": 0,
           "season_line": {
             "h": 151,
             "avg": ".264",
@@ -721,7 +725,7 @@
           "gained": 14,
           "line": null,
           "hr_last_night": 0,
-          "week_hr": 2,
+          "week_hr": 1,
           "season_line": {
             "h": 152,
             "avg": ".260",
@@ -1446,7 +1450,7 @@
       "season_total": 265,
       "gained": 85,
       "hr_last_night": 0,
-      "week_hr": 5,
+      "week_hr": 4,
       "pace": 265,
       "roster": [
         {
@@ -2162,7 +2166,7 @@
           "gained": 9,
           "line": null,
           "hr_last_night": 0,
-          "week_hr": 1,
+          "week_hr": 0,
           "season_line": {
             "h": 110,
             "avg": ".275",
@@ -2254,7 +2258,7 @@
       "season_total": 253,
       "gained": 81,
       "hr_last_night": 0,
-      "week_hr": 5,
+      "week_hr": 4,
       "pace": 253,
       "roster": [
         {
@@ -2428,7 +2432,7 @@
           "gained": 19,
           "line": null,
           "hr_last_night": 0,
-          "week_hr": 1,
+          "week_hr": 0,
           "season_line": {
             "h": 157,
             "avg": ".251",
