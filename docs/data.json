@@ -1,6 +1,6 @@
 {
   "league_name": "HR Derby League",
-  "game_date": "2026-10-01",
+  "game_date": "2026-10-02",
   "race": {
     "dates": [
       "2026-07-08",
@@ -88,7 +88,8 @@
       "2026-09-28",
       "2026-09-29",
       "2026-09-30",
-      "2026-10-01"
+      "2026-10-01",
+      "2026-10-02"
     ],
     "teams": [
       {
@@ -179,6 +180,7 @@
           85,
           85,
           85,
+          85,
           85
         ]
       },
@@ -265,6 +267,7 @@
           122,
           123,
           123,
+          124,
           124,
           124,
           124,
@@ -361,12 +364,13 @@
           81,
           81,
           81,
+          81,
           81
         ]
       }
     ]
   },
-  "generated_at": "Oct 02, 2026 12:50 PM ET",
+  "generated_at": "Oct 03, 2026 11:15 AM ET",
   "teams": [
     {
       "name": "Team Barmen",
@@ -1454,7 +1458,7 @@
       "season_total": 265,
       "gained": 85,
       "hr_last_night": 0,
-      "week_hr": 4,
+      "week_hr": 3,
       "pace": 265,
       "roster": [
         {
@@ -2057,7 +2061,7 @@
           "gained": 9,
           "line": null,
           "hr_last_night": 0,
-          "week_hr": 1,
+          "week_hr": 0,
           "season_line": {
             "h": 164,
             "avg": ".269",
@@ -2262,7 +2266,7 @@
       "season_total": 253,
       "gained": 81,
       "hr_last_night": 0,
-      "week_hr": 4,
+      "week_hr": 3,
       "pace": 253,
       "roster": [
         {
@@ -2941,7 +2945,7 @@
           "gained": 7,
           "line": null,
           "hr_last_night": 0,
-          "week_hr": 2,
+          "week_hr": 1,
           "season_line": {
             "h": 140,
             "avg": ".274",
