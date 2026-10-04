@@ -1,6 +1,6 @@
 {
   "league_name": "HR Derby League",
-  "game_date": "2026-10-02",
+  "game_date": "2026-10-03",
   "race": {
     "dates": [
       "2026-07-08",
@@ -89,7 +89,8 @@
       "2026-09-29",
       "2026-09-30",
       "2026-10-01",
-      "2026-10-02"
+      "2026-10-02",
+      "2026-10-03"
     ],
     "teams": [
       {
@@ -181,6 +182,7 @@
           85,
           85,
           85,
+          85,
           85
         ]
       },
@@ -267,6 +269,7 @@
           122,
           123,
           123,
+          124,
           124,
           124,
           124,
@@ -365,12 +368,13 @@
           81,
           81,
           81,
+          81,
           81
         ]
       }
     ]
   },
-  "generated_at": "Oct 03, 2026 11:15 AM ET",
+  "generated_at": "Oct 04, 2026 12:00 PM ET",
   "teams": [
     {
       "name": "Team Barmen",
@@ -378,7 +382,7 @@
       "season_total": 310,
       "gained": 124,
       "hr_last_night": 0,
-      "week_hr": 1,
+      "week_hr": 0,
       "pace": 310,
       "roster": [
         {
@@ -733,7 +737,7 @@
           "gained": 14,
           "line": null,
           "hr_last_night": 0,
-          "week_hr": 1,
+          "week_hr": 0,
           "season_line": {
             "h": 152,
             "avg": ".260",
@@ -1458,7 +1462,7 @@
       "season_total": 265,
       "gained": 85,
       "hr_last_night": 0,
-      "week_hr": 3,
+      "week_hr": 1,
       "pace": 265,
       "roster": [
         {
@@ -1571,7 +1575,7 @@
           "gained": 14,
           "line": null,
           "hr_last_night": 0,
-          "week_hr": 2,
+          "week_hr": 0,
           "season_line": {
             "h": 127,
             "avg": ".245",
@@ -2266,7 +2270,7 @@
       "season_total": 253,
       "gained": 81,
       "hr_last_night": 0,
-      "week_hr": 3,
+      "week_hr": 1,
       "pace": 253,
       "roster": [
         {
@@ -2278,7 +2282,7 @@
           "gained": 13,
           "line": null,
           "hr_last_night": 0,
-          "week_hr": 1,
+          "week_hr": 0,
           "season_line": {
             "h": 179,
             "avg": ".316",
@@ -2690,7 +2694,7 @@
           "gained": 16,
           "line": null,
           "hr_last_night": 0,
-          "week_hr": 1,
+          "week_hr": 0,
           "season_line": {
             "h": 170,
             "avg": ".276",
@@ -3087,6 +3091,195 @@
   ],
   "potn": null,
   "bad_day": null,
-  "weekly": null,
+  "weekly": {
+    "top_players": [
+      {
+        "pos": "1B",
+        "name": "Bryce Harper",
+        "mlb_team": "Phillies",
+        "start_hr": 20,
+        "season_hr": 29,
+        "gained": 9,
+        "line": null,
+        "hr_last_night": 0,
+        "week_hr": 1,
+        "season_line": {
+          "h": 155,
+          "avg": ".269",
+          "rbi": 87,
+          "k": 148
+        },
+        "hr_games": [
+          {
+            "date": "2026-09-27",
+            "hr": 1,
+            "ab": 5,
+            "opponent": "Tampa Bay Rays",
+            "is_home": true,
+            "game_pk": 823408
+          },
+          {
+            "date": "2026-09-12",
+            "hr": 1,
+            "ab": 3,
+            "opponent": "Atlanta Braves",
+            "is_home": false,
+            "game_pk": 824870
+          },
+          {
+            "date": "2026-08-26",
+            "hr": 1,
+            "ab": 4,
+            "opponent": "Seattle Mariners",
+            "is_home": false,
+            "game_pk": 823096
+          },
+          {
+            "date": "2026-08-22",
+            "hr": 1,
+            "ab": 4,
+            "opponent": "St. Louis Cardinals",
+            "is_home": true,
+            "game_pk": 823422
+          },
+          {
+            "date": "2026-08-08",
+            "hr": 1,
+            "ab": 5,
+            "opponent": "Toronto Blue Jays",
+            "is_home": true,
+            "game_pk": 823426
+          },
+          {
+            "date": "2026-08-03",
+            "hr": 1,
+            "ab": 4,
+            "opponent": "Washington Nationals",
+            "is_home": true,
+            "game_pk": 823431
+          },
+          {
+            "date": "2026-08-02",
+            "hr": 1,
+            "ab": 3,
+            "opponent": "Baltimore Orioles",
+            "is_home": false,
+            "game_pk": 824807
+          },
+          {
+            "date": "2026-07-27",
+            "hr": 1,
+            "ab": 3,
+            "opponent": "Miami Marlins",
+            "is_home": false,
+            "game_pk": 823839
+          },
+          {
+            "date": "2026-07-20",
+            "hr": 1,
+            "ab": 3,
+            "opponent": "Los Angeles Dodgers",
+            "is_home": true,
+            "game_pk": 823436
+          }
+        ],
+        "hr_streak": 1,
+        "drought": 0,
+        "team_name": "Team Guy"
+      },
+      {
+        "pos": "CF",
+        "name": "Andy Pages",
+        "mlb_team": "Dodgers",
+        "start_hr": 16,
+        "season_hr": 23,
+        "gained": 7,
+        "line": null,
+        "hr_last_night": 0,
+        "week_hr": 1,
+        "season_line": {
+          "h": 140,
+          "avg": ".274",
+          "rbi": 85,
+          "k": 113
+        },
+        "hr_games": [
+          {
+            "date": "2026-09-27",
+            "hr": 1,
+            "ab": 3,
+            "opponent": "San Francisco Giants",
+            "is_home": false,
+            "game_pk": 823164
+          },
+          {
+            "date": "2026-09-25",
+            "hr": 1,
+            "ab": 3,
+            "opponent": "San Francisco Giants",
+            "is_home": false,
+            "game_pk": 823167
+          },
+          {
+            "date": "2026-08-16",
+            "hr": 1,
+            "ab": 3,
+            "opponent": "Milwaukee Brewers",
+            "is_home": true,
+            "game_pk": 823912
+          },
+          {
+            "date": "2026-08-14",
+            "hr": 1,
+            "ab": 4,
+            "opponent": "Milwaukee Brewers",
+            "is_home": true,
+            "game_pk": 823913
+          },
+          {
+            "date": "2026-08-07",
+            "hr": 1,
+            "ab": 3,
+            "opponent": "Arizona Diamondbacks",
+            "is_home": false,
+            "game_pk": 825051
+          },
+          {
+            "date": "2026-07-29",
+            "hr": 1,
+            "ab": 4,
+            "opponent": "Seattle Mariners",
+            "is_home": true,
+            "game_pk": 823924
+          },
+          {
+            "date": "2026-07-10",
+            "hr": 1,
+            "ab": 4,
+            "opponent": "Arizona Diamondbacks",
+            "is_home": true,
+            "game_pk": 823927
+          }
+        ],
+        "hr_streak": 1,
+        "drought": 0,
+        "team_name": "Team Dimisia"
+      }
+    ],
+    "team_week": [
+      {
+        "name": "Team Guy",
+        "week_hr": 1
+      },
+      {
+        "name": "Team Dimisia",
+        "week_hr": 1
+      },
+      {
+        "name": "Team Barmen",
+        "week_hr": 0
+      }
+    ]
+  },
   "any_games": false
 }
