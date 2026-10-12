@@ -1,6 +1,6 @@
 {
   "league_name": "HR Derby League",
-  "game_date": "2026-10-10",
+  "game_date": "2026-10-11",
   "race": {
     "dates": [
       "2026-07-08",
@@ -97,7 +97,8 @@
       "2026-10-07",
       "2026-10-08",
       "2026-10-09",
-      "2026-10-10"
+      "2026-10-10",
+      "2026-10-11"
     ],
     "teams": [
       {
@@ -197,6 +198,7 @@
           85,
           85,
           85,
+          85,
           85
         ]
       },
@@ -283,6 +285,7 @@
           122,
           123,
           123,
+          124,
           124,
           124,
           124,
@@ -397,12 +400,13 @@
           81,
           81,
           81,
+          81,
           81
         ]
       }
     ]
   },
-  "generated_at": "Oct 11, 2026 12:47 PM ET",
+  "generated_at": "Oct 12, 2026 04:26 PM ET",
   "teams": [
     {
       "name": "Team Barmen",
@@ -3119,22 +3123,6 @@
   ],
   "potn": null,
   "bad_day": null,
-  "weekly": {
-    "top_players": [],
-    "team_week": [
-      {
-        "name": "Team Barmen",
-        "week_hr": 0
-      },
-      {
-        "name": "Team Guy",
-        "week_hr": 0
-      },
-      {
-        "name": "Team Dimisia",
-        "week_hr": 0
-      }
-    ]
-  },
+  "weekly": null,
   "any_games": false
 }
