@@ -1,8 +1,10 @@
 name: Daily HR Dashboard
 
 on:
-  schedule:
-    - cron: "45 11 * * *"   # 7:45 AM ET (11:45 UTC) every day
+  # schedule paused for the MLB offseason (Oct 26, 2026) — resume next season
+  # by uncommenting the two lines below.
+  # schedule:
+  #   - cron: "45 11 * * *"   # 7:45 AM ET (11:45 UTC) every day
   workflow_dispatch:          # lets you run it manually from the Actions tab
 
 permissions:
